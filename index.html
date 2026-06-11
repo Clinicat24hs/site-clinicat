@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clinicat — Centro Veterinário 24h em Perdizes, SP</title>
+  <meta name="description" content="Atendimento veterinário 24h, internação, UTI, 15+ especialidades, exames e bem-estar em Perdizes, SP." />
+  <meta property="og:title" content="Clinicat — Centro Veterinário 24h" />
+  <meta property="og:description" content="Mais de 14.297 pets atendidos. Atendimento 24h em Perdizes, SP." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/logo-stacked.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Mulish:wght@300;400;500;600;700&family=Newsreader:ital,wght@1,400;1,500&display=swap">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container row between">
+      <span class="hide-sm">Av. Professor Alfonso Bovero, 416 — Perdizes, São Paulo</span>
+      <a href="tel:+551138657713" class="topbar-phone">📞 (11) 3865-7713 · Atendimento 24h</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container row between gap">
+      <a href="/" class="logo-link" aria-label="Clinicat">
+        <img src="assets/logo-horizontal.png" alt="Clinicat — Centro Veterinário 24h" class="logo" />
+      </a>
+
+      <nav class="nav-desktop" aria-label="Principal">
+        <div class="nav-item">
+          <button class="nav-btn">Atendimento</button>
+          <div class="nav-menu">
+            <a href="#servicos">Clínico</a><a href="#servicos">Emergência 24h</a>
+            <a href="#servicos">Internação</a><a href="#servicos">UTI (Intensivista)</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Especialidades</button>
+          <div class="nav-menu">
+            <a href="#servicos">Cardiologia</a><a href="#servicos">Dermatologia</a>
+            <a href="#servicos">Endocrinologia</a><a href="#servicos">Hematologia</a>
+            <a href="#servicos">Nefrologia</a><a href="#servicos">Neurologia</a>
+            <a href="#servicos">Nutrologia</a><a href="#servicos">Oftalmologia</a>
+            <a href="#servicos">Oncologia</a><a href="#servicos">Ortopedia</a>
+            <a href="#servicos">Pneumologia</a><a href="#servicos">Odontologia</a>
+            <a href="#servicos">Medicina Felina</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Cirurgia</button>
+          <div class="nav-menu">
+            <a href="#servicos">Cirurgia</a><a href="#servicos">Anestesiologia</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Reabilitação</button>
+          <div class="nav-menu">
+            <a href="#servicos">Fisioterapia</a><a href="#servicos">Acupuntura</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Diagnóstico</button>
+          <div class="nav-menu">
+            <a href="#servicos">Exames laboratoriais</a><a href="#servicos">Ultrassonografia</a>
+            <a href="#servicos">Radiologia</a><a href="#servicos">Endoscopia</a>
+            <a href="#servicos">Patologia</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-btn">Bem-estar</button>
+          <div class="nav-menu">
+            <a href="#servicos">Banho e Tosa</a><a href="#servicos">Creche</a><a href="#servicos">Hotel</a>
+          </div>
+        </div>
+        <a href="#ceav" class="nav-btn">CEAV</a>
+        <a href="#cuida" class="nav-btn">Clinicat Cuida</a>
+      </nav>
+
+      <div class="row gap-sm">
+        <a href="https://wa.me/5511932565663" target="_blank" rel="noopener" class="btn btn-primary hide-sm">Fale no WhatsApp</a>
+        <button class="btn-icon nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
+      </div>
+    </div>
+
+    <div class="nav-mobile" id="navMobile" hidden>
+      <div class="container nav-mobile-inner">
+        <details><summary>Atendimento</summary><a href="#servicos">Clínico</a><a href="#servicos">Emergência 24h</a><a href="#servicos">Internação</a><a href="#servicos">UTI</a></details>
+        <details><summary>Especialidades</summary><a href="#servicos">Cardiologia</a><a href="#servicos">Dermatologia</a><a href="#servicos">Endocrinologia</a><a href="#servicos">Hematologia</a><a href="#servicos">Nefrologia</a><a href="#servicos">Neurologia</a><a href="#servicos">Nutrologia</a><a href="#servicos">Oftalmologia</a><a href="#servicos">Oncologia</a><a href="#servicos">Ortopedia</a><a href="#servicos">Pneumologia</a><a href="#servicos">Odontologia</a><a href="#servicos">Medicina Felina</a></details>
+        <details><summary>Cirurgia</summary><a href="#servicos">Cirurgia</a><a href="#servicos">Anestesiologia</a></details>
+        <details><summary>Reabilitação</summary><a href="#servicos">Fisioterapia</a><a href="#servicos">Acupuntura</a></details>
+        <details><summary>Diagnóstico</summary><a href="#servicos">Laboratorial</a><a href="#servicos">Ultrassonografia</a><a href="#servicos">Radiologia</a><a href="#servicos">Endoscopia</a><a href="#servicos">Patologia</a></details>
+        <details><summary>Bem-estar</summary><a href="#servicos">Banho e Tosa</a><a href="#servicos">Creche</a><a href="#servicos">Hotel</a></details>
+        <a href="#ceav" class="mlink">CEAV</a>
+        <a href="#cuida" class="mlink">Clinicat Cuida</a>
+        <a href="https://wa.me/5511932565663" class="btn btn-primary block">Fale no WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-1" aria-hidden="true"></div>
+    <div class="hero-bg-2" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">🛡 Atendimento 24h em Perdizes</span>
+        <h1 class="display">Cuidado veterinário <em>completo</em>,<br>24 horas por dia.</h1>
+        <p class="lead">Há 5 anos, somos a primeira escolha de quem busca excelência, segurança e acolhimento para cães e gatos. Tecnologia, equipe especialista e o carinho de quem entende: seu pet é família.</p>
+        <div class="row gap wrap mt-lg">
+          <a href="https://wa.me/5511932565663" class="btn btn-primary">Fale no WhatsApp →</a>
+          <a href="tel:+551138657713" class="btn btn-outline">Emergência · (11) 3865-7713</a>
+        </div>
+        <div class="row gap mt-lg rating">
+          <div class="avatars">
+            <span class="av av-peach">🐶</span>
+            <span class="av av-primary">🐱</span>
+            <span class="av av-wine">🐾</span>
+          </div>
+          <span><strong>4,5 ★</strong> no Google · quase 700 famílias avaliaram</span>
+        </div>
+      </div>
+      <div class="hero-img-wrap">
+        <div class="hero-img-glow" aria-hidden="true"></div>
+        <div class="hero-img-card">
+          <img src="assets/hero-vet.jpg" alt="Veterinária acolhendo cachorro e gato na Clinicat" />
+        </div>
+        <div class="hero-tooltip">
+          <p class="kicker">Resposta rápida</p>
+          <p>Equipe pronta agora — emergência sem espera.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="numeros" class="container stats-wrap">
+    <div class="stats">
+      <p class="kicker peach">Nossos números</p>
+      <h2 class="display-md">Uma história <em>construída</em> com milhares de famílias.</h2>
+      <div class="stats-grid">
+        <div class="stat"><div class="stat-v">5</div><div class="stat-l">anos de atuação</div></div>
+        <div class="stat"><div class="stat-v">14.297+</div><div class="stat-l">pets atendidos</div></div>
+        <div class="stat"><div class="stat-v">10.634+</div><div class="stat-l">clientes acolhidos</div></div>
+        <div class="stat"><div class="stat-v">1.100+</div><div class="stat-l">cirurgias realizadas</div></div>
+        <div class="stat"><div class="stat-v">15+</div><div class="stat-l">especialidades</div></div>
+        <div class="stat"><div class="stat-v">4,5 ★</div><div class="stat-l">Google · 698 avaliações</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="container two-col">
+    <div class="story-imgs">
+      <img src="assets/care-dog.jpg" alt="Cachorro sorrindo durante consulta" loading="lazy" />
+      <img src="assets/care-cat.jpg" alt="Gato acolhido com carinho" class="offset" loading="lazy" />
+    </div>
+    <div>
+      <p class="kicker primary">Quem somos</p>
+      <h2 class="display-md">Mais do que um centro veterinário, <em>um lugar de acolhimento.</em></h2>
+      <p>Escolher onde confiar a saúde do seu pet é uma das decisões mais importantes que você pode tomar. Por isso, trabalhamos todos os dias para ser a primeira escolha de quem busca excelência, segurança e carinho.</p>
+      <p>Nossa estrutura foi pensada para oferecer tudo o que seu pet precisa em um só lugar: atendimento 24 horas, laboratório próprio, exames rápidos, internação com suporte semi-intensivo e mais de 15 especialidades veterinárias.</p>
+      <p>Entendemos que, quando um pet precisa de atendimento, toda a família vive aquele momento junto. Acolhemos pacientes — e também quem ama eles.</p>
+      <p class="row gap mt-md"><span class="stars">★★★★★</span> <span class="muted">4,5 estrelas no Google · 698 avaliações</span></p>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="services">
+    <div class="container">
+      <div class="services-head">
+        <div>
+          <p class="kicker primary">Serviços e especialidades</p>
+          <h2 class="display-md">Cuidado completo em <em>cada fase</em> da vida do seu pet.</h2>
+        </div>
+        <p class="muted">Da rotina à emergência, da especialidade ao bem-estar — tudo em um só lugar.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><div class="ic">💗</div><h3>Atendimento 24h</h3><p>Clínica, emergência, internação e UTI com equipe sempre presente.</p><ul><li>Clínico</li><li>Emergência</li><li>Internação</li><li>Intensivista</li></ul></article>
+        <article class="card"><div class="ic">🩺</div><h3>Especialidades</h3><p>Mais de 15 áreas com especialistas dedicados ao seu pet.</p><ul><li>Cardio</li><li>Dermato</li><li>Neuro</li><li>Onco</li><li>Ortopedia</li><li>+9</li></ul></article>
+        <article class="card"><div class="ic">✂️</div><h3>Cirurgia & Anestesia</h3><p>Centro cirúrgico moderno com protocolos anestésicos seguros.</p><ul><li>Cirurgia geral</li><li>Especializada</li><li>Anestesiologia</li></ul></article>
+        <article class="card"><div class="ic">📈</div><h3>Reabilitação</h3><p>Recuperação ativa com terapias integrativas e personalizadas.</p><ul><li>Fisioterapia</li><li>Acupuntura</li></ul></article>
+        <article class="card"><div class="ic">🔬</div><h3>Diagnóstico & Imagem</h3><p>Laboratório próprio e exames de imagem com resultados rápidos.</p><ul><li>Laboratorial</li><li>Ultrassom</li><li>Radiologia</li><li>Endoscopia</li><li>Patologia</li></ul></article>
+        <article class="card"><div class="ic">🏨</div><h3>Bem-estar & Hospedagem</h3><p>Conforto, carinho e supervisão veterinária no dia a dia.</p><ul><li>Banho e Tosa</li><li>Creche</li><li>Hotel</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENCE -->
+  <section class="container two-col reverse-mobile">
+    <div class="round-img">
+      <img src="assets/clinic-interior.jpg" alt="Interior da Clinicat em Perdizes" loading="lazy" />
+    </div>
+    <div>
+      <p class="kicker primary">O que nos diferencia</p>
+      <h2 class="display-md">Cada vida <em>importa</em>. Cada atendimento, uma chance de cuidar com excelência.</h2>
+      <p>Tecnologia, experiência e uma equipe preparada para oferecer o melhor atendimento. Mas, acima de tudo, pessoas que entendem que seu pet é parte da sua família.</p>
+      <div class="row gap wrap mt-lg">
+        <a href="https://wa.me/5511932565663" class="btn btn-primary">Agendar consulta →</a>
+        <a href="#servicos" class="btn btn-outline">Ver especialidades</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEAV + CUIDA -->
+  <section class="container blocks">
+    <div id="ceav" class="block block-wine">
+      <div class="ic peach">✨</div>
+      <h3>CEAV</h3>
+      <p class="italic peach">Educação continuada para a medicina veterinária.</p>
+      <p>Cursos, eventos e networking para profissionais que, como nós, acreditam que conhecimento salva vidas.</p>
+      <a href="#" class="link-underline">Conhecer o CEAV →</a>
+    </div>
+    <div id="cuida" class="block block-card">
+      <div class="ic primary">🐾</div>
+      <h3>Clinicat Cuida</h3>
+      <p class="italic primary">Um programa para cuidar do que importa.</p>
+      <p>Benefícios, prevenção e acompanhamento próximo para que seu pet tenha o melhor cuidado em todas as fases da vida.</p>
+      <a href="#" class="link-underline primary">Saiba mais →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="logo-stack-bg"><img src="assets/logo-stacked.png" alt="Clinicat" /></div>
+        <p>Cuidado veterinário completo, 24 horas por dia. Confiança construída por milhares de famílias em Perdizes, São Paulo.</p>
+        <div class="row gap mt-md wrap">
+          <a href="https://wa.me/5511932565663" class="btn btn-primary">Fale no WhatsApp</a>
+          <a href="tel:+551138657713" class="btn btn-ghost">Ligar agora</a>
+        </div>
+      </div>
+      <div>
+        <p class="kicker peach">Contato</p>
+        <ul class="footer-list">
+          <li>📍 Av. Professor Alfonso Bovero, 416 — Perdizes, SP</li>
+          <li>📞 (11) 3865-7713</li>
+          <li>🕒 Atendimento 24 horas, todos os dias</li>
+          <li>📷 @clinicat24hs</li>
+        </ul>
+      </div>
+      <div>
+        <p class="kicker peach">Conheça</p>
+        <ul class="footer-list links">
+          <li><a href="#sobre">Quem somos</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#numeros">Nossa história</a></li>
+          <li><a href="#ceav">CEAV</a></li>
+          <li><a href="#cuida">Clinicat Cuida</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container row between wrap">
+        <span>© <span id="year"></span> Clinicat. Todos os direitos reservados.</span>
+        <span>Feito com carinho para quem cuida.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
