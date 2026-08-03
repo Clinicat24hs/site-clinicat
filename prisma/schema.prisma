@@ -1,0 +1,60 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProfessionalKind {
+  EQUIPE
+  ESPECIALISTA
+}
+
+enum PostStatus {
+  RASCUNHO
+  PUBLICADO
+}
+
+model Professional {
+  id           String           @id @default(uuid())
+  name         String
+  kind         ProfessionalKind
+  title        String
+  specialty    String?
+  crmv         String?
+  bio          String?
+  photoUrl     String?
+  displayOrder Int              @default(0)
+  active       Boolean          @default(true)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  @@index([kind, active, displayOrder])
+}
+
+model Post {
+  id          String     @id @default(uuid())
+  title       String
+  slug        String     @unique
+  category    String
+  excerpt     String
+  content     String
+  coverUrl    String?
+  status      PostStatus @default(RASCUNHO)
+  publishedAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([status, publishedAt])
+}
+
+model AdminUser {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+}
