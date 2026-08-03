@@ -15,6 +15,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <strong>Clinicat Admin</strong>
         <nav style={{ display: "grid", gap: 8, marginTop: 16 }}>
           <Link href="/admin/professionals">Profissionais</Link>
+          <Link href="/admin/content">Especialidades & Serviços</Link>
           <Link href="/admin/posts">Blog</Link>
         </nav>
         <form action={logoutAction} style={{ marginTop: 24 }}>
