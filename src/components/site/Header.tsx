@@ -22,25 +22,25 @@ export function Header() {
             <div className="nav-item">
               <button className="nav-btn">Atendimento</button>
               <div className="nav-menu">
-                <a href="/servicos">Clínico</a><a href="/servicos">Emergência 24h</a>
-                <a href="/servicos">Internação</a><a href="/servicos">UTI (Intensivista)</a>
+                <a href="/servicos/consultas">Clínico</a><a href="/servicos/internacao">Emergência 24h</a>
+                <a href="/servicos/internacao">Internação</a><a href="/servicos/internacao">UTI (Intensivista)</a>
               </div>
             </div>
             <div className="nav-item">
               <button className="nav-btn">Especialidades</button>
               <div className="nav-menu">
-                <a href="/especialidades">Cardiologia</a><a href="/especialidades">Dermatologia</a>
-                <a href="/especialidades">Oftalmologia</a><a href="/especialidades">Oncologia</a>
-                <a href="/especialidades">Ortopedia</a><a href="/especialidades">Nefrologia</a>
+                <a href="/especialidades/cardiologia">Cardiologia</a><a href="/especialidades/dermatologia">Dermatologia</a>
+                <a href="/especialidades/oftalmologia">Oftalmologia</a><a href="/especialidades/oncologia">Oncologia</a>
+                <a href="/especialidades/ortopedia">Ortopedia</a><a href="/especialidades/nefrologia">Nefrologia</a>
                 <a href="/especialidades">Ver todas (15+)</a>
               </div>
             </div>
             <div className="nav-item">
               <button className="nav-btn">Serviços</button>
               <div className="nav-menu">
-                <a href="/servicos">Cirurgia &amp; Anestesia</a><a href="/servicos">Diagnóstico &amp; Exames</a>
-                <a href="/servicos">Banho e Tosa</a><a href="/servicos">Farmácia</a>
-                <a href="/servicos">Leva e Traz</a><a href="/servicos">Convênio</a>
+                <a href="/servicos/cirurgias">Cirurgia &amp; Anestesia</a><a href="/servicos/exames">Diagnóstico &amp; Exames</a>
+                <a href="/servicos/banho-e-tosa">Banho e Tosa</a><a href="/servicos/farmacia">Farmácia</a>
+                <a href="/servicos/leva-e-traz">Leva e Traz</a><a href="/servicos/convenio">Convênio</a>
               </div>
             </div>
             <a href="/creche-hotel" className="nav-btn">Creche &amp; Hotel</a>
@@ -65,9 +65,9 @@ export function Header() {
 
         <div className="nav-mobile" id="navMobile" hidden>
           <div className="container nav-mobile-inner">
-            <details><summary>Atendimento</summary><a href="/servicos">Clínico</a><a href="/servicos">Emergência 24h</a><a href="/servicos">Internação</a><a href="/servicos">UTI</a></details>
-            <details><summary>Especialidades</summary><a href="/especialidades">Cardiologia</a><a href="/especialidades">Dermatologia</a><a href="/especialidades">Oftalmologia</a><a href="/especialidades">Oncologia</a><a href="/especialidades">Ortopedia</a><a href="/especialidades">Ver todas (15+)</a></details>
-            <details><summary>Serviços</summary><a href="/servicos">Cirurgia &amp; Anestesia</a><a href="/servicos">Diagnóstico &amp; Exames</a><a href="/servicos">Banho e Tosa</a><a href="/servicos">Farmácia</a><a href="/servicos">Leva e Traz</a><a href="/servicos">Convênio</a></details>
+            <details><summary>Atendimento</summary><a href="/servicos/consultas">Clínico</a><a href="/servicos/internacao">Emergência 24h</a><a href="/servicos/internacao">Internação</a><a href="/servicos/internacao">UTI</a></details>
+            <details><summary>Especialidades</summary><a href="/especialidades/cardiologia">Cardiologia</a><a href="/especialidades/dermatologia">Dermatologia</a><a href="/especialidades/oftalmologia">Oftalmologia</a><a href="/especialidades/oncologia">Oncologia</a><a href="/especialidades/ortopedia">Ortopedia</a><a href="/especialidades">Ver todas (15+)</a></details>
+            <details><summary>Serviços</summary><a href="/servicos/cirurgias">Cirurgia &amp; Anestesia</a><a href="/servicos/exames">Diagnóstico &amp; Exames</a><a href="/servicos/banho-e-tosa">Banho e Tosa</a><a href="/servicos/farmacia">Farmácia</a><a href="/servicos/leva-e-traz">Leva e Traz</a><a href="/servicos/convenio">Convênio</a></details>
             <a href="/creche-hotel" className="mlink">Creche &amp; Hotel</a>
             <details><summary>Quem Somos</summary><a href="/quem-somos">Quem somos</a><a href="/quem-somos#equipe">Equipe</a><a href="/quem-somos#tour">Tour Virtual</a><a href="/ceav">CEAV</a><a href="/clinicat-cuida">Clinicat Cuida</a></details>
             <a href="/depoimentos" className="mlink">Depoimentos</a>
