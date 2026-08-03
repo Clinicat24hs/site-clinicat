@@ -108,7 +108,8 @@ export default async function Especialidades() {
           {groups.map((g) => (
             <div key={g.specialty} style={{ marginTop: "2rem" }}>
               <h3 className="primary" style={{ marginBottom: "1rem" }}>{g.specialty}</h3>
-              <div className="team-grid">
+              {/* auto-fill c/ largura máxima: evita o card gigante quando a área tem 1 especialista */}
+              <div className="team-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 240px))" }}>
                 {g.items.map((p) => <TeamCard key={p.id} p={p} />)}
               </div>
             </div>
