@@ -12,34 +12,37 @@ export function ProfessionalList({ items }: { items: Professional[] }) {
   );
   return (
     <div>
-      <div style={{ display: "flex", gap: 12, marginBottom: 16 }}>
+      <div className="admin-toolbar">
         <select value={kind} onChange={(e) => setKind(e.target.value as typeof kind)}>
           <option value="ALL">Todos</option>
           <option value="EQUIPE">Equipe</option>
           <option value="ESPECIALISTA">Especialistas</option>
         </select>
         <input placeholder="Buscar por nome" value={q} onChange={(e) => setQ(e.target.value)} />
-        <Link href="/admin/professionals/new">+ Novo</Link>
+        <span className="spacer" />
+        <Link href="/admin/professionals/new" className="btn-a">+ Novo</Link>
       </div>
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+      <table>
         <thead>
-          <tr><th align="left">Nome</th><th>Tipo</th><th>Cargo/Área</th><th>Ativo</th><th></th></tr>
+          <tr><th>Nome</th><th>Tipo</th><th>Cargo/Área</th><th>Ativo</th><th></th></tr>
         </thead>
         <tbody>
           {filtered.map((p) => (
-            <tr key={p.id} style={{ borderTop: "1px solid #eee" }}>
+            <tr key={p.id}>
               <td>{p.name}</td>
-              <td align="center">{p.kind === "EQUIPE" ? "Equipe" : "Especialista"}</td>
-              <td align="center">{p.specialty ?? p.title}</td>
-              <td align="center">
+              <td>{p.kind === "EQUIPE" ? "Equipe" : "Especialista"}</td>
+              <td>{p.specialty ?? p.title}</td>
+              <td>
                 <input type="checkbox" checked={p.active}
                   onChange={(e) => toggleProfessionalActiveAction(p.id, e.target.checked)} />
               </td>
-              <td align="right">
-                <Link href={`/admin/professionals/${p.id}`}>editar</Link>{" · "}
-                <button onClick={() => { if (confirm(`Excluir ${p.name}?`)) deleteProfessionalAction(p.id); }}>
-                  excluir
-                </button>
+              <td>
+                <span className="admin-actions">
+                  <Link href={`/admin/professionals/${p.id}`}>editar</Link>
+                  <button onClick={() => { if (confirm(`Excluir ${p.name}?`)) deleteProfessionalAction(p.id); }}>
+                    excluir
+                  </button>
+                </span>
               </td>
             </tr>
           ))}

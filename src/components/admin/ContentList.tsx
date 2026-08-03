@@ -12,34 +12,37 @@ export function ContentList({ items }: { items: ContentPage[] }) {
   );
   return (
     <div>
-      <div style={{ display: "flex", gap: 12, marginBottom: 16 }}>
+      <div className="admin-toolbar">
         <select value={type} onChange={(e) => setType(e.target.value as typeof type)}>
           <option value="ALL">Todos</option>
           <option value="ESPECIALIDADE">Especialidades</option>
           <option value="SERVICO">Serviços</option>
         </select>
         <input placeholder="Buscar por título" value={q} onChange={(e) => setQ(e.target.value)} />
-        <Link href="/admin/content/new">+ Novo</Link>
+        <span className="spacer" />
+        <Link href="/admin/content/new" className="btn-a">+ Novo</Link>
       </div>
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+      <table>
         <thead>
-          <tr><th align="left">Título</th><th>Tipo</th><th>Slug</th><th>Ativo</th><th></th></tr>
+          <tr><th>Título</th><th>Tipo</th><th>Slug</th><th>Ativo</th><th></th></tr>
         </thead>
         <tbody>
           {filtered.map((c) => (
-            <tr key={c.id} style={{ borderTop: "1px solid #eee" }}>
+            <tr key={c.id}>
               <td>{c.title}</td>
-              <td align="center">{c.type === "ESPECIALIDADE" ? "Especialidade" : "Serviço"}</td>
-              <td align="center">{c.slug}</td>
-              <td align="center">
+              <td>{c.type === "ESPECIALIDADE" ? "Especialidade" : "Serviço"}</td>
+              <td>{c.slug}</td>
+              <td>
                 <input type="checkbox" checked={c.active}
                   onChange={(e) => toggleContentActiveAction(c.id, e.target.checked)} />
               </td>
-              <td align="right">
-                <Link href={`/admin/content/${c.id}`}>editar</Link>{" · "}
-                <button onClick={() => { if (confirm(`Excluir ${c.title}?`)) deleteContentAction(c.id); }}>
-                  excluir
-                </button>
+              <td>
+                <span className="admin-actions">
+                  <Link href={`/admin/content/${c.id}`}>editar</Link>
+                  <button onClick={() => { if (confirm(`Excluir ${c.title}?`)) deleteContentAction(c.id); }}>
+                    excluir
+                  </button>
+                </span>
               </td>
             </tr>
           ))}

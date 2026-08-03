@@ -2,9 +2,9 @@ import { LoginForm } from "./login-form";
 
 export default function LoginPage() {
   return (
-    <main style={{ padding: 32 }}>
+    <div className="admin-login-card">
       <h1>Admin Clinicat</h1>
       <LoginForm />
-    </main>
+    </div>
   );
 }
