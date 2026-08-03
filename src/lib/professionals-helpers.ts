@@ -45,7 +45,7 @@ export function classifyProfessional(roleRaw: string): Classification {
   const key = deaccent(roleRaw).toLowerCase();
   for (const [re, name] of SPECIALTY_KEYWORDS) {
     if (re.test(key)) {
-      return { kind: "ESPECIALISTA", specialty: name, title: roleRaw || name };
+      return { kind: "ESPECIALISTA", specialty: name, title: name };
     }
   }
   return { kind: "EQUIPE", specialty: null, title: roleRaw || "Equipe Clinicat" };
