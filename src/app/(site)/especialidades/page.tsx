@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { listPublicSpecialists } from "@/lib/professionals";
-import { groupBySpecialty } from "@/lib/professionals-helpers";
 import { TeamCard } from "@/components/site/TeamCard";
 
 export const metadata: Metadata = {
@@ -13,7 +12,6 @@ export const dynamic = "force-dynamic";
 
 export default async function Especialidades() {
   const specialists = await listPublicSpecialists();
-  const groups = groupBySpecialty(specialists);
 
   return (
     <>
@@ -117,15 +115,10 @@ export default async function Especialidades() {
             <h2 className="display-md">Nossos <em>especialistas.</em></h2>
             <p className="lead">Profissionais de referência em cada área, prontos para cuidar do seu pet com técnica e acolhimento.</p>
           </div>
-          {groups.map((g) => (
-            <div key={g.specialty} style={{ marginTop: "2rem" }}>
-              <h3 className="primary" style={{ marginBottom: "1rem" }}>{g.specialty}</h3>
-              {/* auto-fill c/ largura máxima: evita o card gigante quando a área tem 1 especialista */}
-              <div className="team-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 240px))" }}>
-                {g.items.map((p) => <TeamCard key={p.id} p={p} />)}
-              </div>
-            </div>
-          ))}
+          {/* galeria única (a área aparece no próprio card) */}
+          <div className="team-grid" style={{ marginTop: "2rem" }}>
+            {specialists.map((p) => <TeamCard key={p.id} p={p} />)}
+          </div>
           <div className="center" style={{ marginTop: "2.5rem" }}>
             <a href="/quem-somos#equipe" className="btn btn-outline">Conhecer a equipe completa →</a>
           </div>
