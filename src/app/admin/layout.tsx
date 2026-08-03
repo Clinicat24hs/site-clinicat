@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import { logoutAction } from "@/lib/actions/auth-actions";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
