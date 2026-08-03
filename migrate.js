@@ -7,25 +7,28 @@ async function main() {
   const prisma = new PrismaClient();
   const migrationsDir = join(__dirname, 'prisma', 'migrations');
 
-  try {
-    await prisma.$queryRaw`SELECT 1 FROM "AdminUser" LIMIT 1`;
-    console.log('✓ Schema já existe — pulando migration inicial');
-    await prisma.$disconnect();
-    return;
-  } catch (_) {
-    console.log('→ Aplicando schema...');
-  }
+  // tabela de controle de migrations aplicadas
+  await prisma.$executeRawUnsafe(
+    'CREATE TABLE IF NOT EXISTS "_applied_migrations" ("name" TEXT PRIMARY KEY, "applied_at" TIMESTAMP DEFAULT now())'
+  );
 
   if (!existsSync(migrationsDir)) {
     console.error('❌ prisma/migrations não encontrado');
     process.exit(1);
   }
 
+  const rows = await prisma.$queryRawUnsafe('SELECT name FROM "_applied_migrations"');
+  const applied = new Set(rows.map((r) => r.name));
+
   const dirs = readdirSync(migrationsDir)
     .filter((d) => existsSync(join(migrationsDir, d, 'migration.sql')))
     .sort();
 
   for (const d of dirs) {
+    if (applied.has(d)) {
+      console.log(`↷ ${d} já aplicada`);
+      continue;
+    }
     const sql = readFileSync(join(migrationsDir, d, 'migration.sql'), 'utf8');
     const statements = sql
       .replace(/--[^\n]*/g, '')
@@ -36,10 +39,12 @@ async function main() {
       try {
         await prisma.$executeRawUnsafe(stmt);
       } catch (e) {
+        // CREATE ... sem IF NOT EXISTS em um banco que já tinha o schema: ignora "already exists"
         if (!String(e.message).includes('already exists')) throw e;
       }
     }
-    console.log(`✓ Migration ${d} aplicada`);
+    await prisma.$executeRawUnsafe('INSERT INTO "_applied_migrations" (name) VALUES ($1)', d);
+    console.log(`✓ ${d} aplicada`);
   }
   await prisma.$disconnect();
 }
