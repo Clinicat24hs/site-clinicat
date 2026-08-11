@@ -83,41 +83,28 @@ export default async function QuemSomos() {
           <div className="section-head">
             <p className="kicker primary">Tour virtual</p>
             <h2 className="display-md">Conheça nossa estrutura <em>antes da visita.</em></h2>
-            <p className="lead">Transparência reduz a insegurança. Espaços reservados para fotos/360° de cada ambiente.</p>
+            <p className="lead">Transparência reduz a insegurança — dê uma olhada nos nossos ambientes.</p>
           </div>
-          <div className="tour-grid">
-            <div className="tour-item">
-              <div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /></svg></div>
-              <span className="lbl">Recepção</span>
-            </div>
-            <div className="tour-item">
-              <div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 3v6a5 5 0 0 0 10 0V3" /><path d="M11 14v2a5 5 0 0 0 10 0v-3" /><circle cx="21" cy="11" r="2" /></svg></div>
-              <span className="lbl">Consultórios</span>
-            </div>
-            <div className="tour-item">
-              <div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M12 8v8M8 12h8" /></svg></div>
-              <span className="lbl">Centro Cirúrgico</span>
-            </div>
-            <div className="tour-item">
-              <div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 4v16" /><path d="M2 8h18a2 2 0 0 1 2 2v10" /><path d="M2 17h20" /><path d="M6 8v9" /></svg></div>
-              <span className="lbl">Internação</span>
-            </div>
-            <div className="tour-item">
-              <div className="ic"><svg className="ico ico-fill" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><circle cx="6" cy="11" r="1.9" /><circle cx="10" cy="6.4" r="1.9" /><circle cx="14" cy="6.4" r="1.9" /><circle cx="18" cy="11" r="1.9" /><path d="M12 21c-2.6 0-4.6-1.6-4.6-3.6 0-1.6 1.4-2.6 2.4-3.6.9-.9 1.4-1.7 2.2-1.7s1.3.8 2.2 1.7c1 1 2.4 2 2.4 3.6 0 2-2 3.6-4.6 3.6Z" /></svg></div>
-              <span className="lbl">Ala Felina</span>
-            </div>
-            <div className="tour-item">
-              <div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg></div>
-              <span className="lbl">Ala Infectocontagiosa</span>
-            </div>
-            <div className="tour-item">
-              <div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 4.8 7 3c-.29 1.8-1.14 3.13-2.29 4.06S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05Z" /><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97" /></svg></div>
-              <span className="lbl">Banho e Tosa</span>
-            </div>
-            <div className="tour-item">
-              <div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="1.5" /><path d="M9 22v-4h6v4" /><path d="M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01" /></svg></div>
-              <span className="lbl">Hotel e Creche</span>
-            </div>
+          <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))" }}>
+            {[
+              { src: "/estrutura/fachada.webp", label: "Fachada · 24 horas" },
+              { src: "/estrutura/recepcao.webp", label: "Recepção" },
+              { src: "/estrutura/sala-espera.webp", label: "Sala de espera" },
+              { src: "/estrutura/consultorio-1.webp", label: "Consultório" },
+              { src: "/estrutura/consultorio-2.webp", label: "Consultório" },
+              { src: "/estrutura/centro-cirurgico.webp", label: "Centro cirúrgico" },
+              { src: "/estrutura/internacao-1.webp", label: "Internação" },
+              { src: "/estrutura/internacao-2.webp", label: "Internação" },
+              { src: "/estrutura/ala-felina.webp", label: "Ala felina" },
+              { src: "/estrutura/farmacia-loja.webp", label: "Farmácia & loja" },
+              { src: "/estrutura/cantinho-cafe.webp", label: "Cantinho do café" },
+            ].map((g) => (
+              <figure key={g.src} style={{ margin: 0, position: "relative", borderRadius: 18, overflow: "hidden", border: "1px solid var(--border)", boxShadow: "var(--shadow-soft)" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={g.src} alt={g.label} style={{ display: "block", width: "100%", aspectRatio: "4 / 3", objectFit: "cover" }} />
+                <figcaption style={{ position: "absolute", inset: "auto 0 0 0", background: "linear-gradient(transparent, rgba(94,19,49,.88))", color: "#fff", fontWeight: 700, fontSize: ".95rem", padding: "1.6rem .9rem .7rem" }}>{g.label}</figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>
