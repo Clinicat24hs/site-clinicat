@@ -1,0 +1,267 @@
+'use strict';
+module.exports = [
+  {
+    "name": "Dra. Anna Therra Bernaba Leite de Souza",
+    "kind": "EQUIPE",
+    "title": "Direção Clínica · Sócia-proprietária",
+    "specialty": null,
+    "crmv": "CRMV-SP 25583",
+    "bio": "Sócia-proprietária do Centro Veterinário Clinicat 24h, responsável pelos setores de clínica médica, emergência, internação, cuidados intensivos e anestesiologia. Com 16 anos de experiência (UNIP, 2008), tem pós em Emergência e Intensivismo (Equalis) e certificações ABC Trauma e Cuidados Intensivos pela LAVECCS.",
+    "photoUrl": "/team/dra-anna-therra-bernaba-leite-de-souza.webp",
+    "displayOrder": 0,
+    "active": true
+  },
+  {
+    "name": "Dra. Suzana Carvalho",
+    "kind": "EQUIPE",
+    "title": "Médica-Veterinária",
+    "specialty": null,
+    "crmv": "CRMV-SP 64893",
+    "bio": "Médica veterinária (FMU, 2023) atuante em cuidados intensivos e internação — acompanhamento clínico de pacientes hospitalizados, boletins médicos e emergências. Pós-graduada em Clínica Médica e Cirúrgica de Felinos (Qualittas, 2025).",
+    "photoUrl": "/team/dra-suzana-carvalho.webp",
+    "displayOrder": 1,
+    "active": true
+  },
+  {
+    "name": "Dra. Gabriela Barbosa Barreto",
+    "kind": "EQUIPE",
+    "title": "Médica-Veterinária",
+    "specialty": null,
+    "crmv": "CRMV-SP 70.385",
+    "bio": "Médica veterinária (UNINOVE, 2023) com foco em clínica médica e internação de pacientes críticos e semi-intensivos. Pós-graduanda em Urgências, Emergências e Cuidados Hospitalares (Ethos On).",
+    "photoUrl": "/team/dra-gabriela-barbosa-barreto.webp",
+    "displayOrder": 2,
+    "active": true
+  },
+  {
+    "name": "Dr. Gustavo Montenegro",
+    "kind": "EQUIPE",
+    "title": "Médico-Veterinário Volante",
+    "specialty": null,
+    "crmv": "CRMV-SP 68817",
+    "bio": "Médico veterinário volante (UFCG, 2013), dedicado à rotina cirúrgica e ao atendimento especializado de pequenos animais em São Paulo e Grande SP. Pós em Anestesiologia e especializações em cirurgia de tecidos moles, abdominal, torácica e ortopédica.",
+    "photoUrl": "/team/dr-gustavo-montenegro.webp",
+    "displayOrder": 3,
+    "active": true
+  },
+  {
+    "name": "Eduardo Mendonça",
+    "kind": "EQUIPE",
+    "title": "Auxiliar Veterinário",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Eduardo Mendonça Atua no suporte aos atendimentos clínicos e emergenciais, acompanhando de perto os cuidados prestados aos pacientes durante o período de internação. Demonstra dedicação e atenção em cada etapa do atendimento, contribuindo para o bem-estar e a recuperação dos pets. Possui grande habilidade no manejo de felinos, proporcionando um atendimento tranquilo,",
+    "photoUrl": "/team/eduardo-mendonca.webp",
+    "displayOrder": 4,
+    "active": true
+  },
+  {
+    "name": "Rosemeire",
+    "kind": "EQUIPE",
+    "title": "Auxiliar Veterinária",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Carismática e comunicativa, Rosemeire atua no cuidado dos animais internados com muita dedicação, sempre priorizando o conforto, o carinho e a atenção aos detalhes durante toda a estadia. Com zelo e criatividade, prepara pequenos mimos como laços, penteados e adereços, proporcionando registros especiais em fotos e vídeos que emocionam os tutores e",
+    "photoUrl": "/team/rosemeire.webp",
+    "displayOrder": 5,
+    "active": true
+  },
+  {
+    "name": "Maria Paula",
+    "kind": "EQUIPE",
+    "title": "Auxiliar Veterinária",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Maria Paula Maria Paula integra a equipe do período vespertino, onde atua há mais de um ano. Iniciou sua trajetória como estagiária e freelancer, demonstrando evolução constante e grande comprometimento com a rotina hospitalar. Atualmente, faz parte da equipe de cuidados aos pacientes internados, auxiliando no acompanhamento clínico, no processamento de exames e no suporte durante consultas.",
+    "photoUrl": "/team/maria-paula.webp",
+    "displayOrder": 6,
+    "active": true
+  },
+  {
+    "name": "Bianca",
+    "kind": "EQUIPE",
+    "title": "Auxiliar Veterinária",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Bianca atua como Auxiliar Veterinária no período noturno, sendo responsável pelos cuidados dos pacientes internados. Desempenha suas funções com dedicação, atenção e carinho, garantindo conforto e bem-estar a cada animal sob sua supervisão. Além dos cuidados com a internação, auxilia no atendimento clínico e emergencial,",
+    "photoUrl": "/team/bianca.webp",
+    "displayOrder": 7,
+    "active": true
+  },
+  {
+    "name": "Fernanda Arze",
+    "kind": "EQUIPE",
+    "title": "Auxiliar Veterinária",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Fernanda Arze atua como Auxiliar Veterinária no atendimento clínico e na internação de pacientes, desempenhando suas funções com agilidade, precisão e dedicação, especialmente em situações de emergência. Amorosa e gentil com os animais, realiza cada cuidado com atenção e sensibilidade, tratando cada pet como se fosse seu. Além disso, contribui ativamente com o",
+    "photoUrl": "/team/fernanda-arze.webp",
+    "displayOrder": 8,
+    "active": true
+  },
+  {
+    "name": "Luciene",
+    "kind": "EQUIPE",
+    "title": "Auxiliar",
+    "specialty": null,
+    "crmv": null,
+    "bio": "LUCIENE tendo iniciado sua trajetória como estagiária e evoluído ao longo dos anos com dedicação e comprometimento. Atualmente, é responsável pela esterilização de materiais, pelos cuidados dos pacientes internados e pela organização dos setores de farmácia e internação. Sua experiência e responsabilidade são fundamentais para a manutenção da rotina hospitalar, garantindo",
+    "photoUrl": null,
+    "displayOrder": 9,
+    "active": true
+  },
+  {
+    "name": "Camilly Gama",
+    "kind": "EQUIPE",
+    "title": "Recepção",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Camilly Gama é sempre sorridente e atenciosa, recebendo nossos clientes e seus pets com muito carinho, simpatia e profissionalismo. Seu atendimento acolhedor faz com que todos se sintam bem-vindos desde o primeiro momento, criando um ambiente agradável e de confiança para tutores e animais. 🐾😊💖✨",
+    "photoUrl": "/team/camilly-gama.webp",
+    "displayOrder": 10,
+    "active": true
+  },
+  {
+    "name": "Leticia Peres",
+    "kind": "EQUIPE",
+    "title": "Recepção",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Leticia Peres Leticia Peres recebe clientes e seus pets com simpatia, cuidado e um atendimento personalizado. Sempre com um sorriso no rosto e atenção aos detalhes, ela contribui para que cada chegada seja um momento acolhedor e especial. Com carinho e dedicação, proporciona uma recepção leve e agradável, tornando a experiência de tutores e pets mais tranquila desde o primeiro contato.",
+    "photoUrl": "/team/leticia-peres.webp",
+    "displayOrder": 11,
+    "active": true
+  },
+  {
+    "name": "Keliane Silva (Nany)",
+    "kind": "EQUIPE",
+    "title": "Coordenadora de Creche e Hotel",
+    "specialty": null,
+    "crmv": null,
+    "bio": "A coordenadora da creche, Keliane Silva, carinhosamente conhecida como Nany, cuida de cada detalhe para garantir que seu pet tenha uma estadia segura, confortável e cheia de diversão. Com dedicação e experiência, ela acompanha a rotina dos hóspedes, organiza atividades e eventos especiais, proporcionando momentos de socialização, bem-estar e",
+    "photoUrl": "/team/keliane-silva.webp",
+    "displayOrder": 12,
+    "active": true
+  },
+  {
+    "name": "Matheus de Souza",
+    "kind": "EQUIPE",
+    "title": "Creche e Hotel",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Matheus de Souza nosso monitor mais antigo, conhece cada pet e suas particularidades como ninguém. Com dedicação e experiência, realiza fotos e treinos personalizados, garantindo registros memoráveis de cada momento. Possui grande habilidade no manejo e treinamento de cães mais agitados, promovendo a socialização de forma segura, respeitosa e adequada às",
+    "photoUrl": "/team/matheus-de-souza.webp",
+    "displayOrder": 13,
+    "active": true
+  },
+  {
+    "name": "Emily",
+    "kind": "EQUIPE",
+    "title": "Creche e Hotel",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Emily Nossa monitora é extremamente amorosa e dedicada, cuidando de cada pet com muito carinho e atenção. Ela prepara a alimentação com todo o cuidado, organiza momentos de brincadeira e garante que cada animal receba atenção individualizada. Com seu jeito carinhoso, mima todos os pets um a um, proporcionando conforto, bem-estar e muito afeto",
+    "photoUrl": "/team/emily.webp",
+    "displayOrder": 14,
+    "active": true
+  },
+  {
+    "name": "Andressa",
+    "kind": "EQUIPE",
+    "title": "Creche e Hotel",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Andressa nossa monitora, tem bastante facilidade em assistir animais ansiosos e medrosos, fazendo com que se sintam seguros, calmos e acolhidos. Com paciência e dedicação, cuida da aromaterapia e da alimentação, além de organizar todos os pertences dos pets, garantindo uma rotina mais tranquila e confortável durante a estadia.",
+    "photoUrl": "/team/andressa.webp",
+    "displayOrder": 15,
+    "active": true
+  },
+  {
+    "name": "Erica",
+    "kind": "EQUIPE",
+    "title": "Monitora de Creche e Hotel",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Erica é monitora de creche e hotel para pets, atuando com dedicação, carinho e responsabilidade. É uma profissional ativa, atenciosa e amorosa com os animais, garantindo que cada pet receba os cuidados necessários com atenção, paciência e zelo. Seu compromisso com o bem-estar dos animais faz com que eles se sintam seguros,",
+    "photoUrl": "/team/erica.webp",
+    "displayOrder": 16,
+    "active": true
+  },
+  {
+    "name": "Rosália Rodrigues (Tia Rô)",
+    "kind": "EQUIPE",
+    "title": "Limpeza",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Rosalia Rodrigues, responsável por deixar o nosso dia mais leve e acolhedor, é carinhosamente conhecida por todos como “Tia Rô”. Atua na limpeza da clínica e no cuidado com o ambiente, além de preparar o café e realizar a lavagem dos cobertores dos pets. Com dedicação e carinho, contribui para que a Clinicat esteja sempre limpa, organizada e com um ambiente agradável e acolhedor para todos.",
+    "photoUrl": "/team/rosalia-rodrigues.webp",
+    "displayOrder": 17,
+    "active": true
+  },
+  {
+    "name": "Karine Miranda",
+    "kind": "EQUIPE",
+    "title": "Auxiliar",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Karine Miranda Responsável pelo setor de estética canina do Centro Veterinário Clinicat24hs. Cuida com carinho da higiene e saúde da pelagem dos pets, com habilidades em penteados, coloração, tosa higiênica e tosa na máquina. Atualmente, está se aperfeiçoando na tosa na tesoura. Apaixonada pelos animais, faz parte da equipe há mais de 6 anos, desde a unidade matriz no",
+    "photoUrl": "/team/karine-miranda.webp",
+    "displayOrder": 18,
+    "active": true
+  },
+  {
+    "name": "Arlindo",
+    "kind": "EQUIPE",
+    "title": "Segurança e Portaria",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Arlindo atenção, cordialidade e zelo, cuida da recepção e da segurança do espaço.",
+    "photoUrl": "/team/arlindo.webp",
+    "displayOrder": 19,
+    "active": true
+  },
+  {
+    "name": "Eneida Carvalho",
+    "kind": "EQUIPE",
+    "title": "Gerente Administrativa",
+    "specialty": null,
+    "crmv": null,
+    "bio": "ENEIDA CARVALHO Responsável por todo o funcionamento prático e diário do Centro Veterinário Clinicat. Coordena as equipes de creche, recepção, estética canina e transporte, além de atuar diretamente no atendimento aos clientes, auxiliando com orçamentos, pacotes, planos de saúde e parceiros especialistas. Com longa trajetória na causa animal, é também embaixadora da parceria do Clinicat com o",
+    "photoUrl": "/team/eneida-carvalho.webp",
+    "displayOrder": 20,
+    "active": true
+  },
+  {
+    "name": "Dra. Carolina Baptista",
+    "kind": "EQUIPE",
+    "title": "Médica-Veterinária",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Formada pela USJT (Universidade São Judas Tadeu)- Santos-SP Atua no atendimento clinico e internação e atendimento oncologico do Centro Veterinário Clinicat24hs.",
+    "photoUrl": "/team/dra-carolina-baptista.webp",
+    "displayOrder": 21,
+    "active": true
+  },
+  {
+    "name": "Karine Souza",
+    "kind": "EQUIPE",
+    "title": "Estética Animal · Banho e Tosa",
+    "specialty": null,
+    "crmv": null,
+    "bio": "Karine Souza Com 8 anos de experiência na área de banho e tosa, nossa colaboradora é apaixonada pelo bem-estar e pela beleza dos pets. Especializada em estética animal e tosa na tesoura, ela une técnica, dedicação e carinho para proporcionar um acabamento impecável, respeitando as características e necessidades de cada animal.",
+    "photoUrl": "/team/karine-souza.webp",
+    "displayOrder": 22,
+    "active": true
+  },
+  {
+    "name": "Mariana Lima",
+    "kind": "EQUIPE",
+    "title": "Creche e Hotel",
+    "specialty": null,
+    "crmv": null,
+    "bio": null,
+    "photoUrl": "/team/mariana-lima.webp",
+    "displayOrder": 23,
+    "active": true
+  }
+];
