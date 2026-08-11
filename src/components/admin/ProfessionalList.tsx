@@ -22,16 +22,26 @@ export function ProfessionalList({ items }: { items: Professional[] }) {
         <span className="spacer" />
         <Link href="/admin/professionals/new" className="btn-a">+ Novo</Link>
       </div>
+      <p className="admin-muted" style={{ marginBottom: 12 }}>{filtered.length} profissionais</p>
       <table>
         <thead>
-          <tr><th>Nome</th><th>Tipo</th><th>Cargo/Área</th><th>Ativo</th><th></th></tr>
+          <tr><th style={{ width: 56 }}>Foto</th><th>Nome</th><th>Tipo</th><th>Cargo/Área</th><th>CRMV</th><th>Ativo</th><th></th></tr>
         </thead>
         <tbody>
           {filtered.map((p) => (
             <tr key={p.id}>
+              <td>
+                {p.photoUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={p.photoUrl} alt={p.name} className="admin-thumb" />
+                ) : (
+                  <span className="admin-thumb admin-thumb-empty">?</span>
+                )}
+              </td>
               <td>{p.name}</td>
               <td>{p.kind === "EQUIPE" ? "Equipe" : "Especialista"}</td>
               <td>{p.specialty ?? p.title}</td>
+              <td>{p.crmv ?? "—"}</td>
               <td>
                 <input type="checkbox" checked={p.active}
                   onChange={(e) => toggleProfessionalActiveAction(p.id, e.target.checked)} />

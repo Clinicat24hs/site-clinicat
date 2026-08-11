@@ -176,6 +176,24 @@
 .admin-toolbar select { width: auto; margin-top: 0; }
 .admin-toolbar .spacer { flex: 1; }
 
+/* ---- miniatura de foto ---- */
+.admin-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: top;
+  display: inline-block;
+  border: 1px solid var(--a-border);
+}
+.admin-thumb-empty {
+  display: grid;
+  place-items: center;
+  background: var(--a-cream);
+  color: var(--a-primary);
+  font-weight: 800;
+}
+
 /* ---- ações de linha ---- */
 .admin-actions { display: inline-flex; gap: 0.75rem; align-items: center; }
 .admin-actions a { font-size: 0.85rem; }
