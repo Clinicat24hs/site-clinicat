@@ -230,7 +230,7 @@ p{color:#2d212a}
 .checklist li::before{content:"✓";flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:700}
 
 /* Grade de equipe */
-.team-grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.team-grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start}
 .team-card{background:var(--card);border:1px solid var(--border);border-radius:24px;overflow:hidden;text-align:center;transition:all .2s}
 .team-card:hover{border-color:rgba(224,48,108,.5);box-shadow:var(--shadow-petal);transform:translateY(-4px)}
 .team-photo{aspect-ratio:1;background:linear-gradient(135deg,var(--cream),rgba(241,226,207,.6));display:grid;place-items:center;font-size:3.5rem;color:var(--primary)}
