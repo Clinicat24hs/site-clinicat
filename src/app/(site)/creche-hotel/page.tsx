@@ -41,19 +41,33 @@ export default function CrecheHotel() {
         </div>
       </section>
 
-      {/* GALERIA */}
+      {/* VÍDEO */}
       <section className="section section-soft">
         <div className="container">
           <div className="section-head">
-            <p className="kicker primary">Nossa estrutura</p>
-            <h2 className="display-md">Fotos e <em>vídeos</em> da creche e hotel.</h2>
-            <p className="lead">Espaços reservados para fotos e vídeos reais dos ambientes — basta enviar que incluímos.</p>
+            <p className="kicker primary">Um dia na creche</p>
+            <h2 className="display-md">Veja como é o <em>dia do seu pet</em> aqui.</h2>
+            <p className="lead">Um pouquinho da rotina, das atividades e do carinho da nossa equipe.</p>
           </div>
-          <div className="tour-grid">
-            <div className="tour-item"><div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z" /><circle cx="12" cy="13" r="3.2" /></svg></div><span className="lbl">Área de recreação</span></div>
-            <div className="tour-item"><div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z" /><circle cx="12" cy="13" r="3.2" /></svg></div><span className="lbl">Espaço de descanso</span></div>
-            <div className="tour-item"><div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z" /><circle cx="12" cy="13" r="3.2" /></svg></div><span className="lbl">Ala felina</span></div>
-            <div className="tour-item"><div className="ic"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m22 8-6 4 6 4V8Z" /><rect x="2" y="6" width="14" height="12" rx="2" /></svg></div><span className="lbl">Vídeo · um dia na creche</span></div>
+          <div
+            style={{
+              maxWidth: 860,
+              margin: "0 auto",
+              position: "relative",
+              aspectRatio: "16 / 9",
+              borderRadius: 20,
+              overflow: "hidden",
+              border: "1px solid var(--border)",
+              boxShadow: "var(--shadow-soft)",
+            }}
+          >
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/LtcoEh0nLrA"
+              title="Creche e Hotel · Clinicat"
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>
