@@ -1,5 +1,6 @@
 import type { ContentPage, Professional } from "@prisma/client";
 import { TeamCard } from "@/components/site/TeamCard";
+import type { GalleryImage } from "@/lib/service-gallery";
 
 const PawIcon = () => (
   <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
@@ -23,7 +24,7 @@ const twoCol: React.CSSProperties = {
 };
 
 /** Painel de mídia do hero: usa a foto (coverUrl) ou um placeholder branded. */
-function MediaPanel({ src, alt }: { src: string | null; alt: string }) {
+function MediaPanel({ src, alt, objectPosition = "center" }: { src: string | null; alt: string; objectPosition?: string }) {
   return (
     <div
       style={{
@@ -39,7 +40,7 @@ function MediaPanel({ src, alt }: { src: string | null; alt: string }) {
     >
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition }} />
       ) : (
         <span style={{ color: "var(--primary)", opacity: 0.35, fontSize: "5rem", lineHeight: 0 }}>
           <PawIcon />
@@ -52,14 +53,24 @@ function MediaPanel({ src, alt }: { src: string | null; alt: string }) {
 export function ContentPageView({
   page,
   specialists,
+  gallery,
+  galleryTitle,
+  gallerySubtitle,
   backHref,
   backLabel,
 }: {
   page: ContentPage;
   specialists?: Professional[];
+  /** Fotos do serviço; a primeira também vira capa do hero quando não há coverUrl. */
+  gallery?: GalleryImage[];
+  galleryTitle?: string;
+  gallerySubtitle?: string;
   backHref: string;
   backLabel: string;
 }) {
+  const hasGallery = !!gallery && gallery.length > 0;
+  const coverUrl = page.coverUrl ?? (hasGallery ? gallery[0].src : null);
+
   return (
     <>
       {/* HERO */}
@@ -76,7 +87,11 @@ export function ContentPageView({
                 <a href="https://wa.me/5511932565663" className="btn btn-primary">Agendar avaliação →</a>
               </div>
             </div>
-            <MediaPanel src={page.coverUrl} alt={page.title} />
+            <MediaPanel
+              src={coverUrl}
+              alt={page.title}
+              objectPosition={page.coverUrl ? "center" : "center 28%"}
+            />
           </div>
         </div>
       </section>
@@ -123,6 +138,29 @@ export function ContentPageView({
           </div>
         </div>
       </section>
+
+      {/* GALERIA DE FOTOS (quando a página tem acervo próprio) */}
+      {hasGallery && (
+        <section className="section section-soft">
+          <div className="container">
+            <div className="section-head">
+              <p className="kicker primary">Galeria</p>
+              <h2 className="display-md">{galleryTitle ?? <>Como seu pet <em>sai daqui.</em></>}</h2>
+              {gallerySubtitle && <p className="lead">{gallerySubtitle}</p>}
+            </div>
+            {/* min(240px, 45%) => 2 colunas no celular e 4 no desktop, sem media query */}
+            <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 45%), 1fr))" }}>
+              {gallery.map((g) => (
+                <figure key={g.src} style={{ margin: 0, position: "relative", borderRadius: 18, overflow: "hidden", border: "1px solid var(--border)", boxShadow: "var(--shadow-soft)" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={g.src} alt={g.label} loading="lazy" style={{ display: "block", width: "100%", aspectRatio: "3 / 4", objectFit: "cover" }} />
+                  <figcaption style={{ position: "absolute", inset: "auto 0 0 0", background: "linear-gradient(transparent, rgba(94,19,49,.9))", color: "#fff", fontWeight: 700, fontSize: "clamp(.8rem, 2.4vw, .95rem)", lineHeight: 1.3, padding: "1.6rem .9rem .7rem" }}>{g.label}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ESPECIALISTAS DA ÁREA (só especialidades com match) */}
       {specialists && specialists.length > 0 && (
