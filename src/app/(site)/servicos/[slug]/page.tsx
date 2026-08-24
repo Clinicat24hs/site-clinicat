@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getContentBySlug } from "@/lib/content";
+import { getServiceGallery } from "@/lib/service-gallery";
 import { ContentPageView } from "@/components/site/ContentPageView";
 
 export const dynamic = "force-dynamic";
@@ -16,5 +17,15 @@ export default async function ServicoPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const page = await getContentBySlug("SERVICO", slug);
   if (!page) notFound();
-  return <ContentPageView page={page} backHref="/servicos" backLabel="Serviços" />;
+  const gallery = getServiceGallery(slug);
+  return (
+    <ContentPageView
+      page={page}
+      gallery={gallery?.images}
+      galleryTitle={gallery?.title}
+      gallerySubtitle={gallery?.subtitle}
+      backHref="/servicos"
+      backLabel="Serviços"
+    />
+  );
 }
