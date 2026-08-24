@@ -128,7 +128,7 @@ export default function Home() {
       {/* DIFFERENCE */}
       <section className="container two-col reverse-mobile">
         <div className="round-img">
-          <img src="/assets/clinic-interior.jpg" alt="Interior da Clinicat em Perdizes" loading="lazy" />
+          <img src="/estrutura/fachada.webp" alt="Fachada da Clinicat na Av. Professor Alfonso Bovero, 416, em Perdizes" loading="lazy" />
         </div>
         <div>
           <p className="kicker primary">O que nos diferencia</p>
