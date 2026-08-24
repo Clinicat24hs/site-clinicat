@@ -16,6 +16,18 @@ const nextConfig: NextConfig = {
     "@auth/prisma-adapter",
     "bcryptjs",
   ],
+  // No build standalone o Next só serve os arquivos que estavam em public/ no
+  // momento do boot — uploads feitos pelo admin dariam 404 até reiniciar o
+  // container. "afterFiles" mantém os arquivos estáticos existentes na frente e
+  // manda só o que não existe no build para a rota que lê o UPLOAD_DIR.
+  async rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [{ source: "/uploads/:file", destination: "/api/uploads/:file" }],
+      fallback: [],
+    };
+  },
+
   async headers() {
     return [
       {
