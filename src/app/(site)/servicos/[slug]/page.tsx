@@ -24,6 +24,7 @@ export default async function ServicoPage({ params }: { params: Promise<{ slug: 
       gallery={gallery?.images}
       galleryTitle={gallery?.title}
       gallerySubtitle={gallery?.subtitle}
+      cover={gallery?.cover}
       backHref="/servicos"
       backLabel="Serviços"
     />

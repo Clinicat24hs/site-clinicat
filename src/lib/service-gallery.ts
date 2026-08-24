@@ -9,6 +9,12 @@ export interface ServiceGallery {
   /** Título da seção; cai no padrão do componente quando ausente. */
   title?: string;
   subtitle?: string;
+  /** Foto de capa do hero, usada quando a página não tem coverUrl no admin. */
+  cover?: {
+    src: string;
+    /** object-position do recorte 4/3 do hero. */
+    objectPosition?: string;
+  };
   images: GalleryImage[];
 }
 
@@ -20,6 +26,8 @@ export const SERVICE_GALLERIES: Record<string, ServiceGallery> = {
   "banho-e-tosa": {
     subtitle:
       "Alguns dos pets que passaram pelo nosso banho e tosa — limpinhos, cheirosos e prontos para voltar para casa.",
+    // Foto quadrada: o recorte 4/3 do hero sobe um pouco para não cortar a cabeça.
+    cover: { src: "/estrutura/bob-2.jpg", objectPosition: "center 15%" },
     images: [
       { src: "/estrutura/1.jpg", label: "Pelagem limpa e macia depois do banho" },
       { src: "/estrutura/2.jpeg", label: "Acabamento caprichado, com laços de brinde" },
