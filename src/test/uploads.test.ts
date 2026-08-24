@@ -3,7 +3,7 @@ import { mkdtempSync, rmSync, existsSync, readFileSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 import sharp from "sharp";
-import { saveUploadedImage, deleteUploadedImage } from "@/lib/uploads";
+import { saveUploadedImage, deleteUploadedImage, readUploadedImage } from "@/lib/uploads";
 
 let dir: string;
 
@@ -39,5 +39,22 @@ describe("uploads", () => {
   it("deleteUploadedImage ignora URL vazia/externa sem erro", async () => {
     await expect(deleteUploadedImage("", { dir })).resolves.toBeUndefined();
     await expect(deleteUploadedImage("https://x.com/a.jpg", { dir })).resolves.toBeUndefined();
+  });
+
+  it("readUploadedImage devolve os bytes e o content-type do arquivo salvo", async () => {
+    const url = await saveUploadedImage(await redPng(), { dir, maxWidth: 400 });
+    const found = await readUploadedImage(url.replace("/uploads/", ""), { dir });
+    expect(found?.contentType).toBe("image/webp");
+    expect((await sharp(found!.bytes).metadata()).format).toBe("webp");
+  });
+
+  it("readUploadedImage recusa traversal, nome vazio e extensão não-imagem", async () => {
+    for (const name of ["../package.json", "a/b.webp", "..\\x.webp", "", "notas.txt"]) {
+      await expect(readUploadedImage(name, { dir })).resolves.toBeNull();
+    }
+  });
+
+  it("readUploadedImage devolve null quando o arquivo não existe", async () => {
+    await expect(readUploadedImage("nao-existe.webp", { dir })).resolves.toBeNull();
   });
 });
