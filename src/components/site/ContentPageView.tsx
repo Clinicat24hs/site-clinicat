@@ -56,20 +56,22 @@ export function ContentPageView({
   gallery,
   galleryTitle,
   gallerySubtitle,
+  cover,
   backHref,
   backLabel,
 }: {
   page: ContentPage;
   specialists?: Professional[];
-  /** Fotos do serviço; a primeira também vira capa do hero quando não há coverUrl. */
   gallery?: GalleryImage[];
   galleryTitle?: string;
   gallerySubtitle?: string;
+  /** Capa do hero para quando a página não tem coverUrl cadastrado no admin. */
+  cover?: { src: string; objectPosition?: string };
   backHref: string;
   backLabel: string;
 }) {
   const hasGallery = !!gallery && gallery.length > 0;
-  const coverUrl = page.coverUrl ?? (hasGallery ? gallery[0].src : null);
+  const coverUrl = page.coverUrl ?? cover?.src ?? null;
 
   return (
     <>
@@ -90,7 +92,7 @@ export function ContentPageView({
             <MediaPanel
               src={coverUrl}
               alt={page.title}
-              objectPosition={page.coverUrl ? "center" : "center 28%"}
+              objectPosition={page.coverUrl ? "center" : cover?.objectPosition ?? "center"}
             />
           </div>
         </div>
