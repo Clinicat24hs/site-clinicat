@@ -179,6 +179,17 @@ section:last-of-type{border-bottom:0}
 .thesis .t-tag{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--critical-ink);font-weight:600}
 .thesis h3{font-size:22px;font-weight:700;margin:10px 0 12px;max-width:34ch}
 .thesis p{color:var(--ink-2);max-width:70ch}
+.thesis p + p{margin-top:12px}
+.thesis .recon + p{margin-top:0}
+.recon{margin:18px 0 20px;border:1px solid var(--hairline);border-radius:8px;overflow:hidden}
+.recon-row{display:flex;align-items:baseline;gap:16px;padding:11px 16px;border-bottom:1px solid var(--hairline);background:var(--surface-2)}
+.recon-row:last-child{border-bottom:0}
+.recon-n{font-family:var(--f-mono);font-size:17px;font-weight:600;color:var(--ink);min-width:56px;text-align:right;font-variant-numeric:tabular-nums}
+.recon-l{font-size:14.5px;color:var(--ink-2)}
+.recon-l b{color:var(--ink);font-weight:600}
+.recon-total{background:var(--surface);border-top:2px solid var(--hairline-strong)}
+.recon-total .recon-n{color:var(--critical-ink)}
+.thesis-kicker{margin-top:16px;font-size:17px;font-weight:600;color:var(--ink) !important;max-width:52ch}
 .thesis .t-figs{display:flex;flex-wrap:wrap;gap:28px;margin-top:22px;padding-top:20px;border-top:1px solid var(--hairline)}
 .t-fig .n{font-family:var(--f-display);font-weight:800;font-size:30px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .t-fig .l{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
@@ -404,25 +415,41 @@ footer .fm{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em}
 
     <div class="thesis">
       <div class="t-tag">Diagnóstico central</div>
-      <h3>A campanha mais cara é também a única que não pode ser verificada.</h3>
+      <h3>88% das conversões da campanha mais cara são visitas à loja estimadas, não leads.</h3>
       <p>
-        A Performance Max “Clinica Geral - 29-Maio” reporta 669 conversões a R$ 6,92 cada. Ao mesmo tempo, o
-        campo <em>Conv. (comparável entre plataformas)</em> — que só conta ações de conversão marcadas como
-        primárias e devidamente configuradas — marca <strong>zero</strong>, e <em>Valor da conv./custo</em>
-        marca <strong>0,00</strong>. Traduzindo: o Google está contando alguma coisa, mas não é algo que a
-        própria plataforma classifique como conversão comparável, e nenhum valor financeiro está associado.
+        A Performance Max “Clinica Geral - 29-Maio” reporta 669 conversões a R$ 6,92 cada. A auditoria das ações
+        de conversão da conta, feita em 25/08, mostrou o que elas são de fato — e a aritmética fecha exata:
+      </p>
+      <div class="recon">
+        <div class="recon-row"><span class="recon-n">589</span><span class="recon-l"><b>Store visits</b> · visitas à loja modeladas pelo Google</span></div>
+        <div class="recon-row"><span class="recon-n">58</span><span class="recon-l"><b>Chamadas a partir de anúncios</b></span></div>
+        <div class="recon-row"><span class="recon-n">76</span><span class="recon-l"><b>Calls from ads</b> · segunda ação de chamada, provável duplicata</span></div>
+        <div class="recon-row recon-total"><span class="recon-n">723</span><span class="recon-l">o total exato de conversões da conta no período</span></div>
+      </div>
+      <p>
+        Separando por campanha: as 669 da PMax são <strong>589 visitas modeladas + 80 chamadas</strong>, e as 54
+        da Pesquisa são as chamadas restantes. Ou seja, <strong>88% do que a PMax entrega como “conversão” é uma
+        estimativa estatística</strong> de que alguém que viu o anúncio passou perto da clínica — não um contato,
+        não um agendamento, não uma pessoa.
       </p>
       <p>
-        Os sinais de mídia reforçam a suspeita: <strong>CPM de R$ 4,36</strong> (dez vezes mais barato que o da
-        Pesquisa) e <strong>CTR de 0,19%</strong> são a assinatura de inventário barato de Display e YouTube,
-        não de gente procurando veterinário. Até que as ações de conversão sejam auditadas, esses R$ 4.628,70
-        devem ser tratados como <strong>investimento de resultado desconhecido</strong>.
+        Isso explica cada sintoma de uma vez. <em>Conv. comparável entre plataformas</em> marca <strong>zero</strong>
+        porque visitas à loja não são comparáveis entre plataformas, por definição. O valor marca
+        <strong>R$ 0,00</strong> porque nenhuma ação tem valor real atribuído — repare que valor e contagem são
+        idênticos em todas as linhas (589/589, 58/58, 76/76): é o padrão de R$ 1,00. E o
+        <strong>CPM de R$ 4,36</strong> com <strong>CTR de 0,19%</strong> deixa de ser um mistério: com
+        <em>Store visits</em> marcada como ação <strong>primária</strong> e estratégia de CPA desejado, o
+        algoritmo faz exatamente o que foi mandado — comprar o máximo de alcance barato perto de Perdizes, porque
+        é isso que maximiza visitas modeladas.
+      </p>
+      <p class="thesis-kicker">
+        A campanha não está com defeito. Ela está otimizando com competência para a métrica errada.
       </p>
       <div class="t-figs">
+        <div class="t-fig"><div class="n">88%</div><div class="l">da PMax são store visits</div></div>
         <div class="t-fig"><div class="n">69,7%</div><div class="l">do orçamento total</div></div>
         <div class="t-fig"><div class="n">0,19%</div><div class="l">taxa de cliques</div></div>
-        <div class="t-fig"><div class="n">0</div><div class="l">conv. comparáveis</div></div>
-        <div class="t-fig"><div class="n">R$ 0,00</div><div class="l">valor de conversão</div></div>
+        <div class="t-fig"><div class="n">R$ 1,00</div><div class="l">valor de cada conversão</div></div>
       </div>
     </div>
 
@@ -759,16 +786,23 @@ footer .fm{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em}
           <span class="chip crit"><span class="ic">●</span> Crítico</span>
           <span class="f-where">Google Ads · rastreamento</span>
         </div>
-        <h3>Nenhuma conversão do Google é comparável — e nenhuma tem valor</h3>
+        <h3>O Smart Bidding está otimizando para visitas modeladas a R$ 1,00 cada</h3>
         <p>
-          As duas campanhas ativas marcam <em>Conv. (comparável entre plataformas)</em> = 0 e
-          <em>Valor da conv./custo</em> = 0,00. Sem valor de conversão não existe ROAS, não existe CPA por
-          serviço, e o Smart Bidding (a PMax usa <em>CPA desejado</em>) está otimizando às cegas para um evento
-          que talvez não seja um lead. É a raiz de quase todos os outros achados.
+          A auditoria das ações de conversão fechou a conta: <strong>589 Store visits + 58 + 76 chamadas = 723</strong>,
+          o total exato da conta. A ação <em>Store visits</em> está marcada como <strong>primária</strong> — ou seja,
+          entra no controle de lances — e responde por 81% de todas as conversões da conta.
+        </p>
+        <p>
+          Some a isso o valor: contagem e valor são idênticos em todas as ações (589/589, 58/58, 76/76), o que
+          significa <strong>R$ 1,00 por conversão</strong>, o padrão do Google. Uma emergência de madrugada vale o
+          mesmo que uma visita estimada. Sem valor real não existe ROAS nem CPA por serviço, e a PMax, rodando em
+          <em>CPA desejado</em>, persegue o alvo mais barato disponível — que é justamente a métrica menos ligada
+          a faturamento.
         </p>
         <div class="f-evidence">
+          <span class="pill">Store visits <b>589</b> · primária</span>
+          <span class="pill">Valor por conv. <b>R$ 1,00</b></span>
           <span class="pill">Conv. comparáveis <b>0</b></span>
-          <span class="pill">Valor conv./custo <b>0,00</b></span>
           <span class="pill">Estratégia <b>CPA desejado</b></span>
           <span class="pill">Verba afetada <b>R$ 5.551,38</b></span>
         </div>
@@ -782,9 +816,10 @@ footer .fm{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em}
         <h3>1,06 milhão de impressões, 0,19% de CTR, CPM de R$ 4,36</h3>
         <p>
           A PMax entregou <strong>389 vezes mais impressões</strong> que a campanha de Pesquisa, com CTR
-          <strong>17 vezes menor</strong> e um CPM dez vezes mais barato. Esse conjunto de sinais aponta para
-          entrega dominada por Display e YouTube — inventário de baixo custo e baixa intenção — e não pela
-          Rede de Pesquisa, onde está quem procura veterinário agora.
+          <strong>17 vezes menor</strong> e um CPM dez vezes mais barato — entrega dominada por Display e
+          YouTube, inventário de baixo custo e baixa intenção, e não pela Rede de Pesquisa, onde está quem
+          procura veterinário agora. Com <em>Store visits</em> como meta primária, esse comportamento é a
+          resposta correta ao incentivo: alcance barato perto da clínica maximiza visitas modeladas.
         </p>
         <p>
           Vale notar: a campanha ainda paga <strong>R$ 2,28 por clique</strong>, contra R$ 1,33 da Pesquisa.
@@ -1149,14 +1184,20 @@ footer .fm{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em}
           <div class="action">
             <div class="a-idx">1.1</div>
             <div>
-              <div class="a-title">Auditar as ações de conversão do Google e marcar só as reais como Primária</div>
+              <div class="a-title">Passar Store visits para Secundária e limpar as ações duplicadas</div>
               <div class="a-body">
-                Abrir Ferramentas → Conversões e classificar: <strong>primárias</strong> = clique no botão de
-                WhatsApp, clique no telefone, envio de formulário, chegada na página de obrigado, ligação com
-                mais de 30 segundos. Tudo o resto (visualização de página, rolagem, tempo no site) vira
-                <strong>secundária</strong>. Isso muda o que o CPA desejado da PMax persegue.
+                A auditoria já foi feita — falta aplicar. <strong>Store visits → Secundária</strong>: continua
+                visível no relatório para observação, mas sai do controle de lances. <strong>Chamadas a partir de
+                anúncios → Secundária</strong>, por ser provável duplicata de <em>Calls from ads</em>, que tem a
+                mesma origem e também está incluída nas metas da conta. <strong>Contato</strong>, legado e sem
+                conversões, pode ser arquivada. E <em>Calls from ads</em> deve mudar a contagem de
+                <em>Todas</em> para <em>Uma</em>: três ligações do mesmo clique não são três leads.
               </div>
-              <div class="a-meta"><span class="pill">Esforço <b>2h</b></span><span class="pill">Destrava <b>tudo</b></span></div>
+              <div class="a-body" style="margin-top:10px">
+                Prepare-se para o número despencar de ~723 para algumas dezenas. Isso é a correção, não uma
+                piora — e a PMax entra em novo aprendizado por 1–2 semanas, o que reforça o corte de verba dela.
+              </div>
+              <div class="a-meta"><span class="pill">Esforço <b>30 min</b></span><span class="pill">Destrava <b>tudo</b></span></div>
             </div>
           </div>
 
@@ -1525,7 +1566,8 @@ footer .fm{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em}
     <div class="sec-head"><span class="sec-num">08</span><h2>Método e limitações</h2></div>
     <div class="notes" style="margin-top:16px">
       <p><b>Fontes.</b> Dois arquivos exportados das plataformas: “Relatório de campanha” do Google Ads (28/mai a 25/ago/2026) e “CliniCat Campanhas” do Meta Ads (26/mai a 24/ago/2026). Os períodos diferem em dois dias; para os totais consolidados foram somados como se fossem a mesma janela de 90 dias, o que é adequado para leitura de tendência mas não para conciliação contábil. A seção “O trimestre, mês a mês” usa uma segunda fonte: dados diários lidos diretamente das contas Clini Cat (Meta) e Clinicat Hospital Veterinário 24h Perdizes (Google Ads, 233-955-5848) via Windsor.ai em 25/08/2026, janela 26/05–24/08, agregados por mês-calendário.</p>
-      <p><b>“Leads verificáveis”.</b> Definidos como 202 conversas iniciadas por mensagem no Meta (janela de 7 dias) mais as 54 conversões da campanha de Pesquisa do Google. As 669 conversões da Performance Max foram deliberadamente excluídas dessa contagem porque o próprio relatório marca zero conversões comparáveis entre plataformas e valor de conversão nulo — não é um julgamento de que sejam falsas, é o reconhecimento de que os dados disponíveis não permitem confirmá-las.</p>
+      <p><b>“Leads verificáveis”.</b> Definidos como 202 conversas iniciadas por mensagem no Meta (janela de 7 dias) mais as 54 conversões da campanha de Pesquisa do Google. As 669 conversões da Performance Max foram excluídas dessa contagem — decisão que a auditoria posterior confirmou como correta: 589 delas são <em>Store visits</em>, visitas à loja modeladas, e não contatos.</p>
+      <p><b>Auditoria das ações de conversão.</b> Feita em 25/08/2026 na tela Metas → Resumo do Google Ads, período 28/mai–25/ago. As três ações incluídas nas metas da conta somam exatamente as 723 conversões do relatório de campanha (589 + 58 + 76), o que permite atribuí-las por campanha sem ambiguidade: PMax 669 = 589 visitas + 80 chamadas; Pesquisa 54 = as chamadas restantes.</p>
       <p><b>Dias efetivos de veiculação.</b> Inicialmente estimados dividindo o gasto pelo orçamento diário; depois confirmados pelos dados diários via Windsor — a Pesquisa estreou em 30/07 e roda no teto desde então, e a PMax veiculou o período inteiro.</p>
       <p><b>O que não foi possível avaliar.</b> Nenhum dos arquivos traz dados de anúncio, criativo, palavra-chave, termo de pesquisa, posicionamento, dispositivo, horário, faixa etária ou região. Também não há qualquer dado de negócio depois do clique — agendamentos, comparecimentos, ticket médio. Um relatório em nível de anúncio e termo de pesquisa, mais o registro de conversas do WhatsApp, mudariam bastante a profundidade da análise. Vale pedir os dois antes do próximo ciclo.</p>
     </div>
