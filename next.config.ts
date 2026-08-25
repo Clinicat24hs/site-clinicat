@@ -20,10 +20,34 @@ const nextConfig: NextConfig = {
   // momento do boot — uploads feitos pelo admin dariam 404 até reiniciar o
   // container. "afterFiles" mantém os arquivos estáticos existentes na frente e
   // manda só o que não existe no build para a rota que lê o UPLOAD_DIR.
+  // Domínio canônico: clinicat24hs.com.br. O endereço de staging
+  // (clinicat.tudomudou.com.br) e o www continuam respondendo no proxy,
+  // mas redirecionam 301 para não dividir tráfego, SEO e métricas de ads.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "clinicat.tudomudou.com.br" }],
+        destination: "https://clinicat24hs.com.br/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.clinicat24hs.com.br" }],
+        destination: "https://clinicat24hs.com.br/:path*",
+        permanent: true,
+      },
+    ];
+  },
+
   async rewrites() {
     return {
       beforeFiles: [],
-      afterFiles: [{ source: "/uploads/:file", destination: "/api/uploads/:file" }],
+      afterFiles: [
+        { source: "/uploads/:file", destination: "/api/uploads/:file" },
+        // Relatório de mídia paga (público em /relatorios; arquivo em public/)
+        { source: "/relatorios", destination: "/relatorios.html" },
+      ],
       fallback: [],
     };
   },
