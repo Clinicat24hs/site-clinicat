@@ -25,6 +25,39 @@
    ```
 7. Testar `/admin/login` com `ADMIN_EMAIL` / `ADMIN_PASSWORD`.
 
+## Tags de mídia paga (Meta Pixel + Google Ads)
+
+Todas as variáveis são **opcionais**: sem elas, nenhuma tag é carregada e o site
+funciona normalmente. Como são `NEXT_PUBLIC_*`, o Next as embute no bundle
+**durante o build** — então, ao adicionar ou trocar qualquer uma delas no
+Coolify, é preciso **Redeploy** (um Restart não basta).
+
+| Variável | Onde pegar |
+|---|---|
+| `NEXT_PUBLIC_META_PIXEL_ID` | Meta: Gerenciador de Eventos → Fontes de dados → ID do pixel |
+| `NEXT_PUBLIC_GOOGLE_TAG_ID` | `AW-XXXXXXXXX` (Google Ads → Metas → Tag do Google) ou `G-XXXXXXX` (GA4) |
+| `NEXT_PUBLIC_GADS_LABEL_WHATSAPP` | Google Ads → Metas → Conversões → ação → "Instalar a tag manualmente" → valor de `send_to` |
+| `NEXT_PUBLIC_GADS_LABEL_PHONE` | idem, para a ação de clique no telefone |
+| `NEXT_PUBLIC_GADS_LABEL_FORM` | idem, para a ação de envio do formulário |
+
+Eventos disparados (`src/lib/track.ts`), em toda clique de contato do site:
+
+| Ação do visitante | Meta Pixel | Google |
+|---|---|---|
+| Clique em link `wa.me` | `Contact` (channel: whatsapp) | `clique_whatsapp` + conversão |
+| Clique em link `tel:` | `Contact` (channel: phone) | `clique_telefone` + conversão |
+| Envio do formulário de contato | `Contact` (channel: form) | `envio_formulario` + conversão |
+
+Cada evento leva também o **local do clique** (header, footer, conteúdo…), para
+separar no relatório qual ponto de contato converte melhor. O rastreio é por
+delegação (`ContactTracker`), então links de contato novos entram sozinhos.
+
+### Como validar depois do deploy
+- **Meta**: extensão *Meta Pixel Helper* — deve mostrar PageView ao abrir e
+  Contact ao clicar no WhatsApp. Ou Gerenciador de Eventos → Testar eventos.
+- **Google**: Google Ads → Metas → Conversões (status sai de "Nenhuma conversão
+  recente" em algumas horas), ou a *Tag Assistant* em tempo real.
+
 ## Notas
 - Migrations rodam sozinhas no start (`entrypoint.sh` → `migrate.js`).
 - Webhook GitHub → Coolify para auto-deploy (opcional): serviço → Webhooks.
