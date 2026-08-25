@@ -54,13 +54,22 @@ export function trackContact(channel: ContactChannel, location: string): void {
   }
 
   try {
+    // transport_type "beacon" usa navigator.sendBeacon, que é entregue mesmo
+    // se a página for descarregada em seguida. A maioria dos links de WhatsApp
+    // do site navega na mesma aba, então sem isso a conversão se perde no meio
+    // do caminho — é o mesmo problema que o event_callback do snippet oficial
+    // do Google resolve, sem precisar segurar a navegação do usuário.
     const label = GADS_LABELS[channel];
     if (label) {
-      window.gtag?.("event", "conversion", { send_to: label });
+      window.gtag?.("event", "conversion", {
+        send_to: label,
+        transport_type: "beacon",
+      });
     }
     window.gtag?.("event", GA_EVENT_NAME[channel], {
       event_category: "contato",
       event_label: location,
+      transport_type: "beacon",
     });
   } catch {
     // idem
