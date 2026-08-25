@@ -63,9 +63,8 @@ export default function Home() {
 
       {/* SOBRE */}
       <section id="sobre" className="container two-col">
-        <div className="story-imgs">
-          <img src="/assets/care-dog.jpg" alt="Cachorro sorrindo durante consulta" loading="lazy" />
-          <img src="/assets/care-cat.jpg" alt="Gato acolhido com carinho" className="offset" loading="lazy" />
+        <div className="round-img">
+          <img src="/estrutura/recepcao.webp" alt="Recepção da Clinicat: área de espera coberta, com bancos e plantas" loading="lazy" />
         </div>
         <div>
           <p className="kicker primary">Quem somos</p>
