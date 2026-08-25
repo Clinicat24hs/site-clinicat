@@ -6,14 +6,22 @@ import Script from "next/script";
  * Os IDs vêm de env vars públicas — sem elas nada é injetado, então o site
  * roda igual em desenvolvimento e em preview sem sujar os dados das contas:
  *   NEXT_PUBLIC_META_PIXEL_ID   ex.: 1234567890123456
- *   NEXT_PUBLIC_GOOGLE_TAG_ID   ex.: AW-123456789 (ou G-XXXXXXX do GA4)
+ *   NEXT_PUBLIC_GOOGLE_TAG_ID   ex.: AW-123456789
+ *
+ * O ID do Google aceita vários separados por vírgula — a conta costuma ter um
+ * de Ads e um de GA4 ("AW-123456789,G-XXXXXXX"). O script carrega com o
+ * primeiro e cada um recebe seu próprio gtag('config'), que é o que faz o
+ * `send_to` das conversões do Ads encontrar o destino certo.
  *
  * Os disparos de evento ficam em src/lib/track.ts, chamados pelos botões de
  * contato. Aqui só entra a base das duas tags.
  */
 export function Analytics() {
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
-  const googleTagId = process.env.NEXT_PUBLIC_GOOGLE_TAG_ID;
+  const googleTagIds = (process.env.NEXT_PUBLIC_GOOGLE_TAG_ID ?? "")
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
 
   return (
     <>
@@ -43,17 +51,17 @@ fbq('init','${pixelId}');fbq('track','PageView');`}
         </>
       ) : null}
 
-      {googleTagId ? (
+      {googleTagIds.length > 0 ? (
         <>
           <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${googleTagIds[0]}`}
             strategy="afterInteractive"
           />
           <Script id="google-tag" strategy="afterInteractive">
             {`window.dataLayer=window.dataLayer||[];
 function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());
-gtag('config','${googleTagId}');`}
+${googleTagIds.map((id) => `gtag('config','${id}');`).join("\n")}`}
           </Script>
         </>
       ) : null}
