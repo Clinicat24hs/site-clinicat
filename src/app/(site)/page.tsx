@@ -34,7 +34,8 @@ export default function Home() {
           <div className="hero-img-wrap">
             <div className="hero-img-glow" aria-hidden="true"></div>
             <div className="hero-img-card">
-              <img src="/assets/hero-vet.jpg" alt="Veterinária acolhendo cachorro e gato na Clinicat" />
+              {/* Foto em pé no card 5/4: o recorte desce para caber a equipe e os quatro pets. */}
+              <img src="/estrutura/ana1.jpeg" alt="Equipe da Clinicat com quatro cães na recepção da clínica" style={{ objectPosition: "center 55%" }} />
             </div>
             <div className="hero-tooltip">
               <p className="kicker">Resposta rápida</p>
