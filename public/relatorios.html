@@ -8,107 +8,60 @@
 <title>Clinicat · Diagnóstico de Mídia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Mulish:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap">
 
 <style>
 :root{
   color-scheme: light;
-  --ground:#f4f6f4;
+
+  /* Paleta Clinicat — os mesmos valores de public/styles.css do site */
+  --cream:#fbf4ea;
+  --sand:#f1e2cf;
+  --ground:#faf9f5;
   --surface:#ffffff;
-  --surface-2:#fafbfa;
-  --ink:#111d1b;
-  --ink-2:#4c5956;
-  --muted:#7f8b88;
-  --hairline:#e0e5e2;
-  --hairline-strong:#c8d0cd;
-  --accent:#0b5b56;
-  --accent-ink:#0b5b56;
-  --accent-wash:#e6efed;
+  --surface-2:#fbf4ea;
+  --ink:#1c1118;
+  --ink-2:#3d2d35;
+  --muted:#6b5a63;
+  --hairline:#e7dcd5;
+  --hairline-strong:#d9c8be;
+  --accent:#e0306c;
+  --accent-ink:#8e1e48;
+  --accent-wash:#fbf4ea;
+  --wine:#5e1331;
 
-  --s-google:#2a78d6;
-  --s-meta:#eb6834;
-  --s-third:#1baf7a;
-  --s-google-wash:rgba(42,120,214,.12);
-  --s-meta-wash:rgba(235,104,52,.12);
+  /* Séries dos gráficos: vinho e pêssego da marca.
+     Validadas sobre branco — ΔE 30,8 em visão normal e em daltonismo.
+     O pêssego fica abaixo de 3:1 de contraste, então toda barra carrega
+     rótulo de valor visível e existe tabela completa (regra de alívio). */
+  --s-google:#8e1e48;
+  --s-meta:#f2855e;
+  --s-google-wash:rgba(142,30,72,.10);
+  --s-meta-wash:rgba(242,133,94,.16);
 
-  --good:#0ca30c;
-  --warning:#fab219;
-  --serious:#ec835a;
-  --critical:#d03b3b;
-  --good-ink:#046b04;
-  --warning-ink:#8a5d00;
-  --serious-ink:#a44a25;
-  --critical-ink:#a32222;
+  /* Status: sempre acompanhados de ícone e palavra, nunca só cor */
+  --good:#0f8a4d;
+  --warning:#b07d00;
+  --serious:#c25a1c;
+  --critical:#b3202b;
+  --good-ink:#0c6f3e;
+  --warning-ink:#8a6200;
+  --serious-ink:#9c4514;
+  --critical-ink:#9c1b24;
 
-  --grid:#e8ece9;
-  --shadow:0 1px 2px rgba(17,29,27,.04), 0 8px 24px -16px rgba(17,29,27,.18);
+  --grid:#f1e2cf;
+  --shadow:0 1px 2px rgba(28,17,24,.04), 0 10px 40px -18px rgba(28,17,24,.22);
 
-  --f-display:"Archivo", "Helvetica Neue", Arial, sans-serif;
-  --f-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    color-scheme: dark;
-    --ground:#0c100f;
-    --surface:#151a19;
-    --surface-2:#1a201e;
-    --ink:#eef2f0;
-    --ink-2:#aab4b1;
-    --muted:#7c8784;
-    --hairline:#242b29;
-    --hairline-strong:#374040;
-    --accent:#4fb9ac;
-    --accent-ink:#66c8bb;
-    --accent-wash:#132523;
-
-    --s-google:#3987e5;
-    --s-meta:#d95926;
-    --s-third:#199e70;
-    --s-google-wash:rgba(57,135,229,.16);
-    --s-meta-wash:rgba(217,89,38,.16);
-
-    --good-ink:#0ca30c;
-    --warning-ink:#fab219;
-    --serious-ink:#ec835a;
-    --critical-ink:#e05f5f;
-
-    --grid:#222927;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme: dark;
-  --ground:#0c100f;
-  --surface:#151a19;
-  --surface-2:#1a201e;
-  --ink:#eef2f0;
-  --ink-2:#aab4b1;
-  --muted:#7c8784;
-  --hairline:#242b29;
-  --hairline-strong:#374040;
-  --accent:#4fb9ac;
-  --accent-ink:#66c8bb;
-  --accent-wash:#132523;
-
-  --s-google:#3987e5;
-  --s-meta:#d95926;
-  --s-third:#199e70;
-  --s-google-wash:rgba(57,135,229,.16);
-  --s-meta-wash:rgba(217,89,38,.16);
-
-  --good-ink:#0ca30c;
-  --warning-ink:#fab219;
-  --serious-ink:#ec835a;
-  --critical-ink:#e05f5f;
-
-  --grid:#222927;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  --f-display:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --f-body:"Mulish", ui-sans-serif, system-ui, sans-serif;
+  --f-serif:"Newsreader", Georgia, serif;
+  --f-mono:"Mulish", ui-sans-serif, system-ui, sans-serif;
 }
 
 *{box-sizing:border-box}
 body{
   margin:0;
+  font-variant-numeric:tabular-nums;
   background:var(--ground);
   color:var(--ink);
   font-family:var(--f-body);
@@ -116,7 +69,7 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
-h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15;letter-spacing:-.015em}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.12;letter-spacing:-.01em}
 p{margin:0}
 a{color:var(--accent-ink)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
@@ -139,10 +92,10 @@ a{color:var(--accent-ink)}
 @media (max-width:760px){.topnav{display:none}}
 
 /* ---------- hero ---------- */
-.hero{padding:56px 0 40px;border-bottom:1px solid var(--hairline)}
+.hero{padding:56px 0 40px;background:var(--cream);border-bottom:1px solid var(--hairline)}
 .eyebrow{
-  font-family:var(--f-mono);font-size:11.5px;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  font-family:var(--f-body);font-size:11.5px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);
 }
 .hero h1{font-size:clamp(34px,5.4vw,58px);font-weight:800;margin:14px 0 0;max-width:16ch}
 .hero .lede{margin-top:18px;max-width:62ch;color:var(--ink-2);font-size:17.5px}
@@ -158,7 +111,7 @@ a{color:var(--accent-ink)}
 @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:480px){.kpis{grid-template-columns:1fr}}
 .kpi{background:var(--surface);padding:18px 18px 16px}
-.kpi .k-label{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.kpi .k-label{font-family:var(--f-body);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .kpi .k-value{font-family:var(--f-display);font-weight:700;font-size:26px;margin-top:8px;letter-spacing:-.02em}
 .kpi .k-value .cur{font-size:15px;font-weight:600;color:var(--ink-2);margin-right:2px}
 .kpi .k-note{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.4}
@@ -167,7 +120,7 @@ a{color:var(--accent-ink)}
 section{padding:60px 0;border-bottom:1px solid var(--hairline)}
 section:last-of-type{border-bottom:0}
 .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
-.sec-num{font-family:var(--f-mono);font-size:12px;color:var(--accent-ink);font-weight:500;letter-spacing:.06em}
+.sec-num{font-family:var(--f-serif);font-style:italic;font-size:19px;color:var(--accent);font-weight:500;letter-spacing:0}
 .sec-head h2{font-size:clamp(24px,3.2vw,32px);font-weight:700}
 .sec-sub{color:var(--ink-2);max-width:66ch;margin-top:10px}
 
@@ -189,7 +142,7 @@ section:last-of-type{border-bottom:0}
 .recon-l b{color:var(--ink);font-weight:600}
 .recon-total{background:var(--surface);border-top:2px solid var(--hairline-strong)}
 .recon-total .recon-n{color:var(--critical-ink)}
-.thesis-kicker{margin-top:16px;font-size:17px;font-weight:600;color:var(--ink) !important;max-width:52ch}
+.thesis-kicker{margin-top:18px;font-family:var(--f-serif);font-size:20px;line-height:1.4;font-weight:500;color:var(--wine) !important;max-width:46ch}
 .thesis .t-figs{display:flex;flex-wrap:wrap;gap:28px;margin-top:22px;padding-top:20px;border-top:1px solid var(--hairline)}
 .t-fig .n{font-family:var(--f-display);font-weight:800;font-size:30px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .t-fig .l{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
@@ -251,7 +204,7 @@ section:last-of-type{border-bottom:0}
 .f-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .chip{
   display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  font-family:var(--f-body);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   padding:3px 9px;border-radius:100px;border:1px solid currentColor;
 }
 .chip.crit{color:var(--critical-ink)} .chip.ser{color:var(--serious-ink)}
@@ -272,7 +225,7 @@ section:last-of-type{border-bottom:0}
 table{border-collapse:collapse;width:100%;min-width:720px;font-size:13.5px}
 caption{text-align:left;padding:16px 18px 0;font-family:var(--f-display);font-weight:600;font-size:15px;color:var(--ink)}
 thead th{
-  font-family:var(--f-mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  font-family:var(--f-body);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   color:var(--muted);text-align:right;padding:14px 14px 10px;border-bottom:1px solid var(--hairline-strong);white-space:nowrap;
 }
 thead th:first-child{text-align:left}
@@ -357,13 +310,14 @@ footer .fm{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em}
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">Relatório de performance · 90 dias</div>
-    <h1>Setenta por cento da verba está num lugar que ninguém consegue auditar.</h1>
+    <h1>Oito de cada dez conversões da conta são visitas estimadas, não pessoas.</h1>
     <p class="lede">
       Em 90 dias a Clinicat investiu <strong>R$ 6.639,61</strong> entre Google Ads e Meta Ads e gerou
-      <strong>1,15 milhão de impressões</strong>. Mas o campo que mede resultado real — “Conv. comparável entre
-      plataformas” — está zerado em <strong>todas</strong> as campanhas do Google, e a campanha que consome
-      <strong>69,7% de todo o orçamento</strong> tem taxa de cliques de 0,19%. Este relatório mostra o que os
-      números dizem, o que eles não conseguem provar, e o que fazer nos próximos 90 dias.
+      <strong>1,15 milhão de impressões</strong>. A auditoria das ações de conversão revelou que
+      <strong>589 das 723 conversões</strong> da conta são <em>Store visits</em> — estimativas de que alguém que
+      viu o anúncio passou perto da clínica — e que a campanha responsável por <strong>69,7% do orçamento</strong>
+      vinha otimizando justamente para elas, com taxa de cliques de 0,19%. Este relatório mostra o que cada
+      número é de fato, quanto de resultado real existe por trás, e o que fazer nos próximos 90 dias.
     </p>
     <div class="periodstrip">
       <span><b>Google Ads</b> 28/mai – 25/ago/2026</span>
@@ -396,7 +350,7 @@ footer .fm{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em}
       <div class="kpi">
         <div class="k-label">Conv. comparáveis</div>
         <div class="k-value">0</div>
-        <div class="k-note">Google não tem nenhuma conversão auditável</div>
+        <div class="k-note">Das 723 reportadas, 81% são visitas estimadas</div>
       </div>
     </div>
   </div>
