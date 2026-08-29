@@ -159,6 +159,41 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CONVÊNIOS */}
+      <section className="container section">
+        <div
+          style={{
+            background: "linear-gradient(135deg, rgba(224,48,108,.07), var(--cream))",
+            border: "1px solid var(--border)",
+            borderRadius: 28,
+            padding: "clamp(1.75rem, 4vw, 3rem)",
+            display: "grid",
+            gap: "1.75rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <p className="kicker primary">Convênios</p>
+            <h2 className="display-md">Trabalhamos com <em>Dog Life</em> e <em>Pet Life.</em></h2>
+            <div className="row gap wrap" style={{ marginTop: "1rem" }}>
+              <span className="chip">Dog Life</span>
+              <span className="chip">Pet Life</span>
+            </div>
+          </div>
+          <div style={{ color: "var(--muted)", fontSize: "0.98rem", lineHeight: 1.7 }}>
+            <p>
+              <strong>Importante:</strong> todas as cobranças e coberturas relacionadas aos convênios são de
+              responsabilidade exclusiva do plano contratado. O hospital não se responsabiliza por autorizações,
+              glosas ou limitações de cobertura.
+            </p>
+            <p style={{ marginTop: "0.75rem" }}>
+              Para dúvidas sobre cobertura, entre em contato diretamente com a central de atendimento do seu plano.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* CTA FINAL */}
       <section className="container" style={{ paddingBottom: "2rem" }}>
         <div className="cta-band">

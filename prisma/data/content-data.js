@@ -378,14 +378,15 @@ const SERVICOS = [
   },
   {
     slug: 'convenio',
-    title: 'Convênios',
-    tagline: 'Trabalhamos com os convênios Dog Life e Pet Life.',
-    intro: 'A Clinicat atende os convênios Dog Life e Pet Life. Importante: todas as cobranças e coberturas relacionadas aos convênios são de responsabilidade exclusiva do plano contratado. O hospital não se responsabiliza por autorizações, glosas ou limitações de cobertura.',
+    title: 'Convênio',
+    tagline: 'Mais previsibilidade e economia no cuidado do seu pet.',
+    intro: 'Opções de convênio e planos de saúde pet para tornar o cuidado mais acessível e previsível. Fale com a recepção para conhecer as condições e escolher o que melhor atende à sua família.',
     highlights: [
-      'Convênios atendidos: Dog Life e Pet Life',
-      'Cobranças e coberturas são de responsabilidade exclusiva do plano contratado',
-      'O hospital não se responsabiliza por autorizações, glosas ou limitações de cobertura',
-      'Dúvidas sobre cobertura? Fale diretamente com a central de atendimento do seu plano',
+      'Planos e convênios para o cuidado contínuo',
+      'Mais previsibilidade nos custos',
+      'Acesso facilitado a consultas e procedimentos',
+      'Condições explicadas pela recepção',
+      'Escolha do que melhor se encaixa na sua rotina',
     ],
   },
   {
