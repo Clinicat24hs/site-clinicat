@@ -78,9 +78,9 @@ export default function Contato() {
           <div className="faq">
             <details><summary>Aceita cartão?</summary><p>Sim. Aceitamos as principais bandeiras de cartão de crédito e débito, além de Pix e dinheiro.</p></details>
             <details><summary>Faz parcelamento?</summary><p>Sim, oferecemos opções de parcelamento para procedimentos e cirurgias. Consulte as condições com a recepção.</p></details>
-            <details><summary>Atende convênios?</summary><p>Trabalhamos com os principais convênios veterinários. Fale conosco para verificar a cobertura do seu plano.</p></details>
+            <details><summary>Convênios (Dog Life / Pet Life)</summary><p>Todas as cobranças e coberturas relacionadas aos convênios são de responsabilidade exclusiva do plano contratado. O hospital não se responsabiliza por autorizações, glosas ou limitações de cobertura. Para dúvidas sobre esse assunto, entre em contato diretamente com a central de atendimento do seu plano.</p></details>
             <details><summary>Como funciona a internação?</summary><p>A internação conta com acompanhamento 24h, monitoramento contínuo, medicação e cuidados intensivos por equipe especializada.</p></details>
-            <details><summary>Posso visitar meu pet internado?</summary><p>Sim. As visitas acontecem em <strong>horários específicos</strong>, definidos pela equipe clínica para não interferir na rotina de cuidados e na recuperação dos pacientes. Consulte a recepção para saber os horários de visita disponíveis.</p></details>
+            <details><summary>Posso visitar meu pet internado?</summary><p>Sim, mas as visitas devem ser <strong>agendadas previamente</strong>, em um dos seguintes períodos:</p><ul><li>Das 10h às 11h30</li><li>Das 17h às 19h30</li></ul></details>
             <details><summary>Como recebo os boletins médicos?</summary><p>Enviamos atualizações periódicas sobre o estado do seu pet por WhatsApp e mantemos contato direto com o tutor.</p></details>
             <details><summary>Existe estacionamento?</summary><p>Informe-se com a recepção sobre as opções de estacionamento na região de Perdizes próximas à clínica.</p></details>
             <details><summary>Faz atendimento domiciliar?</summary><p>Oferecemos o serviço de Leva e Traz e, em casos específicos, atendimento domiciliar. Consulte a disponibilidade pelo WhatsApp.</p></details>
