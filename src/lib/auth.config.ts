@@ -12,6 +12,8 @@ export const authConfig = {
       const { pathname } = request.nextUrl;
       if (pathname === "/admin/login") return true;
       if (pathname.startsWith("/admin")) return !!auth?.user; // false → redireciona pro signIn
+      // Relatório de mídia paga: dados internos — só logado (não é público)
+      if (pathname.startsWith("/relatorios")) return !!auth?.user;
       return true;
     },
   },

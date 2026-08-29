@@ -52,7 +52,6 @@ export function Header() {
                 <a href="/clinicat-cuida">Clinicat Cuida</a>
               </div>
             </div>
-            <a href="/depoimentos" className="nav-btn">Depoimentos</a>
             <a href="/blog" className="nav-btn">Blog</a>
             <a href="/contato" className="nav-btn">Contato</a>
           </nav>
@@ -70,7 +69,6 @@ export function Header() {
             <details><summary>Serviços</summary><a href="/servicos/cirurgias">Cirurgia &amp; Anestesia</a><a href="/servicos/exames">Diagnóstico &amp; Exames</a><a href="/servicos/banho-e-tosa">Banho e Tosa</a><a href="/servicos/farmacia">Farmácia</a><a href="/servicos/leva-e-traz">Leva e Traz</a><a href="/servicos/convenio">Convênio</a></details>
             <a href="/creche-hotel" className="mlink">Creche &amp; Hotel</a>
             <details><summary>Quem Somos</summary><a href="/quem-somos">Quem somos</a><a href="/quem-somos#equipe">Equipe</a><a href="/quem-somos#tour">Tour Virtual</a><a href="/ceav">CEAV</a><a href="/clinicat-cuida">Clinicat Cuida</a></details>
-            <a href="/depoimentos" className="mlink">Depoimentos</a>
             <a href="/blog" className="mlink">Blog</a>
             <a href="/contato" className="mlink">Contato</a>
             <a href="https://wa.me/5511932565663" className="btn btn-primary block">Fale no WhatsApp</a>
