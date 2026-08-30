@@ -24,7 +24,7 @@ export function ContentList({ items }: { items: ContentPage[] }) {
       </div>
       <table>
         <thead>
-          <tr><th>Título</th><th>Tipo</th><th>Slug</th><th>Ativo</th><th></th></tr>
+          <tr><th>Título</th><th>Tipo</th><th>Slug</th><th>Imagem</th><th>Ativo</th><th></th></tr>
         </thead>
         <tbody>
           {filtered.map((c) => (
@@ -32,6 +32,17 @@ export function ContentList({ items }: { items: ContentPage[] }) {
               <td>{c.title}</td>
               <td>{c.type === "ESPECIALIDADE" ? "Especialidade" : "Serviço"}</td>
               <td>{c.slug}</td>
+              <td>
+                {c.coverUrl ? (
+                  <span title={c.coverUrl} style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#157347", fontWeight: 600, fontSize: ".85rem", whiteSpace: "nowrap" }}>
+                    <span aria-hidden>●</span> Com imagem
+                  </span>
+                ) : (
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#b26a00", fontWeight: 600, fontSize: ".85rem", whiteSpace: "nowrap" }}>
+                    <span aria-hidden>○</span> Sem imagem
+                  </span>
+                )}
+              </td>
               <td>
                 <input type="checkbox" checked={c.active}
                   onChange={(e) => toggleContentActiveAction(c.id, e.target.checked)} />
