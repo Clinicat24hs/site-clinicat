@@ -175,10 +175,11 @@ export default function Home() {
         >
           <div>
             <p className="kicker primary">Convênios</p>
-            <h2 className="display-md">Trabalhamos com <em>Dog Life</em> e <em>Pet Life.</em></h2>
+            <h2 className="display-md">Trabalhamos com <em>Dog Life</em>, <em>Pet Life</em> e <em>Plamev.</em></h2>
             <div className="row gap wrap" style={{ marginTop: "1rem" }}>
               <span className="chip">Dog Life</span>
               <span className="chip">Pet Life</span>
+              <span className="chip">Plamev</span>
             </div>
           </div>
           <div style={{ color: "var(--muted)", fontSize: "0.98rem", lineHeight: 1.7 }}>
