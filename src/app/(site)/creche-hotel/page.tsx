@@ -23,8 +23,47 @@ export default function CrecheHotel() {
         </div>
       </section>
 
-      {/* O QUE INCLUI */}
+      {/* CRECHE vs HOTEL */}
       <section className="section">
+        <div className="container">
+          <div className="section-head">
+            <p className="kicker primary">Dois serviços, um só cuidado</p>
+            <h2 className="display-md">Escolha entre <em>Creche</em> e <em>Hotel</em>.</h2>
+            <p className="lead">São serviços diferentes para necessidades diferentes. Você pode usar um, outro, ou os dois.</p>
+          </div>
+          <div style={{ display: "grid", gap: "1.5rem", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
+            <article className="card" style={{ display: "flex", flexDirection: "column", gap: ".6rem" }}>
+              <span className="chip" style={{ alignSelf: "flex-start" }}>Durante o dia</span>
+              <h3 style={{ margin: 0 }}>Creche (day care)</h3>
+              <p style={{ margin: 0 }}>
+                Seu pet passa o <strong>dia</strong> conosco e volta para casa à noite. Ideal para quem trabalha fora e
+                não quer o pet sozinho: convívio, atividades, descanso e supervisão o dia todo.
+              </p>
+              <ul style={{ margin: ".4rem 0 0", paddingLeft: "1.1rem", color: "var(--muted)", lineHeight: 1.7 }}>
+                <li>Entrada e saída no mesmo dia</li>
+                <li>Diárias ou pacotes semanais</li>
+                <li>Socialização e gasto de energia</li>
+              </ul>
+            </article>
+            <article className="card" style={{ display: "flex", flexDirection: "column", gap: ".6rem" }}>
+              <span className="chip" style={{ alignSelf: "flex-start" }}>Pernoite</span>
+              <h3 style={{ margin: 0 }}>Hotel (hospedagem)</h3>
+              <p style={{ margin: 0 }}>
+                Seu pet <strong>dorme</strong> conosco por uma ou mais noites. Perfeito para viagens: hospedagem
+                climatizada, rotina de alimentação e monitoramento veterinário 24h enquanto você está fora.
+              </p>
+              <ul style={{ margin: ".4rem 0 0", paddingLeft: "1.1rem", color: "var(--muted)", lineHeight: 1.7 }}>
+                <li>Estadia de uma ou mais noites</li>
+                <li>Acompanhamento veterinário 24h</li>
+                <li>Fotos e vídeos do seu pet</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* O QUE INCLUI */}
+      <section className="section section-soft">
         <div className="container">
           <div className="section-head">
             <p className="kicker primary">O que está incluso</p>
@@ -42,7 +81,7 @@ export default function CrecheHotel() {
       </section>
 
       {/* VÍDEO */}
-      <section className="section section-soft">
+      <section className="section">
         <div className="container">
           <div className="section-head">
             <p className="kicker primary">Um dia na creche</p>
