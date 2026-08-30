@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { listPublicSpecialists } from "@/lib/professionals";
-import { TeamCard } from "@/components/site/TeamCard";
+import { SpecialistsFilter } from "@/components/site/SpecialistsFilter";
 
 export const metadata: Metadata = {
   title: "Especialidades | Clinicat — 15+ especialidades veterinárias",
@@ -20,7 +20,7 @@ export default async function Especialidades() {
         <div className="container">
           <p className="breadcrumb"><a href="/">Início</a> › <span>Especialidades</span></p>
           <p className="kicker primary">Especialidades</p>
-          <h1>Equipe de especialistas <em>referência</em> no Brasil.</h1>
+          <h1>Equipe de especialistas <em>de referência</em> em cada área.</h1>
           <p className="lead">A Clinicat conta com 15+ especialidades veterinárias, cada uma liderada por profissionais com anos de experiência e formação contínua. Nossos especialistas não apenas tratam — entendem que seu pet é parte da sua família e merece o melhor cuidado técnico aliado ao acolhimento genuíno.</p>
           <div className="row gap wrap mt-lg">
             <a href="https://wa.me/5511932565663" className="btn btn-primary">Falar com um especialista →</a>
@@ -115,10 +115,8 @@ export default async function Especialidades() {
             <h2 className="display-md">Nossos <em>especialistas.</em></h2>
             <p className="lead">Profissionais de referência em cada área, prontos para cuidar do seu pet com técnica e acolhimento.</p>
           </div>
-          {/* galeria única (a área aparece no próprio card) */}
-          <div className="team-grid" style={{ marginTop: "2rem" }}>
-            {specialists.map((p) => <TeamCard key={p.id} p={p} />)}
-          </div>
+          {/* filtro por área + galeria (a área aparece no próprio card) */}
+          <SpecialistsFilter specialists={specialists} />
           <div className="center" style={{ marginTop: "2.5rem" }}>
             <a href="/quem-somos#equipe" className="btn btn-outline">Conhecer a equipe completa →</a>
           </div>

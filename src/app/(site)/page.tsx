@@ -17,7 +17,7 @@ export default function Home() {
           <div>
             <span className="badge"><svg className="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z" /></svg> Atendimento 24h em Perdizes</span>
             <h1 className="display">Cuidado veterinário <em>completo</em>,<br />24 horas por dia.</h1>
-            <p className="lead">Há 5 anos, somos a primeira escolha de quem busca excelência, segurança e acolhimento para cães e gatos. Tecnologia, equipe especialista e o carinho de quem entende: seu pet é família.</p>
+            <p className="lead">Há 5 anos cuidando de cães e gatos com excelência, segurança e acolhimento. Tecnologia, equipe especialista e o carinho de quem entende: seu pet é família.</p>
             <div className="row gap wrap mt-lg">
               <a href="https://wa.me/5511932565663" className="btn btn-primary">Fale no WhatsApp →</a>
               <a href="tel:+551138657713" className="btn btn-outline">Emergência · (11) 3865-7713</a>
@@ -39,7 +39,7 @@ export default function Home() {
             </div>
             <div className="hero-tooltip">
               <p className="kicker">Resposta rápida</p>
-              <p>Equipe pronta agora — emergência sem espera.</p>
+              <p>Equipe de plantão agora, pronta para emergências 24h.</p>
             </div>
           </div>
         </div>
