@@ -12,6 +12,23 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # NÃO definir NODE_ENV=development aqui (pitfall #2 do playbook)
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# As variáveis NEXT_PUBLIC_* são inlinadas por Next durante `next build`, não
+# lidas em runtime: definidas só no ambiente do container, as tags de Meta e
+# Google saem do bundle vazias e nenhuma conversão é medida — sem erro nenhum
+# no log. Por isso precisam chegar como build args, e o build precisa ser
+# refeito sempre que uma delas mudar.
+ARG NEXT_PUBLIC_META_PIXEL_ID=""
+ARG NEXT_PUBLIC_GOOGLE_TAG_ID=""
+ARG NEXT_PUBLIC_GADS_LABEL_WHATSAPP=""
+ARG NEXT_PUBLIC_GADS_LABEL_PHONE=""
+ARG NEXT_PUBLIC_GADS_LABEL_FORM=""
+ENV NEXT_PUBLIC_META_PIXEL_ID=$NEXT_PUBLIC_META_PIXEL_ID
+ENV NEXT_PUBLIC_GOOGLE_TAG_ID=$NEXT_PUBLIC_GOOGLE_TAG_ID
+ENV NEXT_PUBLIC_GADS_LABEL_WHATSAPP=$NEXT_PUBLIC_GADS_LABEL_WHATSAPP
+ENV NEXT_PUBLIC_GADS_LABEL_PHONE=$NEXT_PUBLIC_GADS_LABEL_PHONE
+ENV NEXT_PUBLIC_GADS_LABEL_FORM=$NEXT_PUBLIC_GADS_LABEL_FORM
+
 RUN ./node_modules/.bin/prisma generate
 RUN npm run build
 

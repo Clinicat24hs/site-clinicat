@@ -81,6 +81,7 @@ export default async function Blog() {
             <div className="field"><label htmlFor="bl-tel">WhatsApp</label><input id="bl-tel" name="telefone" type="tel" required placeholder="(11) 90000-0000" /></div>
             <div className="field"><label htmlFor="bl-email">E-mail</label><input id="bl-email" name="email" type="email" placeholder="voce@email.com" /></div>
             <div className="field"><label htmlFor="bl-pet">Nome do pet</label><input id="bl-pet" name="pet" type="text" placeholder="Ex.: Thor" /></div>
+            <div className="field"><label htmlFor="bl-bairro">Bairro ou CEP</label><input id="bl-bairro" name="bairro" type="text" required placeholder="Ex.: Perdizes ou 05019-010" /></div>
             <input type="hidden" name="assunto" value="Quero receber dicas de saúde pet" />
             <button type="submit" className="btn btn-primary block" style={{ justifyContent: "center", width: "100%" }}>Quero receber →</button>
             <p className="form-note">Ao enviar, abrimos uma conversa no WhatsApp já com seus dados.</p>
