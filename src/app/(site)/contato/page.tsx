@@ -33,6 +33,7 @@ export default function Contato() {
               <div className="field"><label htmlFor="ct-nome">Nome</label><input id="ct-nome" name="nome" type="text" required placeholder="Seu nome" /></div>
               <div className="field"><label htmlFor="ct-tel">Telefone / WhatsApp</label><input id="ct-tel" name="telefone" type="tel" required placeholder="(11) 90000-0000" /></div>
               <div className="field"><label htmlFor="ct-pet">Nome do pet</label><input id="ct-pet" name="pet" type="text" placeholder="Ex.: Nina" /></div>
+              <div className="field"><label htmlFor="ct-bairro">Bairro ou CEP</label><input id="ct-bairro" name="bairro" type="text" required placeholder="Ex.: Perdizes ou 05019-010" /></div>
               <div className="field"><label htmlFor="ct-assunto">Assunto</label>
                 <select id="ct-assunto" name="assunto">
                   <option>Agendar consulta</option>

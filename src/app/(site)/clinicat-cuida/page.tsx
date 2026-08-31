@@ -74,6 +74,7 @@ export default function ClinicatCuida() {
               <div className="field"><label htmlFor="cc-nome">Seu nome</label><input id="cc-nome" name="nome" type="text" required placeholder="Nome e sobrenome" /></div>
               <div className="field"><label htmlFor="cc-tel">WhatsApp</label><input id="cc-tel" name="telefone" type="tel" required placeholder="(11) 90000-0000" /></div>
               <div className="field"><label htmlFor="cc-pet">Nome do pet</label><input id="cc-pet" name="pet" type="text" placeholder="Ex.: Nina" /></div>
+              <div className="field"><label htmlFor="cc-bairro">Bairro ou CEP</label><input id="cc-bairro" name="bairro" type="text" required placeholder="Ex.: Perdizes ou 05019-010" /></div>
               <input type="hidden" name="assunto" value="Quero participar do Clinicat Cuida" />
               <button type="submit" className="btn btn-primary block" style={{ justifyContent: "center", width: "100%" }}>Quero participar →</button>
               <p className="form-note">Ao enviar, abrimos uma conversa no WhatsApp já com seus dados.</p>
