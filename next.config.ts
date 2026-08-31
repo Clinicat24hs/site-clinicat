@@ -47,6 +47,12 @@ const nextConfig: NextConfig = {
         { source: "/uploads/:file", destination: "/api/uploads/:file" },
         // Relatório de mídia paga (público em /relatorios; arquivo em public/)
         { source: "/relatorios", destination: "/relatorios.html" },
+        // Auditoria de 90 dias jun–ago/2026. URL limpa; arquivo em public/.
+        // O acesso é restrito a quem tem login (middleware + auth.config.ts).
+        {
+          source: "/relatorio-de-performance",
+          destination: "/relatorio-de-performance.html",
+        },
       ],
       fallback: [],
     };

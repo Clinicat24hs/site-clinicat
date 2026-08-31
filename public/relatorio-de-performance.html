@@ -1,0 +1,1534 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Auditoria de 90 dias de Google Ads e Meta Ads da Clinicat: diagnostico, investigacao dos leads fora do raio e plano de 30 dias. Documento interno.">
+<title>Clinicat · Prontuário de Mídia Paga</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  color-scheme: light;
+  --paper:#f7f4ee;
+  --surface:#fffdfa;
+  --surface-2:#f1ece3;
+  --line:#ddd5c8;
+  --line-soft:#e9e2d6;
+  --ink:#1c1f21;
+  --ink-2:#4a4f52;
+  --ink-3:#7b7770;
+  --accent:#0b6f8c;
+  --accent-soft:#e2eff3;
+  --s1:#0b7c9c;
+  --s2:#d4622a;
+  --s3:#7a5ea8;
+  --s4:#a8801a;
+  --good:#2f7150;
+  --good-bg:#e4efe8;
+  --warn:#a2670c;
+  --warn-bg:#f5ecdb;
+  --crit:#a8322c;
+  --crit-bg:#f7e6e4;
+  --grid:#e6dfd3;
+  --shadow:0 1px 2px rgba(28,31,33,.05), 0 8px 24px -16px rgba(28,31,33,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --paper:#131618;
+    --surface:#1b1f22;
+    --surface-2:#23282c;
+    --line:#333a3f;
+    --line-soft:#2a3034;
+    --ink:#f2eee7;
+    --ink-2:#c2bdb4;
+    --ink-3:#8e8880;
+    --accent:#4aa8c4;
+    --accent-soft:#1c2f36;
+    --s1:#2494b1;
+    --s2:#dd6931;
+    --s3:#9080d4;
+    --s4:#b88c20;
+    --good:#5aa47c;
+    --good-bg:#1a2a22;
+    --warn:#c99242;
+    --warn-bg:#2d2519;
+    --crit:#dd6b64;
+    --crit-bg:#2e1d1c;
+    --grid:#2c3236;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#131618;
+  --surface:#1b1f22;
+  --surface-2:#23282c;
+  --line:#333a3f;
+  --line-soft:#2a3034;
+  --ink:#f2eee7;
+  --ink-2:#c2bdb4;
+  --ink-3:#8e8880;
+  --accent:#4aa8c4;
+  --accent-soft:#1c2f36;
+  --s1:#2494b1;
+  --s2:#dd6931;
+  --s3:#9080d4;
+  --s4:#b88c20;
+  --good:#5aa47c;
+  --good-bg:#1a2a22;
+  --warn:#c99242;
+  --warn-bg:#2d2519;
+  --crit:#dd6b64;
+  --crit-bg:#2e1d1c;
+  --grid:#2c3236;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 96px}
+
+/* ---------- typography ---------- */
+h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:600;line-height:1.02;letter-spacing:-.02em}
+h2{font-size:clamp(1.55rem,3vw,2.1rem);font-weight:600;line-height:1.12;letter-spacing:-.015em}
+h3{font-size:1.16rem;font-weight:600;line-height:1.28}
+h4{font-size:1rem;font-weight:600;font-family:"Public Sans",sans-serif}
+p{margin:0}
+.lede{font-size:1.12rem;line-height:1.6;color:var(--ink-2);max-width:66ch}
+.prose{max-width:70ch;display:flex;flex-direction:column;gap:14px;color:var(--ink-2)}
+.prose strong{color:var(--ink);font-weight:600}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+}
+.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+
+/* ---------- masthead ---------- */
+.masthead{padding:56px 0 40px;border-bottom:2px solid var(--ink);margin-bottom:0}
+.masthead .brandline{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;margin-bottom:28px}
+.paw{font-size:1.1rem;line-height:1}
+.masthead h1{margin-bottom:20px}
+.masthead .lede{margin-bottom:26px}
+.meta-strip{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr));
+  gap:2px;background:var(--line-soft);border:1px solid var(--line-soft);
+}
+.meta-strip > div{background:var(--paper);padding:12px 14px}
+.meta-strip dt{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+.meta-strip dd{margin:0;font-size:.92rem;font-weight:500}
+
+/* ---------- sections ---------- */
+section{padding-top:64px}
+.sec-head{display:flex;flex-direction:column;gap:12px;margin-bottom:28px;max-width:74ch}
+.sec-head .rule{display:flex;align-items:center;gap:14px}
+.sec-head .rule::after{content:"";flex:1;height:1px;background:var(--line)}
+.sec-num{
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;letter-spacing:.1em;
+  color:var(--accent);border:1px solid var(--accent);border-radius:2px;padding:2px 7px;
+}
+
+/* ---------- cards ---------- */
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:3px;box-shadow:var(--shadow)}
+.card-pad{padding:22px 24px}
+
+/* ---------- KPI ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:14px}
+.kpi{background:var(--surface);border:1px solid var(--line-soft);border-radius:3px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow)}
+.kpi .k-label{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.kpi .k-value{font-family:"Fraunces",serif;font-size:1.95rem;font-weight:600;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi .k-sub{font-size:.82rem;color:var(--ink-3);line-height:1.4}
+.kpi.is-crit{border-left:3px solid var(--crit)}
+.kpi.is-good{border-left:3px solid var(--good)}
+.kpi.is-warn{border-left:3px solid var(--warn)}
+
+/* ---------- chips / status ---------- */
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-family:"IBM Plex Mono",monospace;
+  font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 8px;border-radius:2px;white-space:nowrap;
+}
+.chip.crit{background:var(--crit-bg);color:var(--crit)}
+.chip.warn{background:var(--warn-bg);color:var(--warn)}
+.chip.good{background:var(--good-bg);color:var(--good)}
+.chip.neutral{background:var(--surface-2);color:var(--ink-2)}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+
+/* ---------- callout ---------- */
+.callout{border-radius:3px;padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+.callout.crit{background:var(--crit-bg);border:1px solid color-mix(in srgb,var(--crit) 28%,transparent)}
+.callout.warn{background:var(--warn-bg);border:1px solid color-mix(in srgb,var(--warn) 28%,transparent)}
+.callout.good{background:var(--good-bg);border:1px solid color-mix(in srgb,var(--good) 28%,transparent)}
+.callout.info{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent)}
+.callout h4{font-family:"Public Sans",sans-serif;font-size:.95rem;letter-spacing:.01em}
+.callout p{font-size:.92rem;line-height:1.55;color:var(--ink-2)}
+.callout.crit h4{color:var(--crit)}
+.callout.warn h4{color:var(--warn)}
+.callout.good h4{color:var(--good)}
+.callout.info h4{color:var(--accent)}
+
+/* ---------- tables ---------- */
+.table-scroll{overflow-x:auto;border:1px solid var(--line-soft);border-radius:3px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:560px}
+th,td{padding:10px 14px;text-align:right;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal;min-width:150px}
+thead th{
+  font-family:"IBM Plex Mono",monospace;font-size:.64rem;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);background:var(--surface-2);border-bottom:1px solid var(--line);
+  position:sticky;top:0;
+}
+tbody td{font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+tbody tr.total-row td{font-weight:700;background:var(--surface-2);border-top:1px solid var(--line)}
+td.pos{color:var(--good);font-weight:600}
+td.neg{color:var(--crit);font-weight:600}
+.swatch{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:8px;vertical-align:baseline}
+
+/* ---------- charts ---------- */
+figure{margin:0;background:var(--surface);border:1px solid var(--line-soft);border-radius:3px;padding:20px 22px 16px;box-shadow:var(--shadow)}
+figcaption{margin-bottom:4px}
+.fig-title{font-family:"Public Sans",sans-serif;font-size:.98rem;font-weight:600;color:var(--ink);margin-bottom:3px}
+.fig-sub{font-size:.82rem;color:var(--ink-3);line-height:1.45;max-width:70ch}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:14px 0 6px}
+.legend-item{display:flex;align-items:center;gap:7px;font-size:.79rem;color:var(--ink-2)}
+.legend-item .swatch{width:11px;height:11px;margin:0}
+.chart-host{position:relative;width:100%;overflow-x:auto}
+svg{display:block;max-width:100%}
+svg text{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.tip{
+  position:absolute;pointer-events:none;opacity:0;transition:opacity .1s;
+  background:var(--surface);border:1px solid var(--line);border-radius:3px;
+  box-shadow:0 6px 20px -6px rgba(0,0,0,.3);padding:9px 11px;font-size:.78rem;
+  min-width:150px;z-index:20;color:var(--ink);
+}
+.tip .tip-h{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.tip .tip-row{display:flex;align-items:center;gap:8px;justify-content:space-between;line-height:1.5}
+.tip .tip-row .lab{display:flex;align-items:center;gap:6px;color:var(--ink-2)}
+.tip .tip-row .val{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:600}
+.tip .swatch{width:8px;height:8px;margin:0}
+
+/* ---------- grids ---------- */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px}
+.stack{display:flex;flex-direction:column;gap:16px}
+.stack-lg{display:flex;flex-direction:column;gap:26px}
+
+/* ---------- hypothesis ---------- */
+.hyp{border:1px solid var(--line-soft);border-radius:3px;background:var(--surface);overflow:hidden;box-shadow:var(--shadow)}
+.hyp-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line-soft);background:var(--surface-2)}
+.hyp-head .hid{font-family:"IBM Plex Mono",monospace;font-size:.78rem;font-weight:600;color:var(--ink-3)}
+.hyp-head .htitle{font-weight:600;font-size:.95rem;flex:1;min-width:min(200px,100%)}
+.hyp-body{padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.hyp-body p{font-size:.9rem;color:var(--ink-2);line-height:1.58}
+.evidence{background:var(--surface-2);border-left:2px solid var(--accent);padding:11px 14px;border-radius:0 2px 2px 0}
+.evidence .elabel{font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.evidence p{font-size:.86rem;color:var(--ink);line-height:1.55}
+.evidence code{font-family:"IBM Plex Mono",monospace;font-size:.82em;background:var(--surface);padding:1px 5px;border-radius:2px;border:1px solid var(--line-soft)}
+
+/* ---------- verdict columns ---------- */
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:16px}
+.vcol{border-radius:3px;padding:22px 24px;display:flex;flex-direction:column;gap:16px}
+.vcol.right{background:var(--good-bg);border:1px solid color-mix(in srgb,var(--good) 25%,transparent)}
+.vcol.wrong{background:var(--crit-bg);border:1px solid color-mix(in srgb,var(--crit) 25%,transparent)}
+.vcol h3{font-family:"Public Sans",sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.vcol.right h3{color:var(--good)}
+.vcol.wrong h3{color:var(--crit)}
+.vlist{display:flex;flex-direction:column;gap:14px;margin:0;padding:0;list-style:none}
+.vlist li{display:flex;gap:12px;font-size:.9rem;line-height:1.55;color:var(--ink-2)}
+.vlist li .vi{
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;flex:none;
+  width:22px;height:22px;border-radius:2px;display:grid;place-items:center;margin-top:1px;
+}
+.vcol.right .vi{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
+.vcol.wrong .vi{background:color-mix(in srgb,var(--crit) 20%,transparent);color:var(--crit)}
+.vlist li b{color:var(--ink);font-weight:600}
+
+/* ---------- plan ---------- */
+.phase{border:1px solid var(--line-soft);border-radius:3px;background:var(--surface);overflow:hidden;box-shadow:var(--shadow)}
+.phase-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.phase-head .pweek{font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--accent)}
+.phase-head h3{flex:1;min-width:min(220px,100%)}
+.phase-head .pgoal{font-size:.82rem;color:var(--ink-3)}
+.tasks{list-style:none;margin:0;padding:0}
+.tasks li{display:grid;grid-template-columns:26px 1fr;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line-soft);font-size:.9rem;line-height:1.55;color:var(--ink-2)}
+.tasks li:last-child{border-bottom:none}
+.tasks li .tn{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-3);padding-top:2px}
+.tasks li b{color:var(--ink);font-weight:600}
+.tasks li .why{display:block;margin-top:4px;font-size:.83rem;color:var(--ink-3)}
+
+/* ---------- budget ---------- */
+.budget-bar{display:flex;height:38px;border-radius:3px;overflow:hidden;gap:2px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.budget-seg{display:grid;place-items:center;font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;color:#fff}
+
+/* ---------- footer ---------- */
+footer{margin-top:76px;padding-top:26px;border-top:1px solid var(--line);color:var(--ink-3);font-size:.82rem;line-height:1.6}
+footer .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:22px}
+footer h4{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+footer p{margin-bottom:8px}
+
+/* ---------- theme toggle ---------- */
+.theme-toggle{
+  position:fixed;top:12px;right:12px;z-index:200;display:flex;gap:2px;
+  background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;
+  box-shadow:0 2px 10px -4px rgba(0,0,0,.3);
+}
+.theme-toggle button{
+  appearance:none;border:0;cursor:pointer;background:transparent;color:var(--ink-3);
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;padding:6px 12px;border-radius:999px;line-height:1;
+  display:inline-flex;align-items:center;gap:6px;transition:background .15s,color .15s;
+}
+.theme-toggle button:hover{color:var(--ink)}
+.theme-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.theme-toggle svg{width:13px;height:13px;flex:none;display:block}
+@media (max-width:560px){
+  .theme-toggle{top:8px;right:8px;padding:2px}
+  .theme-toggle button{padding:6px 9px;font-size:.6rem;gap:5px}
+  .theme-toggle .tt-text{display:none}
+}
+
+/* ---------- budget ---------- */
+.budget-legend{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.budget-legend li{display:flex;align-items:center;gap:9px;font-size:.83rem;color:var(--ink-2)}
+.budget-legend li .swatch{width:11px;height:11px;margin:0;flex:none}
+.budget-legend li .bl-name{flex:1}
+.budget-legend li .bl-val{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink)}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:720px){
+  .masthead{padding:52px 0 32px}
+  .sec-head{margin-bottom:22px}
+  section{padding-top:48px}
+}
+@media (max-width:560px){
+  body{font-size:14.5px}
+  .wrap{padding:0 15px 64px}
+  .card-pad,.callout,.vcol,.hyp-body,.phase-head{padding:15px 15px}
+  .hyp-head{padding:12px 15px}
+  .tasks li{padding:13px 15px;grid-template-columns:22px 1fr;gap:10px}
+  figure{padding:15px 13px 12px}
+  .meta-strip > div{padding:10px 12px}
+  .meta-strip > div:last-child{grid-column:1/-1}
+  .kpi{padding:15px 15px 14px}
+  .kpi .k-value{font-size:1.75rem}
+  th,td{padding:9px 11px}
+  .legend{gap:5px 14px;margin:12px 0 4px}
+  .legend-item{font-size:.75rem}
+  footer .fgrid{gap:16px}
+}
+</style>
+</head>
+<body>
+<div class="theme-toggle" role="group" aria-label="Tema da página">
+  <button type="button" id="tt-light" aria-pressed="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.2v2.4M12 19.4v2.4M4.1 4.1l1.7 1.7M18.2 18.2l1.7 1.7M2.2 12h2.4M19.4 12h2.4M4.1 19.9l1.7-1.7M18.2 5.8l1.7-1.7"/></svg>
+    <span class="tt-text">Claro</span>
+  </button>
+  <button type="button" id="tt-dark" aria-pressed="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1Z"/></svg>
+    <span class="tt-text">Escuro</span>
+  </button>
+</div>
+
+<div class="wrap">
+
+<!-- ============ MASTHEAD ============ -->
+<header class="masthead">
+  <div class="brandline">
+    <span class="paw">🐾</span>
+    <span class="eyebrow">Clinicat · Hospital Veterinário 24h · Perdizes, São Paulo</span>
+  </div>
+  <h1>Prontuário de<br>Mídia Paga</h1>
+  <p class="lede">Auditoria de 90 dias de Meta Ads e Google Ads. O painel do Google dizia que a operação estava saudável. Os dados brutos dizem outra coisa — e explicam por que estão chegando leads de fora do raio.</p>
+  <dl class="meta-strip">
+    <div><dt>Período</dt><dd>1 jun – 29 ago 2026</dd></div>
+    <div><dt>Investimento</dt><dd class="num">R$ 6.828,50</dd></div>
+    <div><dt>Contas</dt><dd>Meta 2628…8132 · Google 233-955-5848</dd></div>
+    <div><dt>Fonte</dt><dd>Windsor.ai (API nativa)</dd></div>
+    <div><dt>Emitido</dt><dd>31 ago 2026</dd></div>
+  </dl>
+</header>
+
+<!-- ============ RESUMO ============ -->
+<section id="resumo">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">01</span><span class="eyebrow">Resumo em 60 segundos</span></div>
+    <h2>Três coisas que você precisa saber antes de qualquer outra</h2>
+  </div>
+
+  <div class="stack">
+    <div class="callout crit">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+        <span class="chip crit"><span class="dot"></span>Crítico</span>
+        <h4>O Performance Max colapsou em agosto — e o painel não avisou</h4>
+      </div>
+      <p>Entre junho e agosto, as impressões do PMax subiram <strong>136%</strong> (231 mil → 546 mil) enquanto as ligações telefônicas caíram <strong>71%</strong> (143 → 41). O custo por ligação foi de <strong>R$ 10,92 para R$ 39,67</strong> — alta de 263%. No mesmo período, a métrica "conversões" do painel ficou praticamente estável (197 → 227), porque ela é composta majoritariamente de visitas à loja e interações com o perfil do Google, não de pacientes.</p>
+    </div>
+
+    <div class="callout warn">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+        <span class="chip warn"><span class="dot"></span>Causa raiz</span>
+        <h4>Os leads de fora do raio vêm do Google, não do Meta</h4>
+      </div>
+      <p>A campanha de Search está com a configuração <strong>"Presença ou interesse"</strong>: 511 dos 828 cliques (<strong>R$ 705,78, ou 65% da verba dessa campanha</strong>) vieram de pessoas que <em>não estavam</em> em São Paulo — apenas demonstraram interesse pela cidade. Somado a isso, as duas campanhas do Google miram o <strong>município inteiro de São Paulo</strong> (1.521 km²) em vez de um raio. O Meta, por outro lado, está corretamente configurado em raio de 5 km da clínica.</p>
+    </div>
+
+    <div class="callout good">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+        <span class="chip good"><span class="dot"></span>Ativo saudável</span>
+        <h4>O Meta entregou o melhor custo por contato de toda a operação</h4>
+      </div>
+      <p>Com apenas <strong>15% da verba</strong> (R$ 1.018,96) e rodando somente 30 dos 90 dias, o Meta gerou <strong>232 conversas iniciadas</strong> a <strong>R$ 4,39 cada</strong>. O criativo "Saúde Bocal 01" sozinho trouxe 122 conversas a R$ 2,69. Reels (Facebook e Instagram) é o posicionamento campeão, a R$ 2,82 por conversa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SINAIS VITAIS ============ -->
+<section id="vitais">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">02</span><span class="eyebrow">Sinais vitais</span></div>
+    <h2>Os números consolidados dos 90 dias</h2>
+    <p class="prose">Nem toda "conversão" reportada pelas plataformas representa um cliente. Abaixo, o funil real: o que foi investido, quanta atenção foi comprada, e quantos contatos humanos de fato aconteceram.</p>
+  </div>
+
+  <div class="kpis" style="margin-bottom:16px">
+    <div class="kpi">
+      <span class="k-label">Investimento total</span>
+      <span class="k-value">R$&nbsp;6.828</span>
+      <span class="k-sub">Google R$ 5.809,54 (85%) · Meta R$ 1.018,96 (15%)</span>
+    </div>
+    <div class="kpi">
+      <span class="k-label">Impressões</span>
+      <span class="k-value">1,18&nbsp;mi</span>
+      <span class="k-sub">94% vieram de um único Performance Max</span>
+    </div>
+    <div class="kpi">
+      <span class="k-label">Cliques</span>
+      <span class="k-value">3.965</span>
+      <span class="k-sub">CTR médio combinado de 0,34%</span>
+    </div>
+    <div class="kpi is-good">
+      <span class="k-label">Contatos reais</span>
+      <span class="k-value">468<span style="font-size:1.1rem;color:var(--ink-3)">–648</span></span>
+      <span class="k-sub">232 conversas (Meta) + 236 a 416 ligações (Google)</span>
+    </div>
+    <div class="kpi is-warn">
+      <span class="k-label">Custo por contato</span>
+      <span class="k-value">R$&nbsp;10–15</span>
+      <span class="k-sub">Faixa por divergência de medição no Google</span>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="kpi is-crit">
+      <span class="k-label">CTR do Performance Max</span>
+      <span class="k-value">0,17%</span>
+      <span class="k-sub">Caiu para <b class="num">0,09%</b> em agosto. Inventário de display e vídeo consumindo verba sem intenção de compra.</span>
+    </div>
+    <div class="kpi is-crit">
+      <span class="k-label">Impressões perdidas por classificação</span>
+      <span class="k-value">77,7%</span>
+      <span class="k-sub">No PMax. Não é falta de orçamento (só 4% perdido por verba) — é relevância, lance e página de destino.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONDE FOI O DINHEIRO ============ -->
+<section id="dinheiro">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">03</span><span class="eyebrow">Alocação</span></div>
+    <h2>Para onde foi o dinheiro</h2>
+    <p class="prose">85% da verba foi para o canal que piorou ao longo do trimestre; 15% foi para o canal que performou melhor — e que só rodou um terço do período.</p>
+  </div>
+
+  <div class="stack">
+    <figure>
+      <figcaption>
+        <div class="fig-title">Gasto diário por campanha</div>
+        <div class="fig-sub">1 jun a 29 ago 2026. O Performance Max (linha azul) rodou os 90 dias sozinho até 30 de julho, quando as três outras campanhas entraram quase simultaneamente.</div>
+      </figcaption>
+      <div class="legend" id="lg-daily"></div>
+      <div class="chart-host" id="ch-daily"></div>
+    </figure>
+
+    <div class="table-scroll">
+      <table>
+        <caption class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Desempenho por campanha nos 90 dias</caption>
+        <thead>
+          <tr>
+            <th>Campanha</th><th>Tipo</th><th>Dias</th><th>Investido</th><th>Impressões</th>
+            <th>Cliques</th><th>CTR</th><th>CPC</th><th>Contatos</th><th>Custo/contato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="swatch" style="background:var(--s1)"></span>Clinica Geral - 29-Maio</td>
+            <td>Google PMax</td><td class="num">90</td><td class="num">R$ 4.727,03</td><td class="num">1.110.878</td>
+            <td class="num">1.907</td><td class="num neg">0,17%</td><td class="num">R$ 2,48</td><td class="num">291 lig.</td><td class="num neg">R$ 16,24</td>
+          </tr>
+          <tr>
+            <td><span class="swatch" style="background:var(--s2)"></span>Hotel e Creche 3007 Luna</td>
+            <td>Google Search</td><td class="num">31</td><td class="num">R$ 1.082,51</td><td class="num">24.201</td>
+            <td class="num">828</td><td class="num pos">3,42%</td><td class="num">R$ 1,31</td><td class="num">125 lig.</td><td class="num">R$ 8,66</td>
+          </tr>
+          <tr>
+            <td><span class="swatch" style="background:var(--s3)"></span>Hotel e Creche 30072026</td>
+            <td>Meta Engajamento</td><td class="num">30</td><td class="num">R$ 582,29</td><td class="num">23.589</td>
+            <td class="num">689</td><td class="num pos">2,92%</td><td class="num">R$ 0,85</td><td class="num">98 conv.</td><td class="num">R$ 5,94</td>
+          </tr>
+          <tr>
+            <td><span class="swatch" style="background:var(--s4)"></span>Nova campanha de Engajamento</td>
+            <td>Meta Engajamento</td><td class="num">30</td><td class="num">R$ 436,67</td><td class="num">22.623</td>
+            <td class="num">541</td><td class="num pos">2,39%</td><td class="num">R$ 0,81</td><td class="num">134 conv.</td><td class="num pos">R$ 3,26</td>
+          </tr>
+          <tr>
+            <td>[CLINICAT][GERAL][TRAFEGO][RODRIGO]</td>
+            <td>Meta (inativa)</td><td class="num">0</td><td class="num">R$ 0,00</td><td class="num">0</td>
+            <td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">0</td><td class="num">—</td>
+          </tr>
+          <tr class="total-row">
+            <td>Total</td><td>—</td><td class="num">90</td><td class="num">R$ 6.828,50</td><td class="num">1.181.291</td>
+            <td class="num">3.965</td><td class="num">0,34%</td><td class="num">R$ 1,72</td><td class="num">648</td><td class="num">R$ 10,54</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.8rem;color:var(--ink-3);max-width:70ch">"Contatos" = ligações registradas pelo Google Ads (métrica de chamadas) e conversas iniciadas no Meta. Custo por contato do total usa a leitura otimista do Google; a leitura conservadora (ações de conversão) eleva para R$ 14,59. A divergência está detalhada na seção 05.</p>
+  </div>
+</section>
+
+<!-- ============ COLAPSO PMAX ============ -->
+<section id="pmax">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">04</span><span class="eyebrow">Diagnóstico principal</span></div>
+    <h2>O colapso silencioso do Performance Max</h2>
+    <p class="prose">Esta é a descoberta mais cara do trimestre. Ao longo de três meses, o algoritmo trocou progressivamente tráfego de intenção por volume de impressão barata — e a métrica que você acompanhava no painel não registrou a queda.</p>
+  </div>
+
+  <div class="stack">
+    <figure>
+      <figcaption>
+        <div class="fig-title">Junho = 100. Tudo indexado à mesma base.</div>
+        <div class="fig-sub">Quatro medidas da mesma campanha, na mesma escala. As impressões dispararam, as ligações despencaram, e a métrica "conversões" — a única que você via no painel — não acompanhou nenhum dos dois movimentos.</div>
+      </figcaption>
+      <div class="legend" id="lg-index"></div>
+      <div class="chart-host" id="ch-index"></div>
+    </figure>
+
+    <figure>
+      <figcaption>
+        <div class="fig-title">Os mesmos três meses, em valores absolutos</div>
+        <div class="fig-sub">Cada painel tem sua própria escala. Leia a forma, não a altura.</div>
+      </figcaption>
+      <div class="chart-host" id="ch-small"></div>
+    </figure>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Mês (PMax)</th><th>Investido</th><th>Impressões</th><th>Cliques</th><th>CTR</th><th>CPC</th><th>Ligações</th><th>Custo/ligação</th><th>"Conversões" do painel</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Junho</td><td class="num">R$ 1.561,71</td><td class="num">231.418</td><td class="num">691</td><td class="num">0,299%</td><td class="num">R$ 2,26</td><td class="num">143</td><td class="num pos">R$ 10,92</td><td class="num">197,0</td></tr>
+          <tr><td>Julho</td><td class="num">R$ 1.538,71</td><td class="num">333.662</td><td class="num">714</td><td class="num">0,214%</td><td class="num">R$ 2,16</td><td class="num">107</td><td class="num">R$ 14,38</td><td class="num">255,0</td></tr>
+          <tr><td>Agosto</td><td class="num">R$ 1.626,61</td><td class="num">545.798</td><td class="num">502</td><td class="num neg">0,092%</td><td class="num">R$ 3,24</td><td class="num neg">41</td><td class="num neg">R$ 39,67</td><td class="num">227,0</td></tr>
+          <tr class="total-row"><td>Variação jun → ago</td><td class="num">+4,2%</td><td class="num">+135,8%</td><td class="num">−27,4%</td><td class="num">−69,2%</td><td class="num">+43,4%</td><td class="num">−71,3%</td><td class="num">+263,3%</td><td class="num">+15,2%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout info">
+      <h4>Por que isso aconteceu</h4>
+      <p>O PMax está em <code style="font-family:'IBM Plex Mono',monospace;font-size:.85em">MAXIMIZE_CONVERSIONS</code>. Ele otimiza para o que você marcou como conversão — e 90% dessas conversões são interações com o perfil do Google Business ou visitas modeladas (ver seção 05). Esses sinais são baratos e abundantes em inventário de display. O algoritmo fez exatamente o que foi mandado fazer: encontrou o caminho mais barato até o sinal errado. Quanto mais ele aprendia, pior ficava para o negócio e melhor parecia no relatório.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONVERSÕES FALSAS ============ -->
+<section id="conversoes">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">05</span><span class="eyebrow">Medição</span></div>
+    <h2>As "conversões" que não eram conversões</h2>
+    <p class="prose">O Google reportou <strong>2.382 conversões</strong> no período. Quando abrimos por ação de conversão, o quadro muda completamente.</p>
+  </div>
+
+  <div class="stack">
+    <figure>
+      <figcaption>
+        <div class="fig-title">Composição das 2.382 conversões reportadas</div>
+        <div class="fig-sub">Ações modeladas ou de baixa intenção em laranja; contato humano real em azul. Um único formulário do site foi registrado em 90 dias.</div>
+      </figcaption>
+      <div class="legend" id="lg-conv"></div>
+      <div class="chart-host" id="ch-conv"></div>
+    </figure>
+
+    <div class="grid-2">
+      <div class="callout crit">
+        <h4>90,1% do sinal é modelado ou de baixa intenção</h4>
+        <p>As ações "Local actions" somam 1.542 e as "Store visits" outras 604 — juntas, 2.146 das 2.382. Visitas à loja são <em>estimadas estatisticamente</em> pelo Google, não medidas. Interações de perfil incluem qualquer clique no card do Google — inclusive de quem só queria o horário de funcionamento.</p>
+      </div>
+      <div class="callout warn">
+        <h4>Dois sistemas de contagem que não fecham</h4>
+        <p>A métrica de chamadas do Google Ads registra <strong>416 ligações</strong>. As ações de conversão de contato direto somam <strong>236</strong>. São 180 ligações de diferença — 43% do total. Enquanto essa divergência existir, nenhum CPA calculado nessa conta é confiável, e o algoritmo está otimizando em cima de dados que ninguém conseguiu conciliar.</p>
+      </div>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Ação de conversão</th><th>Volume</th><th>% do total</th><th>Natureza</th><th>Vale como paciente?</th></tr></thead>
+        <tbody>
+          <tr><td>Local actions – Other engagements</td><td class="num">1.195</td><td class="num">50,2%</td><td>Interação com perfil Google</td><td class="neg">Não</td></tr>
+          <tr><td>Store visits</td><td class="num">604</td><td class="num">25,4%</td><td>Modelada / estimada</td><td class="neg">Não</td></tr>
+          <tr><td>Local actions – Directions</td><td class="num">312</td><td class="num">13,1%</td><td>Pedido de rota</td><td class="neg">Indireto</td></tr>
+          <tr><td>Clicks to call</td><td class="num">101</td><td class="num">4,2%</td><td>Clique no telefone</td><td class="pos">Sim</td></tr>
+          <tr><td>Calls from ads</td><td class="num">80</td><td class="num">3,4%</td><td>Ligação a partir do anúncio</td><td class="pos">Sim</td></tr>
+          <tr><td>Chamadas a partir de anúncios</td><td class="num">54</td><td class="num">2,3%</td><td>Ligação (ação duplicada)</td><td class="pos">Sim</td></tr>
+          <tr><td>Local actions – Website visits</td><td class="num">34</td><td class="num">1,4%</td><td>Clique para o site</td><td class="neg">Não</td></tr>
+          <tr><td>Local actions – Menu views</td><td class="num">1</td><td class="num">0,0%</td><td>Visualização de serviços</td><td class="neg">Não</td></tr>
+          <tr><td>Envio Formulário-Site</td><td class="num">1</td><td class="num">0,0%</td><td>Lead do site</td><td class="pos">Sim</td></tr>
+          <tr class="total-row"><td>Total</td><td class="num">2.382</td><td class="num">100%</td><td>—</td><td class="num">236 (9,9%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVESTIGAÇÃO GEO ============ -->
+<section id="geo">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">06</span><span class="eyebrow">Investigação aberta</span></div>
+    <h2>Por que chegam leads de fora do raio</h2>
+    <p class="prose">Levantamos seis hipóteses e testamos cada uma contra os dados de configuração e de veiculação das duas contas. Três estão confirmadas, uma é provável, uma precisa de dado que não está na mídia, e uma está descartada.</p>
+  </div>
+
+  <div class="stack">
+    <figure>
+      <figcaption>
+        <div class="fig-title">Campanha "Hotel e Creche 3007 Luna": onde as pessoas realmente estavam</div>
+        <div class="fig-sub">O Google separa quem estava fisicamente no local (presença) de quem apenas demonstrou interesse pela região. Dois terços da verba foram para o segundo grupo.</div>
+      </figcaption>
+      <div class="legend" id="lg-geo"></div>
+      <div class="chart-host" id="ch-geo"></div>
+    </figure>
+
+    <div class="stack">
+
+      <article class="hyp">
+        <div class="hyp-head">
+          <span class="hid">H1</span>
+          <span class="htitle">Configuração "Presença ou interesse" no Google Search</span>
+          <span class="chip crit"><span class="dot"></span>Confirmada</span>
+        </div>
+        <div class="hyp-body">
+          <p>A campanha de Search está aceitando pessoas que apenas <em>pesquisaram sobre</em> São Paulo, estejam elas onde estiverem no Brasil. Essa é a configuração padrão do Google e é a explicação mais direta para o problema relatado.</p>
+          <div class="evidence">
+            <div class="elabel">Evidência nos dados</div>
+            <p><code>AREA_OF_INTEREST</code>: 511 cliques · R$ 705,78 · <strong>65,2% da verba da campanha</strong><br>
+            <code>LOCATION_OF_PRESENCE</code>: 314 cliques · R$ 374,51 · 34,6% da verba</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="hyp">
+        <div class="hyp-head">
+          <span class="hid">H2</span>
+          <span class="htitle">Segmentação por município inteiro em vez de raio</span>
+          <span class="chip crit"><span class="dot"></span>Confirmada</span>
+        </div>
+        <div class="hyp-body">
+          <p>As duas campanhas do Google miram "São Paulo" como cidade. O município tem 1.521 km² e cerca de 11,5 milhões de habitantes. De Perdizes até Cidade Tiradentes são <strong>35 km</strong> — e, para o Google, ambos são "São Paulo". Mesmo o tráfego classificado como presença física pode estar a 30 km da clínica.</p>
+          <div class="evidence">
+            <div class="elabel">Evidência nos dados</div>
+            <p>100% das impressões geolocalizadas de ambas as campanhas aparecem sob a cidade <code>Sao Paulo</code>. Não há nenhum raio configurado no Google — ao contrário do Meta.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="hyp">
+        <div class="hyp-head">
+          <span class="hid">H3</span>
+          <span class="htitle">Termos de busca fora de área e fora de intenção, sem negativas</span>
+          <span class="chip crit"><span class="dot"></span>Confirmada</span>
+        </div>
+        <div class="hyp-body">
+          <p>Os próprios termos que geraram cliques provam o vazamento geográfico e um segundo problema: gente procurando atendimento <em>gratuito</em>.</p>
+          <div class="table-scroll" style="box-shadow:none">
+            <table style="min-width:480px">
+              <thead><tr><th>Termo pesquisado</th><th>Cliques</th><th>Custo</th><th>Conv.</th><th>Problema</th></tr></thead>
+              <tbody>
+                <tr><td>ufape hospital</td><td class="num">3</td><td class="num">R$ 6,00</td><td class="num">0</td><td>Universidade em Pernambuco</td></tr>
+                <tr><td>hospital veterinário tatuapé gratuito</td><td class="num">3</td><td class="num">R$ 1,18</td><td class="num">0</td><td>Outro bairro + gratuito</td></tr>
+                <tr><td>veterinário 24 horas gratuito</td><td class="num">3</td><td class="num">R$ 1,20</td><td class="num">0</td><td>Busca por serviço gratuito</td></tr>
+                <tr><td>veterinario near me</td><td class="num">3</td><td class="num">R$ 3,45</td><td class="num">0</td><td>Sem âncora geográfica</td></tr>
+                <tr><td>veterinario 24h</td><td class="num">3</td><td class="num">R$ 4,80</td><td class="num">0</td><td>Genérico, qualquer região</td></tr>
+                <tr><td>clinicat hospital veterinário 24h perdizes</td><td class="num">3</td><td class="num">R$ 5,65</td><td class="num">0</td><td>Marca própria — paga sem precisar</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Nenhum desses termos converteu. E note o último: a conta está <strong>pagando R$ 1,88 por clique no próprio nome da clínica</strong>, tráfego que viria de graça pelo resultado orgânico e pelo perfil do Google.</p>
+        </div>
+      </article>
+
+      <article class="hyp">
+        <div class="hyp-head">
+          <span class="hid">H4</span>
+          <span class="htitle">PMax otimizando para sinais locais modelados</span>
+          <span class="chip warn"><span class="dot"></span>Provável</span>
+        </div>
+        <div class="hyp-body">
+          <p>Com 90% das conversões vindas de interações com o perfil do Google Business e de visitas modeladas, o algoritmo aprendeu a buscar <em>quem interage com perfis de negócios locais</em> — um comportamento que não tem relação com proximidade real nem com necessidade de atendimento veterinário. Isso amplia a audiência muito além do raio útil e é consistente com a explosão de impressões em agosto.</p>
+          <div class="evidence">
+            <div class="elabel">Evidência nos dados</div>
+            <p>1.110.878 impressões, 99,7% em <code>MOBILE</code>, CTR de 0,17%. Estratégia <code>MAXIMIZE_CONVERSIONS</code> alimentada por 1.195 "Other engagements" + 604 "Store visits".</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="hyp">
+        <div class="hyp-head">
+          <span class="hid">H5</span>
+          <span class="htitle">Ausência de qualificação de origem no primeiro contato</span>
+          <span class="chip neutral"><span class="dot"></span>A verificar</span>
+        </div>
+        <div class="hyp-body">
+          <p>Esta hipótese não pode ser confirmada com dados de mídia porque o dado não existe. Não há captura de CEP ou bairro no formulário nem no primeiro contato do WhatsApp, e nenhum <code>gclid</code>, <code>fbclid</code> ou UTM é gravado junto do lead. Sem isso, mesmo depois de corrigir H1–H4, você não conseguirá provar que o problema acabou — nem identificar qual campanha ainda está vazando.</p>
+          <div class="evidence">
+            <div class="elabel">Evidência nos dados e no código do site</div>
+            <p>Apenas <strong>1 registro</strong> de "Envio Formulário-Site" em 90 dias, contra 416 ligações. O disparo de eventos de contato já existe no site e está desligado por falta de configuração; a captura de origem (<code>gclid</code>, <code>fbclid</code>, UTM) e o campo de CEP ainda precisam ser construídos.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="hyp">
+        <div class="hyp-head">
+          <span class="hid">H6</span>
+          <span class="htitle">Meta Ads como fonte dos leads distantes</span>
+          <span class="chip good"><span class="dot"></span>Descartada</span>
+        </div>
+        <div class="hyp-body">
+          <p>A configuração do Meta está correta e é, hoje, o único alvo geográfico bem definido da operação. Os dois conjuntos de anúncios usam localização personalizada com <strong>raio de 5 km</strong> a partir da Av. Prof. Alfonso Bovero, 416, e restringem a <code>home</code> e <code>recent</code> — ou seja, quem mora ou esteve recentemente na área. O tipo <code>travel_in</code> (turistas e pessoas de passagem) <em>não</em> está incluído.</p>
+          <div class="evidence">
+            <div class="elabel">Configuração encontrada na API</div>
+            <p><code>custom_locations: [{ latitude: −23,54178 · longitude: −46,6819 · radius: 5 km }]</code><br>
+            <code>location_types: ["home", "recent"]</code></p>
+          </div>
+          <p>Uma ressalva: <code>advantage_audience: 1</code> (Público Advantage+) está ativo. Ele expande <em>interesses e demografia</em>, mas não geografia — portanto não explica leads de outras regiões. Se leads distantes chegarem pelo WhatsApp do Meta, a causa mais provável é encaminhamento orgânico do anúncio entre pessoas, não a segmentação.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="callout crit">
+      <h4>Conclusão da investigação</h4>
+      <p>O vazamento geográfico é do Google Ads e tem duas causas somadas: <strong>"Presença ou interesse" (H1)</strong> deixa entrar gente de qualquer lugar do país, e <strong>segmentação por município (H2)</strong> deixa entrar toda a cidade de São Paulo. As duas são corrigíveis em menos de dez minutos de configuração. A terceira frente — <strong>medir a origem do lead (H5)</strong> — leva mais tempo, mas sem ela vocês continuam sem saber se o problema foi resolvido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ META ============ -->
+<section id="meta">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">07</span><span class="eyebrow">O que está funcionando</span></div>
+    <h2>Meta Ads: o ativo saudável da operação</h2>
+    <p class="prose">Trinta dias de veiculação (31/07 a 29/08), R$ 1.018,96 investidos, 232 conversas iniciadas. Dentro desse resultado há três descobertas que devem guiar a próxima rodada.</p>
+  </div>
+
+  <div class="stack">
+    <div class="grid-2">
+      <figure>
+        <figcaption>
+          <div class="fig-title">Custo por conversa, por posicionamento</div>
+          <div class="fig-sub">Reels entrega ao menor custo. O Feed do Instagram levou a maior fatia da verba (33%) com o pior resultado.</div>
+        </figcaption>
+        <div class="chart-host" id="ch-place"></div>
+      </figure>
+
+      <figure>
+        <figcaption>
+          <div class="fig-title">Conversas por faixa etária</div>
+          <div class="fig-sub">O público de 45 a 64 anos gerou 57% das conversas com o menor custo. A segmentação atual (25–65) dilui verba em faixas mais jovens.</div>
+        </figcaption>
+        <div class="chart-host" id="ch-age"></div>
+      </figure>
+    </div>
+
+    <div class="grid-3">
+      <div class="callout good">
+        <h4>Descoberta 1 · O público real</h4>
+        <p>Mulheres de 45 a 64 anos: <strong>111 das 232 conversas (48%)</strong>, ao menor custo (R$ 3,67 a R$ 3,95). Homens representam 18% das conversas. A verba está distribuída em 25–65 sem esse recorte.</p>
+      </div>
+      <div class="callout good">
+        <h4>Descoberta 2 · O formato</h4>
+        <p>Reels (Facebook + Instagram): <strong>R$ 2,82 por conversa</strong> com apenas R$ 236,61 investidos — 23% da verba gerando 36% das conversas. Feed do Instagram: R$ 6,61, com 33% da verba.</p>
+      </div>
+      <div class="callout good">
+        <h4>Descoberta 3 · O criativo</h4>
+        <p>"Saúde Bocal 01" trouxe <strong>122 conversas a R$ 2,69</strong>. "Saúde Bocal 02", mesma campanha e mesmo público, trouxe 12 a R$ 9,08. Diferença de 3,4× — o criativo, e não a segmentação, é a alavanca.</p>
+      </div>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Anúncio</th><th>Campanha</th><th>Investido</th><th>Impressões</th><th>Cliques</th><th>CTR</th><th>Conversas</th><th>Custo/conversa</th></tr></thead>
+        <tbody>
+          <tr><td>Saude Bocal 01</td><td>Nova campanha de Engajamento</td><td class="num">R$ 327,69</td><td class="num">15.452</td><td class="num">346</td><td class="num">2,24%</td><td class="num">122</td><td class="num pos">R$ 2,69</td></tr>
+          <tr><td>anuncio01</td><td>Hotel e Creche 30072026</td><td class="num">R$ 582,29</td><td class="num">23.589</td><td class="num">689</td><td class="num">2,92%</td><td class="num">98</td><td class="num">R$ 5,94</td></tr>
+          <tr><td>Saude Bocal 02</td><td>Nova campanha de Engajamento</td><td class="num">R$ 108,98</td><td class="num">7.171</td><td class="num">195</td><td class="num">2,72%</td><td class="num">12</td><td class="num neg">R$ 9,08</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <h4>O limite estrutural do Meta hoje</h4>
+      <p>Em 30 dias o alcance foi de 11.783 e 13.955 pessoas com frequência de 2,0 e 1,6. Um raio de 5 km em Perdizes tem público finito — se a verba subir sem rodízio de criativo, a frequência sobe junto e o custo por conversa degrada rapidamente. Além disso, ambas as campanhas usam objetivo <strong>Engajamento</strong>, que otimiza por interação. As 232 conversas aconteceram <em>apesar</em> do objetivo, não por causa dele.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACERTOS E ERROS ============ -->
+<section id="veredito">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">08</span><span class="eyebrow">Veredito</span></div>
+    <h2>O que acertamos, o que erramos</h2>
+  </div>
+
+  <div class="verdict">
+    <div class="vcol right">
+      <h3>Acertamos</h3>
+      <ul class="vlist">
+        <li><span class="vi">01</span><div><b>A geolocalização do Meta.</b> Raio de 5 km, ancorado no endereço real, com <code>home</code> e <code>recent</code>. É o único alvo geográfico correto da operação e serve de modelo para o Google.</div></li>
+        <li><span class="vi">02</span><div><b>O custo por contato no Meta.</b> R$ 4,39 por conversa iniciada é forte para veterinária em São Paulo, especialmente com objetivo de Engajamento.</div></li>
+        <li><span class="vi">03</span><div><b>A estrutura de Search.</b> CTR de 3,42% e CPC de R$ 1,31 na campanha Hotel e Creche mostram que a mecânica de busca funciona — o problema é geográfico, não de anúncio.</div></li>
+        <li><span class="vi">04</span><div><b>Testar dois criativos na mesma campanha.</b> Foi isso que revelou a diferença de 3,4× entre "Saúde Bocal 01" e "02". Sem esse teste, não haveria como saber.</div></li>
+        <li><span class="vi">05</span><div><b>Ter conectado tudo ao Windsor.</b> Metade dos achados deste relatório — separação por tipo de localização, composição das conversões, targeting bruto da API — não aparece nos painéis nativos.</div></li>
+      </ul>
+    </div>
+
+    <div class="vcol wrong">
+      <h3>Erramos</h3>
+      <ul class="vlist">
+        <li><span class="vi">01</span><div><b>Marcamos o sinal errado como conversão.</b> Visitas à loja e interações de perfil como conversão primária fizeram o algoritmo perseguir o alvo errado por 90 dias. Este é o erro que causa todos os outros no Google.</div></li>
+        <li><span class="vi">02</span><div><b>Não olhamos a métrica certa.</b> As ligações caíram 71% e ninguém percebeu, porque o painel mostrava "conversões" estáveis. Acompanhávamos o indicador que não media o negócio.</div></li>
+        <li><span class="vi">03</span><div><b>Deixamos "Presença ou interesse" ligado.</b> R$ 705,78 — 65% da verba de Search — foram para pessoas fora de São Paulo. É a causa direta dos leads fora do raio.</div></li>
+        <li><span class="vi">04</span><div><b>Segmentamos a cidade inteira em vez de um raio.</b> Um hospital 24h compete por proximidade. Anunciar a 35 km é vender uma emergência que o cliente não vai atravessar a cidade para atender.</div></li>
+        <li><span class="vi">05</span><div><b>Colocamos 85% da verba no canal que piorava.</b> E 15% no que performava — e ainda assim só o deixamos rodar 30 dos 90 dias.</div></li>
+        <li><span class="vi">06</span><div><b>Não construímos lista de negativas.</b> "Gratuito", "grátis", nomes de outros bairros e de universidades entraram livremente. Pagamos até por buscas pelo nome da própria clínica.</div></li>
+        <li><span class="vi">07</span><div><b>Deixamos o site fora da medição — com o rastreamento já pronto e desligado.</b> O código que dispara as conversões de WhatsApp, telefone e formulário está implantado há tempo no site. Faltam cinco variáveis de ambiente para ele começar a reportar. Enquanto isso, 90 dias e um único formulário registrado.</div></li>
+        <li><span class="vi">08</span><div><b>Usamos Engajamento onde o objetivo era paciente.</b> No Meta, o objetivo deveria ser Mensagens com otimização por conversa iniciada.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANO 30 DIAS ============ -->
+<section id="plano">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">09</span><span class="eyebrow">Conduta</span></div>
+    <h2>O plano dos próximos 30 dias</h2>
+    <p class="prose">A ordem importa. Religar verba antes de consertar a medição repete exatamente o trimestre que acabou de passar — só que mais caro. A primeira semana não gasta em mídia; ela reconstrói a base para que o gasto das três seguintes signifique alguma coisa.</p>
+  </div>
+
+  <div class="stack">
+
+    <article class="phase">
+      <div class="phase-head">
+        <span class="pweek">Semana 1 · Dias 1–7</span>
+        <h3>Reconstruir a medição e fechar o vazamento geográfico</h3>
+        <span class="pgoal">Verba de mídia: R$ 0</span>
+      </div>
+      <ul class="tasks">
+        <li><span class="tn">1.1</span><div><b>Criar quatro ações de conversão reais no Google Ads:</b> clique no WhatsApp, ligação com duração acima de 60 segundos, envio de formulário e agendamento confirmado. Marcar <em>somente</em> essas como Primárias.<span class="why">Sem isso, qualquer campanha nova repete o erro do PMax na primeira semana de aprendizado.</span></div></li>
+        <li><span class="tn">1.2</span><div><b>Rebaixar para Secundária</b> todas as ações "Local actions" e "Store visits". Elas continuam visíveis no relatório, mas param de guiar o algoritmo.<span class="why">Remove 90% do ruído que hoje comanda a otimização.</span></div></li>
+        <li><span class="tn">1.3</span><div><b>Trocar "Presença ou interesse" por "Presença"</b> nas duas campanhas do Google.<span class="why">Corrige H1. Sozinho, este ajuste teria economizado R$ 705,78 no período auditado.</span></div></li>
+        <li><span class="tn">1.4</span><div><b>Substituir a segmentação "cidade de São Paulo" por raio de 6 km</b> a partir da Av. Prof. Alfonso Bovero, 416, complementado pela inclusão explícita de Perdizes, Pompeia, Vila Romana, Água Branca, Sumaré, Barra Funda, Higienópolis, Pacaembu, Lapa, Vila Madalena e Alto de Pinheiros. Excluir o restante do estado e do país.<span class="why">Corrige H2 e replica no Google o que já funciona no Meta.</span></div></li>
+        <li><span class="tn">1.5</span><div><b>Subir a lista inicial de palavras negativas:</b> gratuito, grátis, de graça, ong, castramóvel, prefeitura, público, hovet, usp, unip, faculdade, curso, emprego, vaga, salário — mais negativas geográficas (tatuapé, guarulhos, abc, osasco, campinas, santos e demais praças fora do raio).<span class="why">Corrige H3 e para de financiar buscas por atendimento gratuito.</span></div></li>
+        <li><span class="tn">1.6</span><div><b>Ligar o rastreamento que já está pronto no site.</b> O código de medição já existe e está implantado: <code>src/lib/track.ts</code> dispara <code>clique_whatsapp</code>, <code>clique_telefone</code> e <code>envio_formulario</code> para o Google e o evento <code>Contact</code> para o Meta a cada contato; <code>Analytics.tsx</code> carrega as duas tags. Falta apenas preencher cinco variáveis de ambiente: <code>NEXT_PUBLIC_GOOGLE_TAG_ID</code>, <code>NEXT_PUBLIC_META_PIXEL_ID</code> e os três rótulos <code>NEXT_PUBLIC_GADS_LABEL_WHATSAPP / _PHONE / _FORM</code>, colhidos das ações de conversão criadas no item 1.1.<span class="why">Não é desenvolvimento, é configuração. Este é o item de maior retorno por esforço do plano inteiro — sem ele o site registra 1 conversão a cada 90 dias.</span></div></li>
+        <li><span class="tn">1.7</span><div><b>Tornar CEP ou bairro campo obrigatório</b> no formulário e primeira pergunta do atendimento no WhatsApp. Capturar <code>gclid</code>, <code>fbclid</code> e UTMs em campo oculto, gravados junto do lead.<span class="why">Corrige H5. É o único jeito de provar, daqui a 30 dias, que o vazamento acabou.</span></div></li>
+      </ul>
+    </article>
+
+    <article class="phase">
+      <div class="phase-head">
+        <span class="pweek">Semana 2 · Dias 8–14</span>
+        <h3>Reconstruir o Google em torno da intenção de emergência</h3>
+        <span class="pgoal">Verba: ~R$ 460 · foco em Search</span>
+      </div>
+      <ul class="tasks">
+        <li><span class="tn">2.1</span><div><b>Manter o Performance Max desligado.</b> Só reconsiderar depois de 30 conversões reais por mês registradas pelas novas ações de conversão.<span class="why">PMax precisa de sinal limpo e volume para funcionar. Hoje não há nem um nem outro.</span></div></li>
+        <li><span class="tn">2.2</span><div><b>Subir a campanha "Emergência 24h"</b> — a intenção mais valiosa do negócio, hoje inexplorada. Correspondência exata e de frase: veterinário 24 horas, hospital veterinário 24h, pronto socorro veterinário, emergência veterinária, veterinário aberto agora, mais as variações com Perdizes, Pompeia e Lapa.<span class="why">Nenhuma campanha atual disputa a busca de emergência, que é o serviço de maior margem e menor sensibilidade a preço.</span></div></li>
+        <li><span class="tn">2.3</span><div><b>Subir a campanha "Clínica Geral e Consulta"</b> com estrutura enxuta e as mesmas negativas.<span class="why">Substitui a cobertura que o PMax fazia mal, com controle total sobre termo e geografia.</span></div></li>
+        <li><span class="tn">2.4</span><div><b>Começar em "Maximizar cliques" com teto de CPC por 14 dias</b>, depois migrar para Maximizar conversões.<span class="why">Lance automático sobre histórico contaminado herda o problema. Junte 14 dias de dados limpos primeiro.</span></div></li>
+        <li><span class="tn">2.5</span><div><b>Ativar todas as extensões:</b> chamada, local, sitelinks e frases de destaque. Programar lance maior das 20h às 6h.<span class="why">O diferencial competitivo é ser 24h — a madrugada tem menos concorrência e maior urgência.</span></div></li>
+        <li><span class="tn">2.6</span><div><b>Publicar uma landing page dedicada de emergência</b> com telefone clicável acima da dobra, endereço, mapa e tempo de espera.<span class="why">78% das impressões perdidas por classificação vêm em boa parte da experiência de destino. É o item de maior impacto no Índice de qualidade.</span></div></li>
+        <li><span class="tn">2.7</span><div><b>Adicionar a marca "Clinicat" como negativa</b> nas campanhas de aquisição.<span class="why">A conta pagou R$ 5,65 por 3 cliques no próprio nome. Esse tráfego já é seu pelo orgânico.</span></div></li>
+      </ul>
+    </article>
+
+    <article class="phase">
+      <div class="phase-head">
+        <span class="pweek">Semana 2–3 · Dias 10–21</span>
+        <h3>Reativar o Meta com a estrutura vencedora</h3>
+        <span class="pgoal">Verba: ~R$ 540</span>
+      </div>
+      <ul class="tasks">
+        <li><span class="tn">3.1</span><div><b>Trocar o objetivo de Engajamento para Mensagens</b>, otimizando por conversa iniciada.<span class="why">As 232 conversas vieram apesar do objetivo. Com o objetivo certo, o mesmo criativo tende a render mais.</span></div></li>
+        <li><span class="tn">3.2</span><div><b>Dois conjuntos separados:</b> 80% da verba em mulheres de 45 a 64 anos, 20% em 25 a 44 como teste controlado. Manter o raio de 5–6 km e <code>home</code> + <code>recent</code>.<span class="why">45–64 gerou 57% das conversas ao menor custo. Hoje a verba é distribuída sem esse recorte.</span></div></li>
+        <li><span class="tn">3.3</span><div><b>Posicionamento manual:</b> priorizar Reels (Facebook e Instagram) e Stories. Desligar o Feed do Instagram até nova prova.<span class="why">Reels custa R$ 2,82 por conversa; Feed do Instagram custa R$ 6,61 e consumiu 33% da verba.</span></div></li>
+        <li><span class="tn">3.4</span><div><b>Produzir 4 criativos novos</b> no formato de "Saúde Bocal 01" e mantê-lo no ar. Rodízio a cada 10 a 14 dias.<span class="why">Com alcance de ~12 mil pessoas no raio, a frequência sobe rápido e o criativo fadiga antes do fim do mês.</span></div></li>
+        <li><span class="tn">3.5</span><div><b>Etiquetar as conversas do WhatsApp</b> por estágio: contato, qualificado, agendado, compareceu.<span class="why">Fecha o ciclo entre mídia e receita. Sem isso, "conversa iniciada" é só mais uma métrica de meio de funil.</span></div></li>
+      </ul>
+    </article>
+
+    <article class="phase">
+      <div class="phase-head">
+        <span class="pweek">Semana 4 · Dias 22–30</span>
+        <h3>Ler os dados limpos e decidir a escala</h3>
+        <span class="pgoal">Verba: ~R$ 600 · leitura e ajuste</span>
+      </div>
+      <ul class="tasks">
+        <li><span class="tn">4.1</span><div><b>Revisar termos de busca duas vezes por semana</b> durante todo o mês e alimentar a lista de negativas.<span class="why">Campanha nova de Search precisa de poda ativa nas primeiras semanas. Depois cai para uma vez por semana.</span></div></li>
+        <li><span class="tn">4.2</span><div><b>Emitir relatório semanal de origem geográfica dos leads</b> a partir do campo de CEP.<span class="why">É o teste direto da correção de H1 e H2, e a métrica que responde à sua pergunta original.</span></div></li>
+        <li><span class="tn">4.3</span><div><b>Reconciliar as duas contagens de ligação do Google.</b> Definir uma fonte oficial e documentar.<span class="why">Hoje há 180 ligações de diferença entre as duas leituras. Enquanto isso durar, nenhum CPA é confiável.</span></div></li>
+        <li><span class="tn">4.4</span><div><b>Decidir sobre o PMax com dado real.</b> Se as conversões reais passarem de 30 por mês, reativar em versão restrita — só a rede de Busca, com feed de público próprio e sem expansão de URL final.<span class="why">PMax não é o vilão; PMax alimentado com sinal errado é.</span></div></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ============ ORÇAMENTO E METAS ============ -->
+<section id="orcamento">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">10</span><span class="eyebrow">Alocação proposta</span></div>
+    <h2>Orçamento e metas do próximo ciclo</h2>
+    <p class="prose">Mantendo aproximadamente o mesmo investimento mensal (R$ 3.600), mas invertendo a lógica: a verba passa a seguir a intenção, não o volume.</p>
+  </div>
+
+  <div class="stack">
+    <div class="grid-2">
+      <div class="card card-pad">
+        <div class="eyebrow" style="margin-bottom:14px">Antes · média mensal dos 90 dias</div>
+        <div class="budget-bar" aria-hidden="true">
+          <div class="budget-seg" style="flex:1576;background:var(--s1)">69%</div>
+          <div class="budget-seg" style="flex:361;background:var(--s2)">16%</div>
+          <div class="budget-seg" style="flex:340;background:var(--s3)">15%</div>
+        </div>
+        <ul class="budget-legend">
+          <li><span class="swatch" style="background:var(--s1)"></span><span class="bl-name">Performance Max</span><span class="bl-val">R$ 1.576 · 69%</span></li>
+          <li><span class="swatch" style="background:var(--s2)"></span><span class="bl-name">Google Search</span><span class="bl-val">R$ 361 · 16%</span></li>
+          <li><span class="swatch" style="background:var(--s3)"></span><span class="bl-name">Meta Ads</span><span class="bl-val">R$ 340 · 15%</span></li>
+        </ul>
+        <p style="font-size:.85rem;color:var(--ink-3);margin-top:12px">R$ 1.576 por mês em uma campanha que perdeu 71% das ligações no período, e R$ 340 no canal com o melhor custo por contato.</p>
+      </div>
+      <div class="card card-pad">
+        <div class="eyebrow" style="margin-bottom:14px">Proposto · próximos 30 dias</div>
+        <div class="budget-bar" aria-hidden="true">
+          <div class="budget-seg" style="flex:1980;background:var(--s1)">55%</div>
+          <div class="budget-seg" style="flex:1080;background:var(--s3)">30%</div>
+          <div class="budget-seg" style="flex:540;background:var(--s4)">15%</div>
+        </div>
+        <ul class="budget-legend">
+          <li><span class="swatch" style="background:var(--s1)"></span><span class="bl-name">Google Search</span><span class="bl-val">R$ 1.980 · 55%</span></li>
+          <li><span class="swatch" style="background:var(--s3)"></span><span class="bl-name">Meta Ads</span><span class="bl-val">R$ 1.080 · 30%</span></li>
+          <li><span class="swatch" style="background:var(--s4)"></span><span class="bl-name">Reserva de teste</span><span class="bl-val">R$ 540 · 15%</span></li>
+        </ul>
+        <p style="font-size:.85rem;color:var(--ink-3);margin-top:12px">Search de emergência e clínica geral no topo, Meta reestruturado em segundo, e uma reserva para teste e reativação controlada do PMax.</p>
+      </div>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Meta para 30 dias</th><th>Situação hoje</th><th>Alvo</th><th>Como será medido</th></tr></thead>
+        <tbody>
+          <tr><td>Leads dentro do raio de 6 km</td><td class="num">Não medido</td><td class="num pos">≥ 70%</td><td>Campo de CEP no formulário e no WhatsApp</td></tr>
+          <tr><td>Custo por contato qualificado</td><td class="num">R$ 10,54–14,59 (não qualificado)</td><td class="num">≤ R$ 25,00</td><td>Novas ações de conversão primárias</td></tr>
+          <tr><td>Agendamentos confirmados atribuídos</td><td class="num">0</td><td class="num pos">≥ 40</td><td>Etiquetas de estágio no WhatsApp</td></tr>
+          <tr><td>Conversões reais no Google</td><td class="num">236 em 90 dias</td><td class="num">≥ 30/mês</td><td>Apenas ações primárias novas</td></tr>
+          <tr><td>CTR das campanhas de Search</td><td class="num">3,42%</td><td class="num">≥ 5,0%</td><td>Relatório de campanha</td></tr>
+          <tr><td>Impressões perdidas por classificação</td><td class="num neg">65,8–77,7%</td><td class="num">≤ 45%</td><td>Métrica de parcela de impressões</td></tr>
+          <tr><td>Custo por conversa no Meta</td><td class="num">R$ 4,39</td><td class="num">≤ R$ 4,00</td><td>Objetivo Mensagens</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ESTADO ============ -->
+<section id="estado">
+  <div class="sec-head">
+    <div class="rule"><span class="sec-num">11</span><span class="eyebrow">Estado das contas</span></div>
+    <h2>Campanhas pausadas ao fim desta auditoria</h2>
+    <p class="prose">Conforme solicitado, as quatro campanhas ativas foram pausadas nas duas plataformas após a emissão deste relatório. Nada foi excluído — histórico, criativos e configurações permanecem intactos e a reativação é imediata.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Campanha</th><th>Plataforma</th><th>ID</th><th>Status anterior</th><th>Status agora</th></tr></thead>
+      <tbody>
+        <tr><td>Clinica Geral - 29-Maio</td><td>Google Ads</td><td class="num">23892775154</td><td>Ativa</td><td><span class="chip neutral"><span class="dot"></span>Pausada</span></td></tr>
+        <tr><td>Hotel e Creche 3007 Luna</td><td>Google Ads</td><td class="num">24081667857</td><td>Ativa</td><td><span class="chip neutral"><span class="dot"></span>Pausada</span></td></tr>
+        <tr><td>Hotel e Creche 30072026</td><td>Meta Ads</td><td class="num">120248856441770266</td><td>Ativa</td><td><span class="chip neutral"><span class="dot"></span>Pausada</span></td></tr>
+        <tr><td>Nova campanha de Engajamento</td><td>Meta Ads</td><td class="num">120248858849170266</td><td>Ativa</td><td><span class="chip neutral"><span class="dot"></span>Pausada</span></td></tr>
+        <tr><td>[CLINICAT][GERAL][TRAFEGO][RODRIGO]</td><td>Meta Ads</td><td class="num">—</td><td>Já inativa</td><td><span class="chip neutral"><span class="dot"></span>Sem alteração</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn" style="margin-top:16px">
+    <h4>Uma ressalva que vale registrar</h4>
+    <p>A Clinicat é um hospital 24 horas, e as campanhas do Google — mesmo mal configuradas — geraram 416 ligações no trimestre. Enquanto estiverem pausadas, essa entrada some. O plano da seção 09 foi desenhado para que a Semana 1 seja curta justamente por isso: quanto antes a medição estiver de pé, antes a verba volta com direção. Se o intervalo sem mídia for um risco para a operação, a alternativa é executar apenas os itens 1.3, 1.4 e 1.5 (geografia e negativas, dez minutos de trabalho) e religar somente a campanha de Search, mantendo o PMax desligado.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <h4>Fonte dos dados</h4>
+      <p>Windsor.ai, leitura direta das APIs do Meta Ads (conta 2628337514138132 · Clini Cat) e do Google Ads (conta 233-955-5848 · Clinicat Hospital Veterinário 24h Perdizes).</p>
+    </div>
+    <div>
+      <h4>Janela analisada</h4>
+      <p>1 jun a 29 ago 2026. O Google Ads veiculou nos 90 dias; o Meta Ads, de 31 jul a 29 ago (30 dias). Comparações mensais do Meta não são possíveis por falta de histórico.</p>
+    </div>
+    <div>
+      <h4>Notas de leitura</h4>
+      <p>As conversões dos últimos três dias da janela aparecem próximas de zero: "Store visits" é modelada e atribuída com atraso de vários dias. Não é falha de rastreamento — é mais uma razão para não usar essa métrica na otimização diária.</p>
+    </div>
+    <div>
+      <h4>Moeda e arredondamento</h4>
+      <p>Todos os valores em reais. Percentuais calculados sobre valores não arredondados; totais podem divergir na última casa.</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var css = getComputedStyle(document.documentElement);
+  function tok(n){ return css.getPropertyValue(n).trim(); }
+  function C(){ // re-read on theme change
+    var s = getComputedStyle(document.documentElement);
+    return {
+      s1:s.getPropertyValue('--s1').trim(), s2:s.getPropertyValue('--s2').trim(),
+      s3:s.getPropertyValue('--s3').trim(), s4:s.getPropertyValue('--s4').trim(),
+      grid:s.getPropertyValue('--grid').trim(), ink:s.getPropertyValue('--ink').trim(),
+      ink2:s.getPropertyValue('--ink-2').trim(), ink3:s.getPropertyValue('--ink-3').trim(),
+      surf:s.getPropertyValue('--surface').trim(), line:s.getPropertyValue('--line').trim(),
+      crit:s.getPropertyValue('--crit').trim(), good:s.getPropertyValue('--good').trim(),
+      accent:s.getPropertyValue('--accent').trim()
+    };
+  }
+
+  var SVGNS="http://www.w3.org/2000/svg";
+  function el(n,a){ var e=document.createElementNS(SVGNS,n); for(var k in a){ if(a[k]!==null&&a[k]!==undefined) e.setAttribute(k,a[k]); } return e; }
+  function brl(v,d){ d = (d===undefined)?2:d; return "R$ "+v.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  function nf(v,d){ d=(d===undefined)?0:d; return v.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  function pct(v){ return v.toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1})+"%"; }
+
+  function legend(hostId, items){
+    var h=document.getElementById(hostId); if(!h) return;
+    h.innerHTML="";
+    items.forEach(function(it){
+      var d=document.createElement("div"); d.className="legend-item";
+      var sw=document.createElement("span"); sw.className="swatch"; sw.style.background=it.color;
+      var t=document.createElement("span"); t.textContent=it.label;
+      d.appendChild(sw); d.appendChild(t); h.appendChild(d);
+    });
+  }
+
+  function mkTip(host){
+    var t=document.createElement("div"); t.className="tip"; host.appendChild(t); return t;
+  }
+  /* mouse hover on desktop, tap on touch */
+  function onHover(node, fn){
+    node.addEventListener("mouseenter", fn);
+    node.addEventListener("pointerdown", fn);
+  }
+  document.addEventListener("pointerdown", function(ev){
+    if(ev.target.closest && ev.target.closest(".chart-host")) return;
+    var tips=document.querySelectorAll(".tip");
+    for(var i=0;i<tips.length;i++) tips[i].style.opacity=0;
+  }, true);
+  function placeTip(tip, host, x, y){
+    var hw = host.clientWidth, tw = tip.offsetWidth, th = tip.offsetHeight;
+    var left = x + 14; if(left + tw > hw - 4) left = x - tw - 14; if(left < 4) left = 4;
+    var top = y - th/2; if(top < 4) top = 4;
+    var hh = host.clientHeight; if(top + th > hh - 4) top = hh - th - 4;
+    tip.style.left = left+"px"; tip.style.top = top+"px";
+  }
+
+  /* ================= DATA ================= */
+  var DAYS = []; // 2026-06-01 .. 2026-08-29
+  (function(){
+    var d = new Date(Date.UTC(2026,5,1)), end = new Date(Date.UTC(2026,7,29));
+    while(d <= end){ DAYS.push(d.toISOString().slice(0,10)); d = new Date(d.getTime()+86400000); }
+  })();
+
+  var pmaxSpend = {"2026-06-01":53.43,"2026-06-02":54.31,"2026-06-03":66.83,"2026-06-04":55.04,"2026-06-05":53.07,"2026-06-06":69.05,"2026-06-07":42.78,"2026-06-08":82.99,"2026-06-09":55.95,"2026-06-10":55.93,"2026-06-11":44.80,"2026-06-12":63.43,"2026-06-13":72.99,"2026-06-14":64.35,"2026-06-15":53.50,"2026-06-16":59.86,"2026-06-17":58.31,"2026-06-18":50.33,"2026-06-19":46.72,"2026-06-20":55.65,"2026-06-21":53.32,"2026-06-22":46.86,"2026-06-23":48.63,"2026-06-24":44.33,"2026-06-25":38.33,"2026-06-26":42.30,"2026-06-27":50.48,"2026-06-28":26.94,"2026-06-29":23.58,"2026-06-30":27.62,"2026-07-01":48.22,"2026-07-02":61.59,"2026-07-03":41.72,"2026-07-04":49.02,"2026-07-05":31.14,"2026-07-06":47.55,"2026-07-07":51.60,"2026-07-08":79.31,"2026-07-09":51.87,"2026-07-10":39.00,"2026-07-11":26.36,"2026-07-12":36.31,"2026-07-13":50.59,"2026-07-14":52.83,"2026-07-15":58.09,"2026-07-16":39.88,"2026-07-17":61.68,"2026-07-18":57.38,"2026-07-19":40.76,"2026-07-20":45.02,"2026-07-21":49.67,"2026-07-22":39.76,"2026-07-23":59.45,"2026-07-24":37.61,"2026-07-25":37.34,"2026-07-26":82.98,"2026-07-27":39.06,"2026-07-28":36.58,"2026-07-29":59.19,"2026-07-30":66.44,"2026-07-31":60.72,"2026-08-01":59.60,"2026-08-02":54.51,"2026-08-03":52.21,"2026-08-04":62.95,"2026-08-05":54.60,"2026-08-06":59.77,"2026-08-07":58.21,"2026-08-08":58.97,"2026-08-09":46.45,"2026-08-10":62.00,"2026-08-11":57.77,"2026-08-12":62.29,"2026-08-13":53.45,"2026-08-14":46.51,"2026-08-15":53.19,"2026-08-16":35.73,"2026-08-17":45.03,"2026-08-18":56.75,"2026-08-19":90.99,"2026-08-20":55.80,"2026-08-21":66.90,"2026-08-22":54.64,"2026-08-23":49.18,"2026-08-24":59.92,"2026-08-25":54.68,"2026-08-26":55.45,"2026-08-27":52.71,"2026-08-28":51.22,"2026-08-29":55.11};
+  var pmaxImpr = {"2026-06-01":12506,"2026-06-02":10331,"2026-06-03":9205,"2026-06-04":4227,"2026-06-05":5543,"2026-06-06":5878,"2026-06-07":5483,"2026-06-08":8394,"2026-06-09":9669,"2026-06-10":8465,"2026-06-11":11448,"2026-06-12":12263,"2026-06-13":11364,"2026-06-14":6646,"2026-06-15":8748,"2026-06-16":8326,"2026-06-17":9345,"2026-06-18":8558,"2026-06-19":8866,"2026-06-20":11711,"2026-06-21":6537,"2026-06-22":6806,"2026-06-23":7913,"2026-06-24":7495,"2026-06-25":7105,"2026-06-26":5386,"2026-06-27":5493,"2026-06-28":3283,"2026-06-29":2082,"2026-06-30":2342,"2026-07-01":5945,"2026-07-02":7266,"2026-07-03":7839,"2026-07-04":7155,"2026-07-05":4333,"2026-07-06":5978,"2026-07-07":7385,"2026-07-08":13320,"2026-07-09":9744,"2026-07-10":9758,"2026-07-11":8928,"2026-07-12":7088,"2026-07-13":12378,"2026-07-14":16012,"2026-07-15":18363,"2026-07-16":16561,"2026-07-17":19773,"2026-07-18":16760,"2026-07-19":7993,"2026-07-20":10791,"2026-07-21":7480,"2026-07-22":9558,"2026-07-23":10051,"2026-07-24":9133,"2026-07-25":9110,"2026-07-26":4222,"2026-07-27":6337,"2026-07-28":10712,"2026-07-29":14009,"2026-07-30":15182,"2026-07-31":24498,"2026-08-01":14088,"2026-08-02":18460,"2026-08-03":17891,"2026-08-04":22468,"2026-08-05":21055,"2026-08-06":21478,"2026-08-07":15716,"2026-08-08":16613,"2026-08-09":14459,"2026-08-10":21324,"2026-08-11":23982,"2026-08-12":22476,"2026-08-13":22088,"2026-08-14":24109,"2026-08-15":24023,"2026-08-16":14874,"2026-08-17":17585,"2026-08-18":19749,"2026-08-19":22626,"2026-08-20":24174,"2026-08-21":23189,"2026-08-22":16934,"2026-08-23":13957,"2026-08-24":16936,"2026-08-25":16023,"2026-08-26":18396,"2026-08-27":15805,"2026-08-28":13270,"2026-08-29":12050};
+  var pmaxClicks = {"2026-06-01":25,"2026-06-02":25,"2026-06-03":34,"2026-06-04":22,"2026-06-05":22,"2026-06-06":33,"2026-06-07":18,"2026-06-08":28,"2026-06-09":21,"2026-06-10":31,"2026-06-11":17,"2026-06-12":37,"2026-06-13":28,"2026-06-14":24,"2026-06-15":21,"2026-06-16":23,"2026-06-17":21,"2026-06-18":21,"2026-06-19":22,"2026-06-20":32,"2026-06-21":27,"2026-06-22":27,"2026-06-23":24,"2026-06-24":17,"2026-06-25":12,"2026-06-26":17,"2026-06-27":23,"2026-06-28":8,"2026-06-29":14,"2026-06-30":17,"2026-07-01":19,"2026-07-02":29,"2026-07-03":22,"2026-07-04":21,"2026-07-05":16,"2026-07-06":16,"2026-07-07":25,"2026-07-08":38,"2026-07-09":23,"2026-07-10":18,"2026-07-11":21,"2026-07-12":15,"2026-07-13":17,"2026-07-14":14,"2026-07-15":26,"2026-07-16":19,"2026-07-17":29,"2026-07-18":32,"2026-07-19":19,"2026-07-20":26,"2026-07-21":21,"2026-07-22":21,"2026-07-23":30,"2026-07-24":27,"2026-07-25":14,"2026-07-26":32,"2026-07-27":23,"2026-07-28":22,"2026-07-29":29,"2026-07-30":23,"2026-07-31":27,"2026-08-01":26,"2026-08-02":12,"2026-08-03":14,"2026-08-04":18,"2026-08-05":21,"2026-08-06":17,"2026-08-07":20,"2026-08-08":21,"2026-08-09":17,"2026-08-10":17,"2026-08-11":15,"2026-08-12":20,"2026-08-13":22,"2026-08-14":15,"2026-08-15":13,"2026-08-16":11,"2026-08-17":19,"2026-08-18":28,"2026-08-19":27,"2026-08-20":16,"2026-08-21":19,"2026-08-22":14,"2026-08-23":13,"2026-08-24":12,"2026-08-25":8,"2026-08-26":11,"2026-08-27":16,"2026-08-28":25,"2026-08-29":15};
+  var pmaxCalls = {"2026-06-01":8,"2026-06-02":5,"2026-06-03":5,"2026-06-04":6,"2026-06-05":5,"2026-06-06":10,"2026-06-07":4,"2026-06-08":8,"2026-06-09":6,"2026-06-10":5,"2026-06-11":1,"2026-06-12":2,"2026-06-13":4,"2026-06-14":7,"2026-06-15":6,"2026-06-16":1,"2026-06-17":4,"2026-06-18":3,"2026-06-19":4,"2026-06-20":8,"2026-06-21":4,"2026-06-22":2,"2026-06-23":2,"2026-06-24":6,"2026-06-25":5,"2026-06-26":3,"2026-06-27":7,"2026-06-28":3,"2026-06-29":9,"2026-06-30":0,"2026-07-01":3,"2026-07-02":6,"2026-07-03":4,"2026-07-04":5,"2026-07-05":3,"2026-07-06":7,"2026-07-07":3,"2026-07-08":3,"2026-07-09":4,"2026-07-10":3,"2026-07-11":3,"2026-07-12":3,"2026-07-13":4,"2026-07-14":3,"2026-07-15":1,"2026-07-16":1,"2026-07-17":4,"2026-07-18":3,"2026-07-19":2,"2026-07-20":2,"2026-07-21":3,"2026-07-22":0,"2026-07-23":5,"2026-07-24":3,"2026-07-25":5,"2026-07-26":8,"2026-07-27":2,"2026-07-28":3,"2026-07-29":3,"2026-07-30":5,"2026-07-31":3,"2026-08-01":5,"2026-08-02":3,"2026-08-03":0,"2026-08-04":3,"2026-08-05":1,"2026-08-06":0,"2026-08-07":2,"2026-08-08":2,"2026-08-09":2,"2026-08-10":2,"2026-08-11":1,"2026-08-12":0,"2026-08-13":0,"2026-08-14":1,"2026-08-15":0,"2026-08-16":0,"2026-08-17":2,"2026-08-18":0,"2026-08-19":7,"2026-08-20":0,"2026-08-21":2,"2026-08-22":2,"2026-08-23":0,"2026-08-24":1,"2026-08-25":2,"2026-08-26":0,"2026-08-27":0,"2026-08-28":1,"2026-08-29":2};
+  var searchSpend = {"2026-07-30":43.56,"2026-07-31":26.44,"2026-08-01":38.06,"2026-08-02":34.20,"2026-08-03":14.72,"2026-08-04":31.60,"2026-08-05":59.11,"2026-08-06":36.47,"2026-08-07":35.20,"2026-08-08":39.94,"2026-08-09":35.43,"2026-08-10":28.86,"2026-08-11":17.08,"2026-08-12":47.10,"2026-08-13":40.17,"2026-08-14":34.33,"2026-08-15":48.94,"2026-08-16":43.62,"2026-08-17":36.34,"2026-08-18":32.05,"2026-08-19":29.44,"2026-08-20":28.89,"2026-08-21":34.90,"2026-08-22":37.34,"2026-08-23":30.90,"2026-08-24":33.76,"2026-08-25":37.77,"2026-08-26":30.11,"2026-08-27":29.22,"2026-08-28":34.28,"2026-08-29":32.69};
+  var metaHotel = {"2026-07-31":4.78,"2026-08-01":19.35,"2026-08-02":20.11,"2026-08-03":22.79,"2026-08-04":13.36,"2026-08-05":18.86,"2026-08-06":17.61,"2026-08-07":21.48,"2026-08-08":25.12,"2026-08-09":20.91,"2026-08-10":27.35,"2026-08-11":24.56,"2026-08-12":22.91,"2026-08-13":16.65,"2026-08-14":15.31,"2026-08-15":11.75,"2026-08-16":23.99,"2026-08-17":25.67,"2026-08-18":20.94,"2026-08-19":20.70,"2026-08-20":13.32,"2026-08-21":18.51,"2026-08-22":16.74,"2026-08-23":24.95,"2026-08-24":26.48,"2026-08-25":22.63,"2026-08-26":18.78,"2026-08-27":13.42,"2026-08-28":19.15,"2026-08-29":14.11};
+  var metaEngaj = {"2026-07-31":2.40,"2026-08-01":15.68,"2026-08-02":13.60,"2026-08-03":15.45,"2026-08-04":11.67,"2026-08-05":13.76,"2026-08-06":16.02,"2026-08-07":15.05,"2026-08-08":19.34,"2026-08-09":17.13,"2026-08-10":23.88,"2026-08-11":18.32,"2026-08-12":11.33,"2026-08-13":11.89,"2026-08-14":10.39,"2026-08-15":11.24,"2026-08-16":13.67,"2026-08-17":15.04,"2026-08-18":17.89,"2026-08-19":18.99,"2026-08-20":13.56,"2026-08-21":9.46,"2026-08-22":16.14,"2026-08-23":18.11,"2026-08-24":17.72,"2026-08-25":17.17,"2026-08-26":11.70,"2026-08-27":12.07,"2026-08-28":13.92,"2026-08-29":14.08};
+
+  var MONTHS = {"2026-06":"jun","2026-07":"jul","2026-08":"ago"};
+  function ptDate(iso){
+    var p=iso.split("-"); var m=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+    return parseInt(p[2],10)+" "+m[parseInt(p[1],10)-1];
+  }
+
+  /* ============ CHART 1: daily spend, 4 series ============ */
+  function drawDaily(){
+    var host=document.getElementById("ch-daily"); if(!host) return;
+    host.innerHTML=""; var c=C();
+    var series=[
+      {label:"Google · Clinica Geral (PMax)", color:c.s1, data:pmaxSpend},
+      {label:"Google · Hotel e Creche (Search)", color:c.s2, data:searchSpend},
+      {label:"Meta · Hotel e Creche", color:c.s3, data:metaHotel},
+      {label:"Meta · Nova campanha de Engajamento", color:c.s4, data:metaEngaj}
+    ];
+    legend("lg-daily", series);
+
+    var W=host.clientWidth||900, nar=W<560, H=nar?226:300;
+    var m={t:12,r:nar?10:16,b:30,l:nar?38:52};
+    var iw=W-m.l-m.r, ih=H-m.t-m.b;
+    var maxY=95;
+    var x=function(i){ return m.l + (i/(DAYS.length-1))*iw; };
+    var y=function(v){ return m.t + ih - (v/maxY)*ih; };
+
+    var svg=el("svg",{viewBox:"0 0 "+W+" "+H,width:"100%",height:H,role:"img","aria-label":"Gasto diário por campanha entre 1 de junho e 29 de agosto de 2026"});
+
+    [0,25,50,75].forEach(function(v){
+      svg.appendChild(el("line",{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:c.grid,"stroke-width":1}));
+      var t=el("text",{x:m.l-9,y:y(v)+4,"text-anchor":"end","font-size":10,fill:c.ink3}); t.textContent="R$"+v; svg.appendChild(t);
+    });
+    svg.appendChild(el("line",{x1:m.l,x2:W-m.r,y1:y(0),y2:y(0),stroke:c.line,"stroke-width":1}));
+
+    DAYS.forEach(function(d,i){
+      if(d.slice(8)==="01"){
+        svg.appendChild(el("line",{x1:x(i),x2:x(i),y1:m.t,y2:y(0),stroke:c.grid,"stroke-width":1,"stroke-dasharray":"2 3"}));
+        var t=el("text",{x:x(i)+5,y:H-10,"font-size":10,fill:c.ink3}); t.textContent=MONTHS[d.slice(0,7)]; svg.appendChild(t);
+      }
+    });
+
+    series.forEach(function(s){
+      var segs=[], cur=[];
+      DAYS.forEach(function(d,i){
+        var v=s.data[d];
+        if(v===undefined){ if(cur.length){segs.push(cur);cur=[];} }
+        else cur.push([x(i),y(v)]);
+      });
+      if(cur.length) segs.push(cur);
+      segs.forEach(function(seg){
+        var dd=seg.map(function(p,k){return (k?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1);}).join(" ");
+        svg.appendChild(el("path",{d:dd,fill:"none",stroke:s.color,"stroke-width":2,"stroke-linejoin":"round","stroke-linecap":"round"}));
+      });
+    });
+
+    var hl=el("line",{x1:0,x2:0,y1:m.t,y2:y(0),stroke:c.ink3,"stroke-width":1,opacity:0});
+    svg.appendChild(hl);
+    var dots=series.map(function(s){ var d=el("circle",{r:4,fill:s.color,stroke:c.surf,"stroke-width":2,opacity:0}); svg.appendChild(d); return d; });
+    host.appendChild(svg);
+    var tip=mkTip(host);
+
+    function track(ev){
+      var r=svg.getBoundingClientRect(), sx=(ev.clientX-r.left)*(W/r.width);
+      var i=Math.round(((sx-m.l)/iw)*(DAYS.length-1));
+      if(i<0)i=0; if(i>DAYS.length-1)i=DAYS.length-1;
+      var d=DAYS[i];
+      hl.setAttribute("x1",x(i)); hl.setAttribute("x2",x(i)); hl.setAttribute("opacity",.5);
+      var rows="", tot=0;
+      series.forEach(function(s,k){
+        var v=s.data[d];
+        if(v===undefined){ dots[k].setAttribute("opacity",0); return; }
+        tot+=v;
+        dots[k].setAttribute("cx",x(i)); dots[k].setAttribute("cy",y(v)); dots[k].setAttribute("opacity",1);
+        rows+='<div class="tip-row"><span class="lab"><span class="swatch" style="background:'+s.color+'"></span>'+s.label.split(" · ")[1]+'</span><span class="val">'+brl(v)+'</span></div>';
+      });
+      rows+='<div class="tip-row" style="border-top:1px solid var(--line-soft);margin-top:5px;padding-top:5px"><span class="lab">Total do dia</span><span class="val">'+brl(tot)+'</span></div>';
+      tip.innerHTML='<div class="tip-h">'+ptDate(d)+'</div>'+rows;
+      tip.style.opacity=1;
+      placeTip(tip, host, (x(i)/W)*host.clientWidth, nar?86:110);
+    }
+    svg.addEventListener("mousemove",track);
+    svg.addEventListener("pointerdown",track);
+    function clear(){
+      tip.style.opacity=0; hl.setAttribute("opacity",0); dots.forEach(function(d){d.setAttribute("opacity",0);});
+    }
+    svg.addEventListener("mouseleave",clear);
+    host.addEventListener("pointerleave",clear);
+  }
+
+  /* ============ CHART 2: indexed lines ============ */
+  function drawIndex(){
+    var host=document.getElementById("ch-index"); if(!host) return;
+    host.innerHTML=""; var c=C();
+    var labels=["Junho","Julho","Agosto"];
+    var series=[
+      {label:"Impressões", color:c.s2, idx:[100,144.2,235.8], raw:[231418,333662,545798], fmt:function(v){return nf(v);}},
+      {label:'"Conversões" (painel)', color:c.s4, idx:[100,129.4,115.2], raw:[197,255,227], fmt:function(v){return nf(v);}},
+      {label:"Cliques", color:c.s1, idx:[100,103.3,72.6], raw:[691,714,502], fmt:function(v){return nf(v);}},
+      {label:"Ligações", color:c.s3, idx:[100,74.8,28.7], raw:[143,107,41], fmt:function(v){return nf(v);}}
+    ];
+    legend("lg-index", series);
+
+    var W=host.clientWidth||880, nar=W<560, H=nar?300:348;
+    var m={t:30,r:nar?62:172,b:34,l:nar?38:52};
+    var iw=W-m.l-m.r, ih=H-m.t-m.b;
+    var maxY=250;
+    var x=function(i){ return m.l + (i/2)*iw; };
+    var y=function(v){ return m.t + ih - (v/maxY)*ih; };
+
+    var svg=el("svg",{viewBox:"0 0 "+W+" "+H,width:"100%",height:H,role:"img","aria-label":"Impressões, cliques, ligações e conversões do Performance Max indexados com junho igual a 100"});
+
+    [0,50,100,150,200,250].forEach(function(v){
+      var isBase = (v===100);
+      svg.appendChild(el("line",{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:isBase?c.line:c.grid,"stroke-width":1,"stroke-dasharray":isBase?"4 3":null}));
+      var t=el("text",{x:m.l-9,y:y(v)+4,"text-anchor":"end","font-size":10,fill:isBase?c.ink2:c.ink3}); t.textContent=v; svg.appendChild(t);
+    });
+    var bl=el("text",{x:Math.max(0,m.l-52),y:14,"font-size":10,fill:c.ink3}); bl.textContent="índice · junho = 100"; svg.appendChild(bl);
+
+    labels.forEach(function(l,i){
+      var t=el("text",{x:x(i),y:H-11,"text-anchor":i===0?"start":(i===2?"end":"middle"),"font-size":11,fill:c.ink2}); t.textContent=l; svg.appendChild(t);
+    });
+
+    series.forEach(function(s){
+      var d=s.idx.map(function(v,i){return (i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1);}).join(" ");
+      svg.appendChild(el("path",{d:d,fill:"none",stroke:s.color,"stroke-width":2.5,"stroke-linejoin":"round","stroke-linecap":"round"}));
+      s.idx.forEach(function(v,i){
+        svg.appendChild(el("circle",{cx:x(i),cy:y(v),r:4.5,fill:s.color,stroke:c.surf,"stroke-width":2}));
+      });
+      var chg=Math.round(s.idx[2]-100), chgs=(chg>0?"+":"")+chg+"%";
+      if(nar){
+        var tn=el("text",{x:x(2)+9,y:y(s.idx[2])+4,"font-size":11,fill:s.color,"font-weight":600});
+        tn.textContent=chgs; svg.appendChild(tn);
+      } else {
+        var lx=x(2)+12, ly=y(s.idx[2]);
+        var t1=el("text",{x:lx,y:ly-3,"font-size":11,fill:c.ink,"font-weight":600}); t1.textContent=s.label;
+        var t2=el("text",{x:lx,y:ly+12,"font-size":10.5,fill:c.ink3});
+        t2.textContent=chgs+" · "+s.fmt(s.raw[2]);
+        svg.appendChild(t1); svg.appendChild(t2);
+      }
+    });
+    host.appendChild(svg);
+  }
+
+  /* ============ CHART 3: small multiples ============ */
+  function drawSmall(){
+    var host=document.getElementById("ch-small"); if(!host) return;
+    host.innerHTML=""; var c=C();
+    var panels=[
+      {title:"Impressões por dia", color:c.s2, data:pmaxImpr, fmt:function(v){return nf(v);}, note:"+136% no trimestre"},
+      {title:"Cliques por dia", color:c.s1, data:pmaxClicks, fmt:function(v){return nf(v);}, note:"−27% no trimestre"},
+      {title:"Ligações por dia", color:c.s3, data:pmaxCalls, fmt:function(v){return nf(v);}, note:"−71% no trimestre"}
+    ];
+    var total=host.clientWidth||900, nar=total<560;
+    var gap=nar?14:16, pw=nar?total:(total-gap*2)/3, ph=nar?132:150;
+    var W=total, H=nar?(ph*3+gap*2+8):(ph+8);
+    var svg=el("svg",{viewBox:"0 0 "+W+" "+H,width:"100%",height:H,role:"img","aria-label":"Três painéis diários do Performance Max: impressões, cliques e ligações, cada um em sua própria escala"});
+
+    panels.forEach(function(p,pi){
+      var ox=nar?0:pi*(pw+gap), oy=nar?pi*(ph+gap):0;
+      var m={t:34,b:22,l:8,r:8};
+      var iw=pw-m.l-m.r, ih=ph-m.t-m.b;
+      var vals=DAYS.map(function(d){return p.data[d]||0;});
+      var maxV=Math.max.apply(null, vals)*1.08;
+      var x=function(i){ return ox+m.l+(i/(DAYS.length-1))*iw; };
+      var y=function(v){ return oy+m.t+ih-(v/maxV)*ih; };
+
+      var t=el("text",{x:ox+m.l,y:oy+14,"font-size":11,fill:c.ink,"font-weight":600,"font-family":'"Public Sans",sans-serif'}); t.textContent=p.title; svg.appendChild(t);
+      var n=el("text",{x:ox+m.l,y:oy+27,"font-size":10,fill:c.ink3}); n.textContent=p.note; svg.appendChild(n);
+
+      var area="M"+x(0)+" "+y(0);
+      vals.forEach(function(v,i){ area+=" L"+x(i).toFixed(1)+" "+y(v).toFixed(1); });
+      area+=" L"+x(DAYS.length-1)+" "+y(0)+" Z";
+      svg.appendChild(el("path",{d:area,fill:p.color,opacity:.14}));
+      var line=vals.map(function(v,i){return (i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1);}).join(" ");
+      svg.appendChild(el("path",{d:line,fill:"none",stroke:p.color,"stroke-width":1.6,"stroke-linejoin":"round"}));
+      svg.appendChild(el("line",{x1:ox+m.l,x2:ox+pw-m.r,y1:y(0),y2:y(0),stroke:c.line,"stroke-width":1}));
+
+      var l1=el("text",{x:ox+m.l,y:oy+ph-6,"font-size":9.5,fill:c.ink3}); l1.textContent="1 jun"; svg.appendChild(l1);
+      var l2=el("text",{x:ox+pw-m.r,y:oy+ph-6,"text-anchor":"end","font-size":9.5,fill:c.ink3}); l2.textContent="29 ago"; svg.appendChild(l2);
+      var mx=el("text",{x:ox+pw-m.r,y:oy+32,"text-anchor":"end","font-size":9.5,fill:c.ink3}); mx.textContent="pico "+p.fmt(Math.max.apply(null,vals)); svg.appendChild(mx);
+    });
+    host.appendChild(svg);
+  }
+
+  /* ============ CHART 4: conversion composition ============ */
+  function drawConv(){
+    var host=document.getElementById("ch-conv"); if(!host) return;
+    host.innerHTML=""; var c=C();
+    var rows=[
+      {label:"Local actions – Other engagements", v:1195, real:false},
+      {label:"Store visits (modelada)", v:604, real:false},
+      {label:"Local actions – Directions", v:312, real:false},
+      {label:"Clicks to call", v:101, real:true},
+      {label:"Calls from ads", v:80, real:true},
+      {label:"Chamadas a partir de anúncios", v:54, real:true},
+      {label:"Local actions – Website visits", v:34, real:false},
+      {label:"Envio Formulário-Site", v:1, real:true},
+      {label:"Local actions – Menu views", v:1, real:false}
+    ];
+    legend("lg-conv",[
+      {label:"Sinal fraco ou modelado — 2.146 (90,1%)", color:c.s2},
+      {label:"Contato humano real — 236 (9,9%)", color:c.s1}
+    ]);
+
+    var W=host.clientWidth||880, nar=W<560;
+    var rowH=nar?46:34, H=rows.length*rowH+30;
+    var m={t:8,r:nar?46:66,b:22,l:nar?2:Math.min(230, W*0.30)};
+    var iw=W-m.l-m.r;
+    var maxV=1330;
+    var svg=el("svg",{viewBox:"0 0 "+W+" "+H,width:"100%",height:H,role:"img","aria-label":"Composição das 2.382 conversões reportadas pelo Google Ads por ação de conversão"});
+
+    [0,300,600,900,1200].forEach(function(v){
+      var xx=m.l+(v/maxV)*iw;
+      svg.appendChild(el("line",{x1:xx,x2:xx,y1:m.t,y2:H-m.b,stroke:c.grid,"stroke-width":1}));
+      var t=el("text",{x:xx,y:H-7,"text-anchor":"middle","font-size":10,fill:c.ink3}); t.textContent=nf(v); svg.appendChild(t);
+    });
+
+    var tip=mkTip(host);
+    rows.forEach(function(r,i){
+      var yy=m.t+i*rowH+(nar?18:6), bh=nar?18:20;
+      var bw=Math.max((r.v/maxV)*iw, 2.5);
+      var col=r.real?c.s1:c.s2;
+      var lab=nar
+        ? el("text",{x:m.l,y:yy-6,"font-size":11,fill:c.ink2,"font-family":'"Public Sans",sans-serif'})
+        : el("text",{x:m.l-12,y:yy+14,"text-anchor":"end","font-size":11,fill:c.ink2,"font-family":'"Public Sans",sans-serif'});
+      lab.textContent=r.label; svg.appendChild(lab);
+      var bar=el("rect",{x:m.l,y:yy,width:bw,height:bh,fill:col,rx:3});
+      bar.style.cursor="default";
+      svg.appendChild(bar);
+      var vt=el("text",{x:m.l+bw+9,y:yy+(nar?13:14),"font-size":11,fill:c.ink,"font-weight":600}); vt.textContent=nf(r.v); svg.appendChild(vt);
+
+      onHover(bar,function(){
+        tip.innerHTML='<div class="tip-h">'+r.label+'</div>'+
+          '<div class="tip-row"><span class="lab">Volume</span><span class="val">'+nf(r.v)+'</span></div>'+
+          '<div class="tip-row"><span class="lab">Do total</span><span class="val">'+pct(r.v/2382*100)+'</span></div>'+
+          '<div class="tip-row"><span class="lab">Natureza</span><span class="val" style="color:'+col+'">'+(r.real?"Contato real":"Sinal fraco")+'</span></div>';
+        tip.style.opacity=1;
+        placeTip(tip, host, ((m.l+bw)/W)*host.clientWidth, (yy/H)*host.clientHeight+10);
+      });
+      bar.addEventListener("mouseleave",function(){ tip.style.opacity=0; });
+    });
+    host.appendChild(svg);
+  }
+
+  /* ============ CHART 5: geo ============ */
+  function drawGeo(){
+    var host=document.getElementById("ch-geo"); if(!host) return;
+    host.innerHTML=""; var c=C();
+    var rows=[
+      {label:"Interesse pela região (não estava em SP)", spend:705.78, clicks:511, color:c.s2},
+      {label:"Presença física em São Paulo", spend:374.51, clicks:314, color:c.s1}
+    ];
+    legend("lg-geo", rows.map(function(r){return {label:r.label, color:r.color};}));
+
+    var W=host.clientWidth||860, nar=W<560;
+    var m={t:10,r:nar?0:20,b:34,l:nar?0:20};
+    var iw=W-m.l-m.r, tot=1080.29;
+    var H=nar?186:126;
+    var svg=el("svg",{viewBox:"0 0 "+W+" "+H,width:"100%",height:H,role:"img","aria-label":"Divisão do gasto da campanha Hotel e Creche entre presença física e interesse pela região"});
+
+    var cap=el("text",{x:m.l,y:m.t+14,"font-size":10.5,fill:c.ink3});
+    cap.textContent=nar?"R$ 1.080,29 com geolocalização identificada":"R$ 1.080,29 veiculados com geolocalização identificada";
+    svg.appendChild(cap);
+
+    if(nar){
+      rows.forEach(function(r,i){
+        var yy=m.t+26+i*62;
+        var bw=Math.max((r.spend/tot)*iw, 62);
+        svg.appendChild(el("rect",{x:m.l,y:yy,width:bw,height:34,fill:r.color,rx:3}));
+        var t1=el("text",{x:m.l+11,y:yy+23,"font-size":15,fill:"#fff","font-weight":600});
+        t1.textContent=(r.spend/tot*100).toFixed(1).replace(".",",")+"%"; svg.appendChild(t1);
+        var t2=el("text",{x:m.l,y:yy+50,"font-size":11,fill:c.ink2});
+        t2.textContent=brl(r.spend)+" · "+r.clicks+" cliques"; svg.appendChild(t2);
+      });
+    } else {
+      var xcur=m.l;
+      rows.forEach(function(r){
+        var bw=(r.spend/tot)*iw-2;
+        svg.appendChild(el("rect",{x:xcur,y:m.t+22,width:bw,height:46,fill:r.color,rx:3}));
+        var t1=el("text",{x:xcur+12,y:m.t+48,"font-size":15,fill:"#fff","font-weight":600});
+        t1.textContent=(r.spend/tot*100).toFixed(1).replace(".",",")+"%"; svg.appendChild(t1);
+        var t2=el("text",{x:xcur+12,y:m.t+63,"font-size":10.5,fill:"#fff",opacity:.9});
+        t2.textContent=brl(r.spend)+" · "+r.clicks+" cliques"; svg.appendChild(t2);
+        xcur += bw+2;
+      });
+    }
+    var note=el("text",{x:m.l,y:H-12,"font-size":11,fill:c.crit,"font-weight":600,"font-family":'"Public Sans",sans-serif'});
+    note.textContent="2 de cada 3 reais foram para fora de São Paulo."; svg.appendChild(note);
+    host.appendChild(svg);
+  }
+
+  /* ============ CHART 6: Meta placements ============ */
+  function drawPlace(){
+    var host=document.getElementById("ch-place"); if(!host) return;
+    host.innerHTML=""; var c=C();
+    var rows=[
+      {label:"Reels · Facebook", cpl:2.82, spend:112.61, conv:40},
+      {label:"Reels · Instagram", cpl:2.82, spend:124.00, conv:44},
+      {label:"Stories · Facebook", cpl:3.23, spend:22.62, conv:7},
+      {label:"Stories · Instagram", cpl:4.38, spend:179.53, conv:41},
+      {label:"Feed · Facebook", cpl:4.95, spend:237.42, conv:48},
+      {label:"Feed · Instagram", cpl:6.61, spend:337.13, conv:51}
+    ];
+    var W=host.clientWidth||430, nar=W<400;
+    var rowH=nar?42:36, H=rows.length*rowH+34;
+    var m={t:8,r:nar?52:56,b:24,l:nar?2:Math.min(150,W*0.34)};
+    var iw=W-m.l-m.r, maxV=7;
+    var ramp=["#86b6ef","#6da7ec","#5598e7","#3987e5","#2a78d6","#1c5cab"];
+    var dark = matchMedia("(prefers-color-scheme: dark)").matches && document.documentElement.getAttribute("data-theme")!=="light";
+    if(document.documentElement.getAttribute("data-theme")==="dark") dark=true;
+    if(dark) ramp=["#184f95","#256abf","#2a78d6","#3987e5","#5598e7","#6da7ec"];
+
+    var svg=el("svg",{viewBox:"0 0 "+W+" "+H,width:"100%",height:H,role:"img","aria-label":"Custo por conversa iniciada por posicionamento no Meta Ads"});
+    [0,2,4,6].forEach(function(v){
+      var xx=m.l+(v/maxV)*iw;
+      svg.appendChild(el("line",{x1:xx,x2:xx,y1:m.t,y2:H-m.b,stroke:c.grid,"stroke-width":1}));
+      var t=el("text",{x:xx,y:H-8,"text-anchor":"middle","font-size":10,fill:c.ink3}); t.textContent="R$"+v; svg.appendChild(t);
+    });
+    var tip=mkTip(host);
+    rows.forEach(function(r,i){
+      var yy=m.t+i*rowH+(nar?17:6), bh=nar?18:21, bw=Math.max((r.cpl/maxV)*iw,2);
+      var lab=nar
+        ? el("text",{x:m.l,y:yy-6,"font-size":10.5,fill:c.ink2,"font-family":'"Public Sans",sans-serif'})
+        : el("text",{x:m.l-14,y:yy+15,"text-anchor":"end","font-size":10.5,fill:c.ink2,"font-family":'"Public Sans",sans-serif'});
+      lab.textContent=r.label; svg.appendChild(lab);
+      var bar=el("rect",{x:m.l,y:yy,width:bw,height:bh,fill:ramp[i],rx:3}); svg.appendChild(bar);
+      var vt=el("text",{x:m.l+bw+8,y:yy+(nar?13:15),"font-size":10.5,fill:c.ink,"font-weight":600}); vt.textContent=brl(r.cpl); svg.appendChild(vt);
+      onHover(bar,function(){
+        tip.innerHTML='<div class="tip-h">'+r.label+'</div>'+
+          '<div class="tip-row"><span class="lab">Custo por conversa</span><span class="val">'+brl(r.cpl)+'</span></div>'+
+          '<div class="tip-row"><span class="lab">Investido</span><span class="val">'+brl(r.spend)+'</span></div>'+
+          '<div class="tip-row"><span class="lab">Conversas</span><span class="val">'+r.conv+'</span></div>'+
+          '<div class="tip-row"><span class="lab">Da verba</span><span class="val">'+pct(r.spend/1018.96*100)+'</span></div>';
+        tip.style.opacity=1; placeTip(tip, host, ((m.l+bw)/W)*host.clientWidth, (yy/H)*host.clientHeight+12);
+      });
+      bar.addEventListener("mouseleave",function(){ tip.style.opacity=0; });
+    });
+    host.appendChild(svg);
+  }
+
+  /* ============ CHART 7: Meta age ============ */
+  function drawAge(){
+    var host=document.getElementById("ch-age"); if(!host) return;
+    host.innerHTML=""; var c=C();
+    var rows=[
+      {label:"25–34", conv:31, cpl:5.40, spend:167.54},
+      {label:"35–44", conv:49, cpl:4.91, spend:240.83},
+      {label:"45–54", conv:79, cpl:3.95, spend:312.04},
+      {label:"55–64", conv:54, cpl:3.67, spend:198.32},
+      {label:"65+",   conv:18, cpl:5.31, spend:95.58}
+    ];
+    var W=host.clientWidth||430, H=250;
+    var m={t:26,r:14,b:46,l:38};
+    var iw=W-m.l-m.r, ih=H-m.t-m.b, maxV=90;
+    var bwid=iw/rows.length;
+    var svg=el("svg",{viewBox:"0 0 "+W+" "+H,width:"100%",height:H,role:"img","aria-label":"Conversas iniciadas por faixa etária no Meta Ads, com custo por conversa"});
+    [0,30,60,90].forEach(function(v){
+      var yy=m.t+ih-(v/maxV)*ih;
+      svg.appendChild(el("line",{x1:m.l,x2:W-m.r,y1:yy,y2:yy,stroke:c.grid,"stroke-width":1}));
+      var t=el("text",{x:m.l-8,y:yy+4,"text-anchor":"end","font-size":10,fill:c.ink3}); t.textContent=v; svg.appendChild(t);
+    });
+    var tip=mkTip(host);
+    rows.forEach(function(r,i){
+      var bw=bwid*0.62, bx=m.l+i*bwid+(bwid-bw)/2;
+      var bh=(r.conv/maxV)*ih, by=m.t+ih-bh;
+      var best=(r.label==="45–54"||r.label==="55–64");
+      var bar=el("rect",{x:bx,y:by,width:bw,height:bh,fill:best?c.s1:c.ink3,opacity:best?1:.42,rx:3});
+      svg.appendChild(bar);
+      var v=el("text",{x:bx+bw/2,y:by-7,"text-anchor":"middle","font-size":11,fill:c.ink,"font-weight":600}); v.textContent=r.conv; svg.appendChild(v);
+      var lb=el("text",{x:bx+bw/2,y:m.t+ih+16,"text-anchor":"middle","font-size":10.5,fill:c.ink2}); lb.textContent=r.label; svg.appendChild(lb);
+      var cp=el("text",{x:bx+bw/2,y:m.t+ih+30,"text-anchor":"middle","font-size":9.5,fill:best?c.s1:c.ink3}); cp.textContent=brl(r.cpl); svg.appendChild(cp);
+      onHover(bar,function(){
+        tip.innerHTML='<div class="tip-h">'+r.label+' anos</div>'+
+          '<div class="tip-row"><span class="lab">Conversas</span><span class="val">'+r.conv+'</span></div>'+
+          '<div class="tip-row"><span class="lab">Custo por conversa</span><span class="val">'+brl(r.cpl)+'</span></div>'+
+          '<div class="tip-row"><span class="lab">Investido</span><span class="val">'+brl(r.spend)+'</span></div>';
+        tip.style.opacity=1; placeTip(tip, host, ((bx+bw)/W)*host.clientWidth, (by/H)*host.clientHeight);
+      });
+      bar.addEventListener("mouseleave",function(){ tip.style.opacity=0; });
+    });
+    var cap=el("text",{x:m.l,y:14,"font-size":10,fill:c.ink3});
+    cap.textContent=(W<400)?"conversas · custo abaixo do eixo":"conversas iniciadas · custo por conversa abaixo do eixo";
+    svg.appendChild(cap);
+    host.appendChild(svg);
+  }
+
+  /* ============ THEME TOGGLE ============ */
+  (function(){
+    var root=document.documentElement;
+    var bLight=document.getElementById("tt-light"), bDark=document.getElementById("tt-dark");
+    if(!bLight||!bDark) return;
+    var KEY="clinicat-relatorio-tema";
+
+    function effective(){
+      var stamped=root.getAttribute("data-theme");
+      if(stamped==="dark"||stamped==="light") return stamped;
+      return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+    }
+    function reflect(t){
+      bLight.setAttribute("aria-pressed", t==="light" ? "true" : "false");
+      bDark.setAttribute("aria-pressed", t==="dark" ? "true" : "false");
+    }
+    function set(t){
+      root.setAttribute("data-theme", t);
+      try{ localStorage.setItem(KEY, t); }catch(e){}
+      reflect(t);
+    }
+    var stored=null;
+    try{ stored=localStorage.getItem(KEY); }catch(e){}
+    if(stored==="dark"||stored==="light") set(stored); else reflect(effective());
+
+    bLight.addEventListener("click", function(){ set("light"); });
+    bDark.addEventListener("click", function(){ set("dark"); });
+
+    // Host or OS switches theme while no explicit choice is stored: follow it.
+    if(window.matchMedia){
+      var m=window.matchMedia("(prefers-color-scheme: dark)");
+      if(m.addEventListener) m.addEventListener("change", function(){
+        var s=null; try{ s=localStorage.getItem(KEY); }catch(e){}
+        if(s!=="dark"&&s!=="light") reflect(effective());
+      });
+    }
+    new MutationObserver(function(){ reflect(effective()); })
+      .observe(root,{attributes:true,attributeFilter:["data-theme"]});
+  })();
+
+  function drawAll(){ drawDaily(); drawIndex(); drawSmall(); drawConv(); drawGeo(); drawPlace(); drawAge(); }
+  drawAll();
+
+  var rt;
+  window.addEventListener("resize", function(){ clearTimeout(rt); rt=setTimeout(drawAll, 180); });
+  if(window.matchMedia){
+    var mq=window.matchMedia("(prefers-color-scheme: dark)");
+    if(mq.addEventListener) mq.addEventListener("change", drawAll);
+  }
+  new MutationObserver(drawAll).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+})();
+</script>
+</body>
+</html>
