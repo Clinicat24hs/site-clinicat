@@ -30,6 +30,7 @@ export function Footer() {
               <li><a href="/especialidades">Especialidades</a></li>
               <li><a href="/creche-hotel">Creche &amp; Hotel</a></li>
               <li><a href="/blog">Blog</a></li>
+              <li><a href="/pesquisa">Pesquisa de satisfação</a></li>
               <li><a href="/contato">Contato</a></li>
             </ul>
           </div>

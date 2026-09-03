@@ -53,6 +53,7 @@ export function Header() {
               </div>
             </div>
             <a href="/blog" className="nav-btn">Blog</a>
+            <a href="/pesquisa" className="nav-btn">Pesquisa</a>
             <a href="/contato" className="nav-btn">Contato</a>
           </nav>
 
@@ -70,6 +71,7 @@ export function Header() {
             <a href="/creche-hotel" className="mlink">Creche &amp; Hotel</a>
             <details><summary>Quem Somos</summary><a href="/quem-somos">Quem somos</a><a href="/quem-somos#equipe">Equipe</a><a href="/quem-somos#tour">Tour Virtual</a><a href="/ceav">CEAV</a><a href="/clinicat-cuida">Clinicat Cuida</a></details>
             <a href="/blog" className="mlink">Blog</a>
+            <a href="/pesquisa" className="mlink">Pesquisa</a>
             <a href="/contato" className="mlink">Contato</a>
             <a href="https://wa.me/5511932565663" className="btn btn-primary block">Fale no WhatsApp</a>
           </div>
