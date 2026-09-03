@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ConvenioLogos } from "@/components/site/ConvenioLogos";
 
 export const metadata: Metadata = {
   title: "Clinicat — Hospital Veterinário 24h em Perdizes, São Paulo",
@@ -176,21 +177,8 @@ export default function Home() {
           <div>
             <p className="kicker primary">Convênios</p>
             <h2 className="display-md">Trabalhamos com <em>Dog Life</em>, <em>Pet Life</em>, <em>CatLife</em> e <em>Plamev.</em></h2>
-            <div className="row gap wrap" style={{ marginTop: "1.25rem", alignItems: "center" }}>
-              {[
-                { src: "/convenios/doglife.png", alt: "Dog Life" },
-                { src: "/convenios/petlife.png", alt: "Pet Life" },
-                { src: "/convenios/catlife.png", alt: "CatLife" },
-              ].map((l) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={l.src}
-                  src={l.src}
-                  alt={`Convênio ${l.alt}`}
-                  style={{ height: 44, width: "auto", borderRadius: 10, border: "1px solid var(--border)", boxShadow: "var(--shadow-soft)" }}
-                />
-              ))}
-              <span className="chip">Plamev</span>
+            <div style={{ marginTop: "1.25rem" }}>
+              <ConvenioLogos />
             </div>
           </div>
           <div style={{ color: "var(--muted)", fontSize: "0.98rem", lineHeight: 1.7 }}>
