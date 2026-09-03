@@ -36,8 +36,8 @@ export default async function ServicoPage({ params }: { params: Promise<{ slug: 
             <p className="kicker primary">Convênios aceitos</p>
             <h2 className="display-md">Trabalhamos com estes <em>convênios</em>.</h2>
           </div>
-          <ConvenioLogos height={54} />
-          <p style={{ color: "var(--muted)", fontSize: "0.95rem", lineHeight: 1.7, marginTop: "1.25rem", maxWidth: 720 }}>
+          <ConvenioLogos height={54} center />
+          <p style={{ color: "var(--muted)", fontSize: "0.95rem", lineHeight: 1.7, margin: "1.25rem auto 0", maxWidth: 720, textAlign: "center" }}>
             <strong>Importante:</strong> todas as cobranças e coberturas relacionadas aos convênios são de responsabilidade
             exclusiva do plano contratado. O hospital não se responsabiliza por autorizações, glosas ou limitações de
             cobertura. Para dúvidas, fale diretamente com a central de atendimento do seu plano.

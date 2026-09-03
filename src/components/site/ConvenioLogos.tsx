@@ -5,9 +5,9 @@ const CONVENIOS = [
   { src: "/convenios/plamev.png", alt: "Plamev" },
 ];
 
-export function ConvenioLogos({ height = 44 }: { height?: number }) {
+export function ConvenioLogos({ height = 44, center = false }: { height?: number; center?: boolean }) {
   return (
-    <div className="row gap wrap" style={{ alignItems: "center" }}>
+    <div className="row gap wrap" style={{ alignItems: "center", justifyContent: center ? "center" : undefined }}>
       {CONVENIOS.map((l) => (
         // eslint-disable-next-line @next/next/no-img-element
         <img
