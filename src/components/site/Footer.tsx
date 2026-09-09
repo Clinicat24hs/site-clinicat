@@ -32,6 +32,7 @@ export function Footer() {
               <li><a href="/blog">Blog</a></li>
               <li><a href="/pesquisa">Pesquisa de satisfação</a></li>
               <li><a href="/contato">Contato</a></li>
+              <li><a href="/estagio">Estágio</a></li>
             </ul>
           </div>
         </div>

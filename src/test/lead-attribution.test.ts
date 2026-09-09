@@ -129,6 +129,41 @@ describe("origem do lead no WhatsApp", () => {
     expect(msg).toContain("*Bairro/CEP:* Perdizes");
   });
 
+  it("monta a inscrição de estágio com todos os campos do formulário", () => {
+    const h = runScript("");
+    const msg = messageOf(
+      h.submitForm({
+        nome: "Ana",
+        email: "ana@email.com",
+        telefone: "11999999999",
+        instituicao: "UNIP",
+        periodo: "6º semestre",
+        assunto: "Inscrição para estágio",
+        expectativas: "Aprender rotina de emergência",
+        disponibilidade: "Manhã, seg a sex",
+        experiencia: "Voluntariado em ONG",
+        contribuicao: "Dedicação e pontualidade",
+      }),
+    );
+    expect(msg).toContain("*Instituição:* UNIP");
+    expect(msg).toContain("*Período:* 6º semestre");
+    expect(msg).toContain("*Expectativas:* Aprender rotina de emergência");
+    expect(msg).toContain("*Disponibilidade:* Manhã, seg a sex");
+    expect(msg).toContain("*Experiência:* Voluntariado em ONG");
+    expect(msg).toContain("*Contribuição:* Dedicação e pontualidade");
+    // A ordem das linhas segue o mapa de labels, não a ordem do FormData.
+    expect(msg.indexOf("*Nome:*")).toBeLessThan(msg.indexOf("*Instituição:*"));
+    expect(msg.indexOf("*Instituição:*")).toBeLessThan(msg.indexOf("*Expectativas:*"));
+  });
+
+  it("não deixa campo ausente virar linha vazia na mensagem", () => {
+    const h = runScript("");
+    const msg = messageOf(h.submitForm({ nome: "Ana", telefone: "11999999999" }));
+    expect(msg).not.toContain("Instituição");
+    expect(msg).not.toContain("Expectativas");
+    expect(msg).not.toContain("Pet");
+  });
+
   it("guarda o gclid do anúncio e o repassa inteiro, para importar a conversão offline", () => {
     const h = runScript("?gclid=Cj0KCQjw_TESTE123&utm_source=google&utm_medium=cpc&utm_campaign=emergencia-24h");
     const msg = messageOf(h.submitForm({ nome: "Ana", bairro: "Pompeia" }));
