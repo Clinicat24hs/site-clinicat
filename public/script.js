@@ -99,7 +99,17 @@ document.addEventListener('submit', e => {
   e.preventDefault();
   const fd = new FormData(form);
   const lines = ['Olá, Clinicat! 🐾', ''];
-  const labels = { nome:'Nome', telefone:'WhatsApp', email:'E-mail', pet:'Pet', bairro:'Bairro/CEP', assunto:'Assunto', mensagem:'Mensagem' };
+  // A ordem aqui define a ordem das linhas na mensagem. Campos ausentes no
+  // formulário são simplesmente pulados, então um mesmo handler atende o
+  // formulário de contato, o de newsletter e o de estágio.
+  const labels = {
+    nome:'Nome', telefone:'WhatsApp', email:'E-mail',
+    instituicao:'Instituição', periodo:'Período',
+    pet:'Pet', bairro:'Bairro/CEP', assunto:'Assunto',
+    expectativas:'Expectativas', disponibilidade:'Disponibilidade',
+    experiencia:'Experiência', contribuicao:'Contribuição',
+    mensagem:'Mensagem'
+  };
   Object.keys(labels).forEach(k => {
     const v = fd.get(k);
     if (v) lines.push('*' + labels[k] + ':* ' + v);
