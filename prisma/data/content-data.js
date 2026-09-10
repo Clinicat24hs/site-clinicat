@@ -306,7 +306,6 @@ const SERVICOS = [
     highlights: [
       'Acompanhamento veterinário 24 horas por dia',
       'Monitoramento contínuo e medicação controlada',
-      'Alas separadas (felina, infectocontagiosa, UTI)',
       'Cuidados intensivos e semi-intensivos',
       'Boletim médico e visitas para o tutor',
     ],

@@ -3,6 +3,7 @@ const CONVENIOS = [
   { src: "/convenios/petlife.png", alt: "Pet Life" },
   { src: "/convenios/catlife.png", alt: "CatLife" },
   { src: "/convenios/plamev.png", alt: "Plamev" },
+  { src: "/convenios/petvidas.png", alt: "Petvidas" },
 ];
 
 export function ConvenioLogos({ height = 44, center = false }: { height?: number; center?: boolean }) {

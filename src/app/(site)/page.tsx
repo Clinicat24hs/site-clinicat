@@ -176,7 +176,7 @@ export default function Home() {
         >
           <div>
             <p className="kicker primary">Convênios</p>
-            <h2 className="display-md">Trabalhamos com <em>Dog Life</em>, <em>Pet Life</em>, <em>CatLife</em> e <em>Plamev.</em></h2>
+            <h2 className="display-md">Trabalhamos com os principais <em>convênios pet.</em></h2>
             <div style={{ marginTop: "1.25rem" }}>
               <ConvenioLogos />
             </div>
