@@ -23,6 +23,48 @@ export default function CrecheHotel() {
         </div>
       </section>
 
+      {/* GALERIA — primeira dobra após o hero */}
+      <section className="section section-soft">
+        <div className="container">
+          <div className="section-head">
+            <p className="kicker primary">Pool Pet</p>
+            <h2 className="display-md">Alegria de quem passa o <em>dia com a gente.</em></h2>
+            <p className="lead">Piscina, brincadeira e muito carinho — momentos reais da nossa creche.</p>
+          </div>
+          <div
+            style={{
+              display: "grid",
+              gap: "0.9rem",
+              gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
+            }}
+          >
+            {Array.from({ length: 15 }, (_, i) => {
+              const n = String(i + 1).padStart(2, "0");
+              return (
+                <div
+                  key={n}
+                  style={{
+                    aspectRatio: "3 / 4",
+                    borderRadius: 16,
+                    overflow: "hidden",
+                    border: "1px solid var(--border)",
+                    boxShadow: "var(--shadow-soft)",
+                  }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/creche/creche-${n}.webp`}
+                    alt={`Pet se divertindo na creche da Clinicat — foto ${i + 1}`}
+                    loading="lazy"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* CRECHE vs HOTEL */}
       <section className="section">
         <div className="container">
