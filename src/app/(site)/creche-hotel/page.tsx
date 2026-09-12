@@ -153,6 +153,48 @@ export default function CrecheHotel() {
         </div>
       </section>
 
+      {/* COMO FUNCIONA / REQUISITOS */}
+      <section className="section section-soft">
+        <div className="container">
+          <div className="section-head">
+            <p className="kicker primary">Antes do primeiro dia</p>
+            <h2 className="display-md">Como funciona e o que <em>seu pet precisa.</em></h2>
+            <p className="lead">Alguns cuidados garantem a segurança e a saúde de todos os pets que convivem aqui.</p>
+          </div>
+          <div style={{ display: "grid", gap: "1.5rem", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
+            <article className="card">
+              <h3 style={{ marginTop: 0 }}>Requisitos de saúde</h3>
+              <ul style={{ margin: 0, paddingLeft: "1.1rem", color: "var(--muted)", lineHeight: 1.8 }}>
+                <li>Carteira de vacinação em dia</li>
+                <li>Vermífugo em dia</li>
+                <li>Antipulgas/carrapaticida aplicado</li>
+                <li>Exames quando solicitados pela equipe</li>
+              </ul>
+            </article>
+            <article className="card">
+              <h3 style={{ marginTop: 0 }}>Adaptação e rotina</h3>
+              <ul style={{ margin: 0, paddingLeft: "1.1rem", color: "var(--muted)", lineHeight: 1.8 }}>
+                <li>Período de adaptação para o pet se sentir seguro</li>
+                <li>Rotina de atividades, descanso e alimentação</li>
+                <li>Supervisão e acompanhamento veterinário</li>
+                <li>Fotos e vídeos do dia do seu pet</li>
+              </ul>
+            </article>
+            <article className="card">
+              <h3 style={{ marginTop: 0 }}>Formas de uso</h3>
+              <ul style={{ margin: 0, paddingLeft: "1.1rem", color: "var(--muted)", lineHeight: 1.8 }}>
+                <li>Creche: diária, hora avulsa ou pacotes</li>
+                <li>Hotel: hospedagem por uma ou mais noites</li>
+                <li>Combine com banho e tosa na saída</li>
+              </ul>
+              <p style={{ marginTop: ".9rem", fontSize: ".9rem" }}>
+                <a href="https://wa.me/5511932565663" style={{ color: "var(--primary)", fontWeight: 600, textDecoration: "none" }}>Consulte valores e disponibilidade →</a>
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="container section">
         <div className="cta-band">
