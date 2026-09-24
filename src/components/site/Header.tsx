@@ -41,6 +41,7 @@ export function Header() {
                 <a href="/servicos/cirurgias">Cirurgia &amp; Anestesia</a><a href="/servicos/exames">Diagnóstico &amp; Exames</a>
                 <a href="/servicos/banho-e-tosa">Banho e Tosa</a><a href="/servicos/farmacia">Farmácia</a>
                 <a href="/servicos/leva-e-traz">Leva e Traz</a><a href="/servicos/convenio">Convênio</a>
+                <a href="/servicos/tartarectomia">Profilaxia Dentária</a>
               </div>
             </div>
             <a href="/creche-hotel" className="nav-btn">Creche &amp; Hotel</a>
@@ -67,7 +68,7 @@ export function Header() {
           <div className="container nav-mobile-inner">
             <details><summary>Atendimento</summary><a href="/servicos/consultas">Clínico</a><a href="/servicos/internacao">Emergência 24h</a><a href="/servicos/internacao">Internação</a></details>
             <details><summary>Especialidades</summary><a href="/especialidades/cardiologia">Cardiologia</a><a href="/especialidades/dermatologia">Dermatologia</a><a href="/especialidades/oftalmologia">Oftalmologia</a><a href="/especialidades/oncologia">Oncologia</a><a href="/especialidades/ortopedia">Ortopedia</a><a href="/especialidades">Ver todas (15+)</a></details>
-            <details><summary>Serviços</summary><a href="/servicos/cirurgias">Cirurgia &amp; Anestesia</a><a href="/servicos/exames">Diagnóstico &amp; Exames</a><a href="/servicos/banho-e-tosa">Banho e Tosa</a><a href="/servicos/farmacia">Farmácia</a><a href="/servicos/leva-e-traz">Leva e Traz</a><a href="/servicos/convenio">Convênio</a></details>
+            <details><summary>Serviços</summary><a href="/servicos/cirurgias">Cirurgia &amp; Anestesia</a><a href="/servicos/exames">Diagnóstico &amp; Exames</a><a href="/servicos/banho-e-tosa">Banho e Tosa</a><a href="/servicos/farmacia">Farmácia</a><a href="/servicos/leva-e-traz">Leva e Traz</a><a href="/servicos/convenio">Convênio</a><a href="/servicos/tartarectomia">Profilaxia Dentária</a></details>
             <a href="/creche-hotel" className="mlink">Creche &amp; Hotel</a>
             <details><summary>Quem Somos</summary><a href="/quem-somos">Quem somos</a><a href="/quem-somos#equipe">Equipe</a><a href="/quem-somos#tour">Tour Virtual</a><a href="/ceav">CEAV</a><a href="/clinicat-cuida">Clinicat Cuida</a></details>
             <a href="/blog" className="mlink">Blog</a>

@@ -37,6 +37,7 @@ export default function Servicos() {
             <a href="/servicos/leva-e-traz" style={{ textDecoration: "none", color: "inherit" }}><article className="svc-item"><span className="num">8</span><h3>Leva e Traz</h3><p>Transporte seguro para seu pet. Coleta em casa, atendimento na clínica e devolução com segurança. Comodidade para quem não tem tempo.</p></article></a>
             <a href="/servicos/convenio" style={{ textDecoration: "none", color: "inherit" }}><article className="svc-item"><span className="num">9</span><h3>Convênio</h3><p>Parcerias com os principais convênios veterinários. Verifique cobertura e facilidades de pagamento. Atendimento acessível para sua família.</p></article></a>
             <a href="/servicos/apoio-psicologico" style={{ textDecoration: "none", color: "inherit" }}><article className="svc-item"><span className="num">10</span><h3>Apoio Psicológico</h3><p>Suporte emocional para tutores em momentos difíceis. Sessões com psicólogo especializado em luto animal. Você não está sozinho nessa jornada.</p></article></a>
+            <a href="/servicos/tartarectomia" style={{ textDecoration: "none", color: "inherit" }}><article className="svc-item"><span className="num">11</span><h3>Profilaxia Dentária (Tartarectomia)</h3><p>Remoção de tártaro e placa bacteriana com anestesia inalatória, equipe anestesista e cirurgião geral. Saúde bucal é qualidade de vida.</p></article></a>
           </div>
         </div>
       </section>

@@ -24,7 +24,7 @@ module.exports = [
 
 Mantenha a calma, evite medicar por conta própria e transporte o pet com segurança, de preferência numa caixa de transporte. **Na dúvida, ligue para a clínica antes de sair** — a equipe orienta o melhor a fazer no caminho.
 
-A Clinicat funciona **24 horas por dia**, com equipe de emergência, internação e UTI sempre presente. Em situações críticas, o tempo é o fator mais importante.`,
+A Clinicat funciona **24 horas por dia**, com equipe de emergência e internação sempre presente. Em situações críticas, o tempo é o fator mais importante.`,
   },
   {
     slug: 'meu-gato-parou-de-comer-o-que-fazer',
