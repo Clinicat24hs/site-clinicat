@@ -153,8 +153,64 @@ export default function CrecheHotel() {
         </div>
       </section>
 
-      {/* COMO FUNCIONA / REQUISITOS */}
+      {/* ROTINA DA CRECHE */}
       <section className="section section-soft">
+        <div className="container">
+          <div className="section-head">
+            <p className="kicker primary">Transparência</p>
+            <h2 className="display-md">A <em>rotina</em> do seu pet na creche.</h2>
+            <p className="lead">Período diurno das 08:00 às 20:00 · plantão noturno das 20:00 às 08:00.</p>
+          </div>
+          <div style={{ maxWidth: 820, margin: "0 auto", display: "grid", gap: "1rem" }}>
+            {[
+              { h: "08:00", t: "Troca de plantão", d: "Fazemos a troca de plantão entre os monitores e, em seguida, iniciamos a alimentação dos pets.", b: ["Todos os animais são alimentados individualmente", "As refeições são pesadas e registradas corretamente"] },
+              { h: "09:00", t: "Atividades no pátio", d: "Os pets são encaminhados para o pátio para iniciar as atividades do dia.", b: ["Circuito", "Brincadeira livre", "Gasto de energia conforme a rotina de cada animal"] },
+              { h: "12:00", t: "Almoço e momento de descanso", d: "Todos os pets são recolhidos para o almoço. Após a alimentação, começa o momento de relaxamento com:", b: ["Musicoterapia", "Aromaterapia"] },
+              { h: "14:00", t: "Retorno ao pátio", d: "Após o descanso, os pets voltam ao pátio — a rotina segue até as 18:00.", b: ["Enriquecimento ambiental", "Caça ao Tesouro", "Mais gasto de energia"] },
+              { h: "18:00", t: "Recolhimento e jantar", d: "Os pets são recolhidos aos dormitórios individuais e recebem a alimentação da noite.", b: ["Ligamos o umidificador", "Jogos de luz para um ambiente tranquilo e uma ótima noite de sono"] },
+              { h: "20:00", t: "Troca para o plantão noturno", d: "Troca de plantão com o monitor da noite, responsável por garantir o bem-estar e uma ótima noite de sono para os pets.", b: [] },
+            ].map((it) => (
+              <article key={it.h} className="card" style={{ display: "grid", gridTemplateColumns: "72px 1fr", gap: "1rem", alignItems: "start" }}>
+                <span style={{ fontWeight: 800, color: "var(--primary)", fontSize: "1.05rem", fontVariantNumeric: "tabular-nums" }}>{it.h}</span>
+                <div>
+                  <h3 style={{ margin: "0 0 .35rem" }}>{it.t}</h3>
+                  <p style={{ margin: 0, color: "var(--muted)", lineHeight: 1.65 }}>{it.d}</p>
+                  {it.b.length > 0 && (
+                    <ul style={{ margin: ".5rem 0 0", paddingLeft: "1.1rem", color: "var(--muted)", lineHeight: 1.7 }}>
+                      {it.b.map((x) => <li key={x}>{x}</li>)}
+                    </ul>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div style={{ maxWidth: 820, margin: "1.75rem auto 0" }}>
+            <h3 style={{ textAlign: "center" }}>Rotina do monitor noturno</h3>
+            <div style={{ display: "grid", gap: "0.9rem", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", marginTop: "1rem" }}>
+              {[
+                { n: "01", d: "Higienização completa dos pátios, após todas as saídas dos pets da creche." },
+                { n: "02", d: "Envio de fotos de todos os pets que estão hospedados no hotel." },
+                { n: "03", d: "Observação dos animais durante a noite, identificando quem precisa sair para fazer as necessidades." },
+              ].map((s) => (
+                <article key={s.n} className="card">
+                  <span style={{ fontWeight: 800, color: "var(--primary)" }}>{s.n}</span>
+                  <p style={{ margin: ".4rem 0 0", color: "var(--muted)", lineHeight: 1.65 }}>{s.d}</p>
+                </article>
+              ))}
+            </div>
+            <p style={{ textAlign: "center", color: "var(--muted)", marginTop: "1.25rem", fontSize: ".95rem" }}>
+              As saídas noturnas são feitas com atenção e segurança, sempre priorizando o bem-estar dos pets.
+            </p>
+            <p style={{ textAlign: "center", fontWeight: 600, marginTop: "1rem", maxWidth: 720, marginInline: "auto" }}>
+              Nosso objetivo é garantir que cada pet tenha uma rotina organizada — com alimentação adequada, atividades, descanso, higiene e muito cuidado durante todo o período em que estiver conosco.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* COMO FUNCIONA / REQUISITOS */}
+      <section className="section">
         <div className="container">
           <div className="section-head">
             <p className="kicker primary">Antes do primeiro dia</p>
