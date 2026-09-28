@@ -13,5 +13,7 @@ export const config = {
     "/relatorios.html",
     "/relatorio-de-performance",
     "/relatorio-de-performance.html",
+    "/painel-campanha",
+    "/painel-campanha.html",
   ],
 };
