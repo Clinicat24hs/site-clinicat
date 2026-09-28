@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel de Campanhas Clinicat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Mulish:wght@400;600;700&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap">
+<style>
+/* Layout: painel de uma coluna — cabeçalho com período, alertas, indicadores, gráfico diário, tabela por campanha, pendências. */
+:root {
+  --bg: #faf9f5; --surface: #ffffff; --surface-2: #f5efe9; --ink: #1c1118; --muted: #6b5a63; --line: #e7dcd5; --grid: #efe7e2;
+  --primary: #E0306C; --primary-ink: #ffffff; --wine: #5E1331; --accent-soft: #fbe3ec; --bar: #E0306C; --ref: #5E1331;
+  --ok: #1d6f47; --ok-bg: #e2f2e8; --warn: #8a5300; --warn-bg: #fcefd6; --crit: #a8231b; --crit-bg: #fbe3e0; --info: #5E1331; --info-bg: #f3e6eb;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Mulish", ui-sans-serif, system-ui, sans-serif;
+  --font-accent: "Newsreader", Georgia, serif;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #140d11; --surface: #1f151b; --surface-2: #281b22; --ink: #f6ece8; --muted: #b9a6ae; --line: #3a2a32; --grid: #2e2128;
+  --primary: #F04C80; --primary-ink: #1c0a12; --wine: #f2a3bd; --accent-soft: #3a1a28; --bar: #EC5285; --ref: #f2a3bd;
+  --ok: #7fd9a8; --ok-bg: #15301f; --warn: #f2bb62; --warn-bg: #33260f; --crit: #ff9186; --crit-bg: #3a1714; --info: #f2a3bd; --info-bg: #2f1822;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #140d11; --surface: #1f151b; --surface-2: #281b22; --ink: #f6ece8; --muted: #b9a6ae; --line: #3a2a32; --grid: #2e2128;
+  --primary: #F04C80; --primary-ink: #1c0a12; --wine: #f2a3bd; --accent-soft: #3a1a28; --bar: #EC5285; --ref: #f2a3bd;
+  --ok: #7fd9a8; --ok-bg: #15301f; --warn: #f2bb62; --warn-bg: #33260f; --crit: #ff9186; --crit-bg: #3a1714; --info: #f2a3bd; --info-bg: #2f1822;
+  color-scheme: dark }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 32px); padding-block: 28px 56px; display: grid; gap: 28px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); line-height: 1.05; font-weight: 700; }
+h1 em { font-family: var(--font-accent); font-style: italic; font-weight: 500; color: var(--primary); }
+h2 { font-size: 1.2rem; font-weight: 700; }
+.eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--primary); margin: 0 0 6px; }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* Cabeçalho */
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px; }
+.head-text { display: grid; gap: 8px; min-width: 0; }
+.fresh { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--muted); flex-wrap: wrap; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; }
+.dot.live { background: var(--ok); box-shadow: 0 0 0 3px var(--ok-bg); }
+.dot.saved { background: var(--warn); }
+.controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.seg button { border: 0; background: transparent; padding: 6px 12px; border-radius: 999px; cursor: pointer; font-size: .85rem; font-weight: 600; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 14px; font-size: .85rem; font-weight: 600; cursor: pointer; }
+.btn:hover { border-color: var(--primary); }
+.btn[disabled] { opacity: .5; cursor: default; }
+
+/* Alertas */
+.alerts { display: grid; gap: 10px; }
+.alert { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; padding: 12px 16px; border-radius: 12px; background: var(--info-bg); color: var(--ink); }
+.alert .ico { grid-row: span 2; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: .85rem; background: var(--surface); color: var(--info); }
+.alert b { font-weight: 700; }
+.alert p { margin: 0; font-size: .9rem; color: var(--muted); }
+.alert.crit { background: var(--crit-bg); } .alert.crit .ico { color: var(--crit); }
+.alert.warn { background: var(--warn-bg); } .alert.warn .ico { color: var(--warn); }
+.alert.ok { background: var(--ok-bg); } .alert.ok .ico { color: var(--ok); }
+
+/* Indicadores */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+@media (max-width: 560px) { .kpis { grid-template-columns: 1fr 1fr; } .kpis > .kpi:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; display: grid; gap: 4px; min-width: 0; }
+.kpi .label { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi .value { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kpi .sub { font-size: .82rem; color: var(--muted); }
+.meter { height: 6px; background: var(--grid); border-radius: 999px; overflow: hidden; margin-top: 4px; }
+.meter i { display: block; height: 100%; background: var(--bar); border-radius: 999px; }
+
+/* Cartões de seção */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.card-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: .82rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 3px; background: var(--bar); }
+.sw.ref { height: 0; border-top: 2px dashed var(--ref); border-radius: 0; width: 16px; background: none; }
+
+.chart { position: relative; min-height: 240px; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { fill: var(--muted); font-size: 11px; font-family: var(--font-body); font-variant-numeric: tabular-nums; }
+.empty { display: grid; place-items: center; text-align: center; min-height: 220px; padding: 24px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); }
+.empty b { color: var(--ink); display: block; font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); padding: 8px 10px; border-radius: 8px; font-size: .8rem; line-height: 1.4; min-width: 150px; box-shadow: 0 6px 20px rgba(0,0,0,.25); z-index: 2; }
+.tip b { display: block; }
+.tip .row { display: flex; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; }
+details.tbl summary { cursor: pointer; font-size: .85rem; font-weight: 600; color: var(--muted); }
+
+/* Tabela */
+.scroll { overflow-x: auto; margin-inline: -4px; padding-inline: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; white-space: nowrap; }
+th { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+td.r, th.r { text-align: right; }
+td.num, td.r { font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: 0; }
+.camp { display: grid; gap: 2px; white-space: normal; min-width: 140px; max-width: 210px; }
+.camp b { font-weight: 700; }
+.camp small { color: var(--muted); font-size: .78rem; }
+.pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 999px; font-size: .76rem; font-weight: 700; background: var(--surface-2); color: var(--muted); }
+.pill.ok { background: var(--ok-bg); color: var(--ok); }
+.pill.warn { background: var(--warn-bg); color: var(--warn); }
+.pill.crit { background: var(--crit-bg); color: var(--crit); }
+.pace { display: grid; gap: 4px; min-width: 110px; }
+.pace .meter { margin: 0; }
+.pace small { color: var(--muted); font-size: .76rem; }
+.over { color: var(--crit); font-weight: 700; }
+
+/* Pendências */
+.todo { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.todo li { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; align-items: start; padding: 10px 12px; border-radius: 10px; background: var(--surface-2); }
+.todo input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--primary); grid-row: span 2; }
+.todo .t { font-weight: 700; }
+.todo .d { font-size: .85rem; color: var(--muted); grid-column: 2; }
+.todo li.feito .t { text-decoration: line-through; color: var(--muted); }
+.foot { font-size: .8rem; color: var(--muted); display: grid; gap: 4px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="head">
+    <div class="head-text">
+      <p class="eyebrow">Clinicat · Google Ads</p>
+      <h1>Painel de <em>campanhas</em></h1>
+      <div class="fresh" id="fresh"><span class="dot"></span><span>Conectando ao Google Ads…</span></div>
+    </div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Período">
+        <button type="button" id="p7" data-p="7" aria-pressed="false">7 dias</button>
+        <button type="button" id="p14" data-p="14" aria-pressed="false">14 dias</button>
+        <button type="button" id="p30" data-p="30" aria-pressed="true">30 dias</button>
+        <button type="button" id="pmes" data-p="mes" aria-pressed="false">Este mês</button>
+      </div>
+      <button type="button" class="btn" id="atualizar" hidden>Atualizar</button>
+    </div>
+  </header>
+
+  <section class="alerts" id="alertas" aria-label="Alertas"></section>
+
+  <section class="kpis" id="kpis" aria-label="Indicadores do período"></section>
+
+  <section class="card" aria-labelledby="t-grafico">
+    <div class="card-head">
+      <h2 id="t-grafico">Por dia</h2>
+      <div class="seg" role="group" aria-label="Métrica do gráfico">
+        <button type="button" id="m-spend" data-m="spend" aria-pressed="true">Investimento</button>
+        <button type="button" id="m-clicks" data-m="clicks" aria-pressed="false">Cliques</button>
+        <button type="button" id="m-conv" data-m="conv" aria-pressed="false">Conversões</button>
+      </div>
+    </div>
+    <div class="legend" id="legenda"></div>
+    <div class="chart" id="grafico"></div>
+    <details class="tbl"><summary>Ver dados diários em tabela</summary><div class="scroll" id="tabela-diaria"></div></details>
+  </section>
+
+  <section class="card" aria-labelledby="t-camp">
+    <div class="card-head">
+      <h2 id="t-camp">Por campanha</h2>
+      <span class="muted" style="font-size:.85rem">Verba mensal · raio de 6 km · Rede de Pesquisa</span>
+    </div>
+    <div class="scroll"><table id="tabela"></table></div>
+  </section>
+  <footer class="foot">
+    <span>Dados do Google Ads (conta 233-955-5848) lidos pelo conector Windsor.ai. Datas no fuso de São Paulo.</span>
+    <span>Conversões do Google Ads só ficam confiáveis depois que a medição for corrigida (itens 1.1 e 1.2 do <a href="/relatorio-de-performance" style="color:inherit">relatório de performance</a>).</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- Configuração (vem da API: /api/painel-campanha) ----------
+  var CAMPANHAS = [], DIARIA_TOTAL = 0, MEDICAO_OK = true;
+  var DIA_POR_MES = 30.4;
+  var diariaDe = function (c) { return c.verba / DIA_POR_MES; };
+  function configurar(campanhas) {
+    CAMPANHAS = campanhas || [];
+    DIARIA_TOTAL = CAMPANHAS.reduce(function (s, c) { return s + diariaDe(c); }, 0);
+  }
+
+  // ---------- Datas no fuso de São Paulo ----------
+  function hojeSP() {
+    var p = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+    return p; // yyyy-mm-dd
+  }
+  function addDias(iso, n) {
+    var d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n);
+    return d.toISOString().slice(0, 10);
+  }
+  function diasEntre(a, b) { return Math.round((new Date(b + "T12:00:00Z") - new Date(a + "T12:00:00Z")) / 864e5) + 1; }
+  var HOJE = hojeSP();
+  var INICIO_MES = HOJE.slice(0, 8) + "01";
+  var DESDE = [INICIO_MES, addDias(HOJE, -29)].sort()[0];
+
+  // ---------- Formatação ----------
+  var fmtBRL = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+  var fmtBRL0 = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+  var fmtInt = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 0 });
+  var fmtDec = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 });
+  var fmtPct = new Intl.NumberFormat("pt-BR", { style: "percent", maximumFractionDigits: 1 });
+  var fmtDia = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", timeZone: "UTC" });
+  var fmtHora = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit", timeZone: "America/Sao_Paulo" });
+  function dia(iso) { return fmtDia.format(new Date(iso + "T12:00:00Z")).replace(".", ""); }
+  function num(v) { var n = Number(v); return isFinite(n) ? n : 0; }
+
+  // ---------- Estado ----------
+  var estado = { periodo: "30", metrica: "spend", resposta: null, erro: null, aviso: null, carregando: true };
+
+  // ---------- Utilidades de DOM ----------
+  function h(tag, attrs, kids) {
+    var el = document.createElement(tag);
+    if (attrs) for (var k in attrs) {
+      if (attrs[k] == null) continue;
+      if (k === "class") el.className = attrs[k];
+      else if (k === "text") el.textContent = attrs[k];
+      else if (k === "style") el.setAttribute("style", attrs[k]);
+      else el.setAttribute(k, attrs[k]);
+    }
+    (kids || []).forEach(function (c) { if (c != null) el.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    return el;
+  }
+  function limpar(el) { while (el.firstChild) el.removeChild(el.firstChild); return el; }
+  var $ = function (id) { return document.getElementById(id); };
+
+  function dados() {
+    var r = estado.resposta;
+    return r ? { linhas: r.linhas || [], status: r.status || [] } : { linhas: [], status: [] };
+  }
+
+  function intervalo() {
+    var de = estado.periodo === "mes" ? INICIO_MES : addDias(HOJE, -(Number(estado.periodo) - 1));
+    return { de: de, ate: HOJE, dias: diasEntre(de, HOJE) };
+  }
+  function agregar(linhas) {
+    var a = { spend: 0, clicks: 0, impr: 0, conv: 0, calls: 0, eleg: 0, perdaVerba: 0, perdaRank: 0 };
+    linhas.forEach(function (r) {
+      var impr = num(r.impressions), is = num(r.search_impression_share);
+      a.spend += num(r.spend); a.clicks += num(r.clicks); a.impr += impr;
+      a.conv += num(r.conversions); a.calls += num(r.phone_calls);
+      if (is > 0 && impr > 0) {
+        var eleg = impr / is; a.eleg += eleg;
+        a.perdaVerba += num(r.search_budget_lost_impression_share) * eleg;
+        a.perdaRank += num(r.search_rank_lost_impression_share) * eleg;
+      }
+    });
+    a.ctr = a.impr ? a.clicks / a.impr : null;
+    a.cpc = a.clicks ? a.spend / a.clicks : null;
+    a.is = a.eleg ? a.impr / a.eleg : null;
+    a.lostBudget = a.eleg ? a.perdaVerba / a.eleg : null;
+    a.lostRank = a.eleg ? a.perdaRank / a.eleg : null;
+    return a;
+  }
+
+
+  // ---------- Render ----------
+  function render() {
+    var d = dados(), iv = intervalo();
+    var noPeriodo = d.linhas.filter(function (r) { return r.date >= iv.de && r.date <= iv.ate; });
+    renderFresh();
+    renderAlertas(d);
+    renderKpis(noPeriodo, iv);
+    renderGrafico(noPeriodo, iv);
+    renderTabela(noPeriodo, iv, d.status);
+  }
+
+  function renderFresh() {
+    var el = limpar($("fresh")), dot = h("span", { class: "dot" }), txt;
+    if (estado.resposta) {
+      dot.className = estado.aviso ? "dot saved" : "dot live";
+      txt = "Lido do Google Ads às " + fmtHora.format(new Date(estado.resposta.atualizadoEm));
+    } else if (estado.carregando) {
+      txt = "Lendo o Google Ads…";
+    } else {
+      txt = "Sem dados no momento";
+    }
+    el.appendChild(dot); el.appendChild(h("span", { text: txt }));
+    if (estado.aviso) el.appendChild(h("span", { text: "· " + estado.aviso }));
+  }
+
+  var ERROS = {
+    sem_chave: ["Falta a chave do Windsor.ai no servidor", "Cadastre a variável WINDSOR_API_KEY no Coolify (chave em onboard.windsor.ai → API key) e publique de novo."],
+    windsor: ["O Windsor.ai não respondeu", "Tente “Atualizar” em alguns minutos. Se continuar, confira se a conta do Google Ads segue conectada no Windsor.ai."],
+    rede: ["Não foi possível falar com o servidor", "Confira a conexão e tente “Atualizar”."]
+  };
+
+  function renderAlertas(d) {
+    var el = limpar($("alertas"));
+    if (estado.erro) {
+      var e = ERROS[estado.erro.codigo] || ERROS.rede;
+      el.appendChild(alerta("warn", "!", e[0], e[1] + (estado.erro.detalhe ? " (" + estado.erro.detalhe + ")" : "")));
+    }
+    var porId = {}; d.status.forEach(function (s) { porId[s.campaign_id] = s; });
+    var conhecidas = CAMPANHAS.filter(function (c) { return porId[c.id]; });
+    if (!conhecidas.length) return;
+    var semPresenca = conhecidas.filter(function (c) { return porId[c.id].campaign_geo_target_type_setting_positive_geo_target_type !== "PRESENCE"; });
+    var ativas = conhecidas.filter(function (c) { return porId[c.id].campaign_status === "ENABLED"; });
+    if (semPresenca.length) {
+      var ativasSem = semPresenca.filter(function (c) { return porId[c.id].campaign_status === "ENABLED"; });
+      el.appendChild(alerta(ativasSem.length ? "crit" : "warn", "!",
+        semPresenca.length === CAMPANHAS.length
+          ? "As " + semPresenca.length + " campanhas aceitam cliques de fora do raio"
+          : semPresenca.length + (semPresenca.length === 1 ? " campanha aceita" : " campanhas aceitam") + " cliques de fora do raio",
+        "Estão em “Presença ou interesse”. Em cada uma: Configurações → Locais → Opções de local → “Presença”. " +
+        (ativasSem.length ? "Já há campanha ativa nessa condição." : "Faça isso antes de ativar.")));
+    }
+    if (!ativas.length) {
+      el.appendChild(alerta("", "i", "Todas as campanhas estão pausadas",
+        "Os números aparecem aqui a partir do primeiro dia no ar."));
+    }
+  }
+
+  function alerta(tipo, ico, titulo, texto) {
+    return h("div", { class: "alert " + tipo, role: tipo === "crit" ? "alert" : null }, [
+      h("span", { class: "ico", "aria-hidden": "true", text: ico }),
+      h("b", { text: titulo }),
+      h("p", { text: texto })
+    ]);
+  }
+
+
+  function kpi(label, valor, sub, pct) {
+    var kids = [h("span", { class: "label", text: label }), h("span", { class: "value", text: valor })];
+    if (pct != null) kids.push(h("div", { class: "meter", role: "img", "aria-label": fmtPct.format(pct) + " da verba prevista" }, [h("i", { style: "width:" + Math.min(100, pct * 100).toFixed(1) + "%" })]));
+    if (sub) kids.push(h("span", { class: "sub", text: sub }));
+    return h("div", { class: "kpi" }, kids);
+  }
+
+
+  function renderKpis(linhas, iv) {
+    var el = limpar($("kpis")), a = agregar(linhas);
+    var previsto = DIARIA_TOTAL * iv.dias;
+    var semDados = !linhas.length;
+    el.appendChild(kpi("Investimento", semDados ? "R$ 0" : fmtBRL.format(a.spend),
+      "de " + fmtBRL0.format(previsto) + " previstos em " + iv.dias + " dias", previsto ? a.spend / previsto : 0));
+    el.appendChild(kpi("Cliques", fmtInt.format(a.clicks), a.ctr == null ? "CTR —" : "CTR " + fmtPct.format(a.ctr)));
+    el.appendChild(kpi("CPC médio", a.cpc == null ? "—" : fmtBRL.format(a.cpc), a.impr ? fmtInt.format(a.impr) + " impressões" : "sem impressões"));
+    var medeErrado = !MEDICAO_OK;
+    el.appendChild(kpi("Conversões", fmtDec.format(a.conv),
+      medeErrado ? "Medição ainda não corrigida" : (a.conv ? "custo " + fmtBRL.format(a.spend / a.conv) + " cada" : "—")));
+    el.appendChild(kpi("Parcela de impressões", a.is == null ? "—" : fmtPct.format(a.is),
+      a.is == null ? "aparece com a campanha no ar" : "perde " + fmtPct.format(a.lostBudget || 0) + " por verba · " + fmtPct.format(a.lostRank || 0) + " por classificação"));
+  }
+
+
+  var METRICAS = {
+    spend: { nome: "Investimento", fmt: function (v) { return fmtBRL.format(v); }, eixo: function (v) { return fmtBRL0.format(v); } },
+    clicks: { nome: "Cliques", fmt: function (v) { return fmtInt.format(v); }, eixo: function (v) { return fmtInt.format(v); } },
+    conv: { nome: "Conversões", fmt: function (v) { return fmtDec.format(v); }, eixo: function (v) { return fmtDec.format(v); } }
+  };
+  function valorDe(r, m) { return m === "conv" ? num(r.conversions) : num(r[m]); }
+
+  function serieDiaria(linhas, iv) {
+    var mapa = {};
+    for (var i = 0; i < iv.dias; i++) mapa[addDias(iv.de, i)] = { data: addDias(iv.de, i), total: 0, porCamp: {} };
+    linhas.forEach(function (r) {
+      var p = mapa[r.date]; if (!p) return;
+      var v = valorDe(r, estado.metrica);
+      p.total += v; p.porCamp[r.campaign_id] = (p.porCamp[r.campaign_id] || 0) + v;
+    });
+    return Object.keys(mapa).sort().map(function (k) { return mapa[k]; });
+  }
+
+  function passoBonito(max) {
+    if (max <= 0) return 1;
+    var bruto = max / 4, mag = Math.pow(10, Math.floor(Math.log10(bruto))), n = bruto / mag;
+    return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * mag;
+  }
+
+  function renderGrafico(linhas, iv) {
+    var el = limpar($("grafico")), leg = limpar($("legenda")), M = METRICAS[estado.metrica];
+    var serie = serieDiaria(linhas, iv);
+    var comRef = estado.metrica === "spend";
+    leg.appendChild(h("span", {}, [h("i", { class: "sw" }), M.nome + " por dia, todas as campanhas"]));
+    if (comRef) leg.appendChild(h("span", {}, [h("i", { class: "sw ref" }), "Verba diária somada (" + fmtBRL.format(DIARIA_TOTAL) + ")"]));
+    renderTabelaDiaria(serie, M);
+
+    if (!linhas.length) {
+      el.appendChild(h("div", { class: "empty" }, [h("div", {}, [
+        h("b", { text: "Nenhuma veiculação neste período" }),
+        h("span", { text: "O gráfico começa a encher no primeiro dia em que uma campanha estiver ativa." })
+      ])]));
+      return;
+    }
+
+    var W = Math.max(300, el.clientWidth || 800), H = W < 560 ? 220 : 260;
+    var m = { t: 12, r: 8, b: 26, l: W < 560 ? 44 : 60 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var max = Math.max.apply(null, serie.map(function (p) { return p.total; }).concat(comRef ? [DIARIA_TOTAL] : [0]));
+    var passo = passoBonito(max), topo = Math.max(passo, Math.ceil(max / passo) * passo);
+    var y = function (v) { return m.t + ih - (v / topo) * ih; };
+    var slot = iw / serie.length, bw = Math.max(2, Math.min(28, slot - 2));
+    var NS = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", M.nome + " por dia de " + dia(iv.de) + " a " + dia(iv.ate));
+    function s(tag, at) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); svg.appendChild(e); return e; }
+
+    for (var v = 0; v <= topo + 1e-9; v += passo) {
+      s("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: "var(--grid)", "stroke-width": 1 });
+      var t = s("text", { x: m.l - 8, y: y(v) + 4, "text-anchor": "end" }); t.textContent = M.eixo(v);
+    }
+    var estreito = W < 560, cada = Math.ceil(serie.length / (estreito ? 4 : 9));
+    var rotulo = function (iso) { return estreito ? iso.slice(8, 10) + "/" + iso.slice(5, 7) : dia(iso); };
+    serie.forEach(function (p, i) {
+      var x = m.l + i * slot + (slot - bw) / 2, topoBarra = y(p.total), alt = m.t + ih - topoBarra;
+      if (alt > 0) {
+        var r = Math.min(4, bw / 2, alt);
+        s("path", { d: "M" + x + "," + (m.t + ih) + "V" + (topoBarra + r) + "Q" + x + "," + topoBarra + " " + (x + r) + "," + topoBarra +
+          "H" + (x + bw - r) + "Q" + (x + bw) + "," + topoBarra + " " + (x + bw) + "," + (topoBarra + r) + "V" + (m.t + ih) + "Z", fill: "var(--bar)" });
+      }
+      // Rótulo a cada `cada` dias; o último dia só ganha rótulo se estiver longe do anterior.
+      var ultimoLonge = i === serie.length - 1 && i % cada >= Math.ceil(cada / 2);
+      if (i % cada === 0 || ultimoLonge) {
+        var tx = s("text", { x: m.l + i * slot + slot / 2, y: H - 6, "text-anchor": "middle" }); tx.textContent = rotulo(p.data);
+      }
+    });
+    if (comRef) s("line", { x1: m.l, x2: W - m.r, y1: y(DIARIA_TOTAL), y2: y(DIARIA_TOTAL), stroke: "var(--ref)", "stroke-width": 2, "stroke-dasharray": "5 4" });
+    s("line", { x1: m.l, x2: W - m.r, y1: m.t + ih, y2: m.t + ih, stroke: "var(--line)", "stroke-width": 1 });
+
+    var tip = h("div", { class: "tip", hidden: "" });
+    serie.forEach(function (p, i) {
+      var hit = s("rect", { x: m.l + i * slot, y: m.t, width: slot, height: ih, fill: "transparent", tabindex: "0", "aria-label": dia(p.data) + ": " + M.fmt(p.total) });
+      function mostrar() {
+        limpar(tip);
+        tip.appendChild(h("b", { text: dia(p.data) + " · " + M.fmt(p.total) }));
+        CAMPANHAS.forEach(function (c) {
+          var v = p.porCamp[c.id]; if (!v) return;
+          tip.appendChild(h("div", { class: "row" }, [h("span", { text: c.nome }), h("span", { text: M.fmt(v) })]));
+        });
+        tip.hidden = false;
+        var px = ((m.l + i * slot + slot / 2) / W) * el.clientWidth;
+        tip.style.left = Math.max(0, Math.min(el.clientWidth - tip.offsetWidth, px - tip.offsetWidth / 2)) + "px";
+        tip.style.top = "0px";
+      }
+      hit.addEventListener("mouseenter", mostrar); hit.addEventListener("focus", mostrar);
+      hit.addEventListener("mouseleave", function () { tip.hidden = true; }); hit.addEventListener("blur", function () { tip.hidden = true; });
+    });
+    el.appendChild(svg); el.appendChild(tip);
+  }
+
+  function renderTabelaDiaria(serie, M) {
+    var el = limpar($("tabela-diaria"));
+    var t = h("table"), cab = h("tr", {}, [h("th", { text: "Dia" })]);
+    CAMPANHAS.forEach(function (c) { cab.appendChild(h("th", { class: "r", text: c.nome })); });
+    cab.appendChild(h("th", { class: "r", text: "Total" }));
+    t.appendChild(h("thead", {}, [cab]));
+    var corpo = h("tbody");
+    serie.slice().reverse().forEach(function (p) {
+      var tr = h("tr", {}, [h("td", { text: dia(p.data) })]);
+      CAMPANHAS.forEach(function (c) { tr.appendChild(h("td", { class: "r", text: p.porCamp[c.id] ? M.fmt(p.porCamp[c.id]) : "—" })); });
+      tr.appendChild(h("td", { class: "r", text: M.fmt(p.total) }));
+      corpo.appendChild(tr);
+    });
+    t.appendChild(corpo); el.appendChild(t);
+  }
+
+  function pillStatus(s) {
+    if (!s) return h("span", { class: "pill", text: "Sem leitura" });
+    if (s.campaign_status === "ENABLED") return h("span", { class: "pill ok", text: "● Ativa" });
+    if (s.campaign_status === "PAUSED") return h("span", { class: "pill", text: "❚❚ Pausada" });
+    return h("span", { class: "pill", text: String(s.campaign_status || "—").toLowerCase() });
+  }
+  function pillLocal(s) {
+    if (!s) return h("span", { class: "pill", text: "—" });
+    return s.campaign_geo_target_type_setting_positive_geo_target_type === "PRESENCE"
+      ? h("span", { class: "pill ok", text: "✓ Presença" })
+      : h("span", { class: "pill " + (s.campaign_status === "ENABLED" ? "crit" : "warn"), text: "! Presença ou int." });
+  }
+
+  function renderTabela(linhas, iv, status) {
+    var el = limpar($("tabela"));
+    var porId = {}; status.forEach(function (s) { porId[s.campaign_id] = s; });
+    var cols = [["Campanha"], ["Status"], ["Local"], ["Investido"], ["Cliques", "r"], ["CTR", "r"], ["CPC", "r"], ["Conv.", "r"], ["Parcela impr.", "r"]];
+    el.appendChild(h("thead", {}, [h("tr", {}, cols.map(function (c) { return h("th", { class: c[1] || "", text: c[0] }); }))]));
+    var corpo = h("tbody");
+    CAMPANHAS.forEach(function (c) {
+      var a = agregar(linhas.filter(function (r) { return r.campaign_id === c.id; }));
+      var previsto = diariaDe(c) * iv.dias, ritmo = previsto ? a.spend / previsto : 0;
+      var cpcAcima = a.cpc != null && a.cpc > c.teto + 0.005;
+      corpo.appendChild(h("tr", {}, [
+        h("td", {}, [h("div", { class: "camp" }, [h("b", { text: c.nome }), h("small", { text: fmtBRL0.format(c.verba) + "/mês · teto " + fmtBRL.format(c.teto) + " por clique" })])]),
+        h("td", {}, [pillStatus(porId[c.id])]),
+        h("td", {}, [pillLocal(porId[c.id])]),
+        h("td", {}, [h("div", { class: "pace" }, [
+          h("span", { class: "num", text: fmtBRL.format(a.spend) }),
+          h("div", { class: "meter", role: "img", "aria-label": fmtPct.format(ritmo) + " do previsto" }, [h("i", { style: "width:" + Math.min(100, ritmo * 100).toFixed(1) + "%" })]),
+          h("small", { text: fmtPct.format(ritmo) + " de " + fmtBRL0.format(previsto) })
+        ])]),
+        h("td", { class: "r", text: fmtInt.format(a.clicks) }),
+        h("td", { class: "r", text: a.ctr == null ? "—" : fmtPct.format(a.ctr) }),
+        h("td", { class: "r" + (cpcAcima ? " over" : ""), text: a.cpc == null ? "—" : fmtBRL.format(a.cpc) }),
+        h("td", { class: "r", text: a.conv ? fmtDec.format(a.conv) : "—" }),
+        h("td", { class: "r", text: a.is == null ? "—" : fmtPct.format(a.is) })
+      ]));
+    });
+    el.appendChild(corpo);
+  }
+
+
+  // ---------- Carregamento ----------
+  var pedindo = false;
+  function carregar(forcar) {
+    if (pedindo) return;
+    pedindo = true; estado.carregando = true; $("atualizar").disabled = true;
+    fetch("/api/painel-campanha" + (forcar ? "?atualizar=1" : ""), { credentials: "same-origin", headers: { Accept: "application/json" } })
+      .then(function (res) {
+        if (res.status === 401) { window.location.href = "/admin/login?callbackUrl=%2Fpainel-campanha"; return null; }
+        return res.json().then(function (j) { return { ok: res.ok, j: j }; }, function () { return { ok: false, j: {} }; });
+      })
+      .then(function (r) {
+        if (!r) return;
+        if (r.ok) {
+          configurar(r.j.campanhas); MEDICAO_OK = !!r.j.medicaoConversoesOk;
+          estado.resposta = r.j; estado.erro = null; estado.aviso = r.j.aviso || null;
+        } else {
+          estado.erro = { codigo: r.j.erro || "rede", detalhe: r.j.detalhe };
+        }
+      }, function () { estado.erro = { codigo: "rede" }; })
+      .then(function () {
+        pedindo = false; estado.carregando = false;
+        $("atualizar").disabled = false; $("atualizar").hidden = false;
+        render();
+      });
+  }
+
+  // ---------- Controles ----------
+  document.querySelectorAll("[data-p]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      estado.periodo = b.getAttribute("data-p");
+      document.querySelectorAll("[data-p]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      try { localStorage.setItem("clinicat-periodo", estado.periodo); } catch (e) {}
+      render();
+    });
+  });
+  document.querySelectorAll("[data-m]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      estado.metrica = b.getAttribute("data-m");
+      document.querySelectorAll("[data-m]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      render();
+    });
+  });
+  $("atualizar").addEventListener("click", function () { carregar(true); });
+  try {
+    var salvoP = localStorage.getItem("clinicat-periodo");
+    var botaoP = salvoP && document.querySelector('[data-p="' + salvoP + '"]');
+    if (botaoP) botaoP.click();
+  } catch (e) {}
+  var ultimaLargura = 0;
+  window.addEventListener("resize", function () {
+    var w = $("grafico").clientWidth; if (Math.abs(w - ultimaLargura) < 8) return; ultimaLargura = w; render();
+  });
+  // Relê a cada 15 min com a aba visível (o servidor guarda a leitura por 10 min).
+  setInterval(function () { if (!document.hidden) carregar(false); }, 15 * 60 * 1000);
+
+  render();
+  carregar(false);
+})();
+</script>
+</body>
+</html>

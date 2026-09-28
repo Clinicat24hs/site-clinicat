@@ -15,6 +15,7 @@ export const authConfig = {
       // Relatórios de mídia paga: dados internos — só logado (não são públicos)
       if (pathname.startsWith("/relatorios")) return !!auth?.user;
       if (pathname.startsWith("/relatorio-de-performance")) return !!auth?.user;
+      if (pathname.startsWith("/painel-campanha")) return !!auth?.user;
       return true;
     },
   },

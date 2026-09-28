@@ -53,6 +53,9 @@ const nextConfig: NextConfig = {
           source: "/relatorio-de-performance",
           destination: "/relatorio-de-performance.html",
         },
+        // Painel das campanhas de Busca (dados ao vivo via /api/painel-campanha).
+        // Também restrito a quem tem login.
+        { source: "/painel-campanha", destination: "/painel-campanha.html" },
       ],
       fallback: [],
     };
