@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Mulish:wght@400;600;700&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap">
 <style>
-/* Layout: painel de uma coluna — cabeçalho com período, alertas, indicadores, gráfico diário, tabela por campanha, pendências. */
+/* Layout: painel de uma coluna — cabeçalho com período, alertas, indicadores, gráfico diário, tabela por campanha, histórico de análises. */
 :root {
   --bg: #faf9f5; --surface: #ffffff; --surface-2: #f5efe9; --ink: #1c1118; --muted: #6b5a63; --line: #e7dcd5; --grid: #efe7e2;
   --primary: #E0306C; --primary-ink: #ffffff; --wine: #5E1331; --accent-soft: #fbe3ec; --bar: #E0306C; --ref: #5E1331;
@@ -127,6 +127,26 @@ tbody tr:last-child td { border-bottom: 0; }
 .todo .d { font-size: .85rem; color: var(--muted); grid-column: 2; }
 .todo li.feito .t { text-decoration: line-through; color: var(--muted); }
 .foot { font-size: .8rem; color: var(--muted); display: grid; gap: 4px; }
+
+/* Histórico de análises: uma por período, a mais recente no topo e aberta */
+.historico { display: grid; gap: 10px; min-width: 0; }
+.historico > *, .analise-corpo > *, .fase > * { min-width: 0; }
+.analise { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.analise > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 12px; padding: 14px 16px; }
+.analise > summary::-webkit-details-marker { display: none; }
+.analise > summary::after { content: ""; grid-column: 2; grid-row: 1 / span 2; width: 9px; height: 9px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); margin-top: -4px; transition: transform .15s; }
+.analise[open] > summary::after { transform: rotate(-135deg); margin-top: 4px; }
+.analise > summary b { font-family: var(--font-display); font-size: 1.02rem; }
+.analise > summary small { color: var(--muted); font-size: .82rem; grid-column: 1; }
+.analise-corpo { padding: 4px 16px 18px; display: grid; gap: 18px; border-top: 1px solid var(--line); }
+.analise-corpo h3 { font-size: .98rem; font-weight: 700; margin-top: 10px; }
+.analise-corpo p, .analise-corpo ul, .analise-corpo ol { margin: 0; }
+.analise-corpo ul, .analise-corpo ol { padding-left: 1.2em; display: grid; gap: 6px; }
+.analise-corpo li::marker { color: var(--primary); font-weight: 700; }
+.analise-corpo .nota { font-size: .85rem; color: var(--muted); }
+.fase { display: grid; gap: 8px; padding: 12px 14px; border-radius: 10px; background: var(--surface-2); }
+.fase-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 10px; }
+.fase-head b { font-family: var(--font-display); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
@@ -175,6 +195,129 @@ tbody tr:last-child td { border-bottom: 0; }
     </div>
     <div class="scroll"><table id="tabela"></table></div>
   </section>
+
+  <section class="card" aria-labelledby="t-hist">
+    <div class="card-head">
+      <h2 id="t-hist">Análises e otimizações</h2>
+      <span class="muted" style="font-size:.85rem">Histórico · a mais recente primeiro</span>
+    </div>
+    <div class="historico">
+
+      <!-- Nova análise: copie um <details class="analise"> inteiro para cá, em cima; deixe `open` só na mais recente. -->
+      <details class="analise" open>
+        <summary>
+          <b>Análise e Otimização do período 29/09 a 12/10/2026</b>
+          <small>Publicada em 13/10/2026 · 14 dias · 6 campanhas de Busca</small>
+        </summary>
+        <div class="analise-corpo">
+
+          <div>
+            <h3>Resumo</h3>
+            <div class="scroll"><table>
+              <thead><tr><th>Indicador</th><th class="r">Resultado</th><th>Meta</th><th>Situação</th></tr></thead>
+              <tbody>
+                <tr><td>Investido</td><td class="r">R$ 975,93</td><td>—</td><td><span class="pill">≈ R$ 70/dia, verba inteira</span></td></tr>
+                <tr><td>Cliques</td><td class="r">665</td><td>—</td><td><span class="pill">CPC médio R$ 1,47</span></td></tr>
+                <tr><td>Contatos medidos</td><td class="r">48</td><td>≥ 30/mês</td><td><span class="pill ok">✓ superada em 12 dias</span></td></tr>
+                <tr><td>Custo por contato</td><td class="r">R$ 17,65</td><td>≤ R$ 25</td><td><span class="pill ok">✓ dentro</span></td></tr>
+                <tr><td>CTR</td><td class="r">3,8%</td><td>≥ 5%</td><td><span class="pill crit">✗ só Tartarectomia chega</span></td></tr>
+                <tr><td>Perda por classificação</td><td class="r">44–65%</td><td>≤ 45%</td><td><span class="pill warn">! só Castração dentro</span></td></tr>
+                <tr><td>Contatos dentro do raio</td><td class="r">—</td><td>≥ 70%</td><td><span class="pill">não medido</span></td></tr>
+                <tr><td>Agendamentos confirmados</td><td class="r">—</td><td>≥ 40</td><td><span class="pill">não medido</span></td></tr>
+              </tbody>
+            </table></div>
+            <p class="nota" style="margin-top:8px">48 contatos = 44 cliques no WhatsApp, 3 no telefone e 1 formulário. O custo por contato considera só 01/10 em diante (R$ 847,08), quando a tag passou a medir.</p>
+          </div>
+
+          <div>
+            <h3>Ritmo: estável, não em queda</h3>
+            <p>Comparando semanas cheias, o custo por contato está parado em torno de R$ 17–18, com cerca de 4 contatos por dia. É uma boa base, mas não melhora sozinha.</p>
+            <div class="scroll" style="margin-top:8px"><table>
+              <thead><tr><th>Semana</th><th class="r">Investido</th><th class="r">Contatos</th><th class="r">Custo/contato</th></tr></thead>
+              <tbody>
+                <tr><td>01 a 06/10</td><td class="r">R$ 448,97</td><td class="r">25</td><td class="r">R$ 17,96</td></tr>
+                <tr><td>07 a 12/10</td><td class="r">R$ 398,11</td><td class="r">23</td><td class="r">R$ 17,31</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+
+          <div>
+            <h3>Por campanha</h3>
+            <div class="scroll"><table>
+              <thead><tr><th>Campanha</th><th class="r">Investido</th><th class="r">Contatos</th><th class="r">Custo/contato</th><th class="r">Taxa de contato</th><th class="r">CTR</th><th class="r">Perdido p/ verba</th></tr></thead>
+              <tbody>
+                <tr><td><b>Banho e Tosa</b></td><td class="r">R$ 180</td><td class="r">15</td><td class="r"><span class="pill ok">R$ 12</span></td><td class="r">8,5%</td><td class="r">4,9%</td><td class="r">37%</td></tr>
+                <tr><td><b>Hotel e Creche</b></td><td class="r">R$ 183</td><td class="r">15</td><td class="r"><span class="pill ok">R$ 12</span></td><td class="r">10,7%</td><td class="r">4,7%</td><td class="r">31%</td></tr>
+                <tr><td><b>Castração</b></td><td class="r">R$ 173</td><td class="r">10</td><td class="r"><span class="pill ok">R$ 17</span></td><td class="r">11,8%</td><td class="r">4,2%</td><td class="r">28%</td></tr>
+                <tr><td><b>Tartarectomia</b></td><td class="r">R$ 188</td><td class="r">5</td><td class="r"><span class="pill warn">R$ 38</span></td><td class="r">6,3%</td><td class="r">5,4%</td><td class="r">22%</td></tr>
+                <tr><td><b>Emergência 24h</b></td><td class="r">R$ 181</td><td class="r">3</td><td class="r"><span class="pill crit">R$ 60</span></td><td class="r">2,8%</td><td class="r">3,0%</td><td class="r">34%</td></tr>
+                <tr><td><b>Clínica, Consulta e Vacinas</b></td><td class="r">R$ 70</td><td class="r">0</td><td class="r"><span class="pill crit">—</span></td><td class="r">0%</td><td class="r">2,1%</td><td class="r">28%</td></tr>
+              </tbody>
+            </table></div>
+            <p class="nota" style="margin-top:8px">Os custos por campanha incluem 29 e 30/09, ainda sem medição, e por isso ficam um pouco acima do real.</p>
+          </div>
+
+          <div>
+            <h3>O que os números dizem</h3>
+            <ol>
+              <li><b>Banho e Tosa e Hotel e Creche são os destaques:</b> 63% dos contatos com 37% da verba, e ainda perdem um terço das buscas por falta de verba. Verba a mais aqui vira contato quase direto.</li>
+              <li><b>Castração está saudável:</b> melhor taxa de contato (11,8%), com custo dentro da meta.</li>
+              <li><b>Tartarectomia tem o melhor CTR, mas converte pouco.</b> O anúncio atrai e a página não fecha. Parte disso eram buscas informativas, já negativadas nas revisões; o resto é página e oferta.</li>
+              <li><b>A Emergência mede mal o que faz.</b> Quem está em emergência liga ou vem direto, e isso não vira conversão. Só a recepção consegue dizer se ela funciona. O CTR de 3,0% pede anúncio novo.</li>
+              <li><b>Clínica, Consulta e Vacinas não decolou:</b> 79 cliques, 0 contatos, CTR de 2,1%, 65% das impressões perdidas por classificação. Compete com termos genéricos e caros.</li>
+              <li><b>Madrugada (2h às 6h):</b> R$ 39 gastos nas campanhas que não são de emergência, com 0 contatos.</li>
+              <li><b>Celular:</b> 95% do investimento e 46 dos 48 contatos. Sem ajuste a fazer.</li>
+              <li><b>Todas as campanhas são limitadas por verba</b> (22–37% das buscas perdidas). Realocar verba rende mais que cortar CPC.</li>
+            </ol>
+          </div>
+
+          <div style="display:grid;gap:10px">
+            <h3>Plano de otimização</h3>
+
+            <div class="fase">
+              <div class="fase-head"><b>Fase 1 · aplicar já</b><span class="pill warn">Aguardando aprovação</span></div>
+              <ol>
+                <li>Pausar <b>Clínica, Consulta e Vacinas</b> e dividir os R$ 150 entre <b>Banho e Tosa (+R$ 75)</b> e <b>Hotel e Creche (+R$ 75)</b>.</li>
+                <li>Passar <b>Banho e Tosa</b> e <b>Hotel e Creche</b> para “Maximizar conversões”, sem meta de custo. Cada uma tem 15 conversões, o suficiente para o Google aprender; o custo pode oscilar nos primeiros 7–10 dias.</li>
+                <li>Tirar a madrugada (2h às 6h) de Banho, Hotel, Castração e Tartarectomia. A Emergência continua 24h. São ≈ R$ 100/mês de volta para os horários que convertem.</li>
+              </ol>
+            </div>
+
+            <div class="fase">
+              <div class="fase-head"><b>Fase 2 · semana de 20 a 26/10</b><span class="pill">Planejada</span></div>
+              <ol start="4">
+                <li><b>Emergência:</b> conferir e, se faltar, adicionar a extensão de chamada; criar um anúncio “aberto agora / plantão em Perdizes”; pedir à recepção uma contagem de quem ligou ou chegou dizendo “vi no Google”. <b>Decisão em 26/10:</b> se forem poucos casos, reduzir para R$ 250 e passar o resto para Banho e Hotel.</li>
+                <li><b>Tartarectomia:</b> melhorar a página com WhatsApp no topo, “avaliação odontológica” como chamada e, se possível, uma faixa de preço.</li>
+                <li><b>Castração:</b> anúncio novo para levar o CTR de 4,2% a 5%.</li>
+              </ol>
+            </div>
+
+            <div class="fase">
+              <div class="fase-head"><b>Fase 3 · a partir de 27/10</b><span class="pill">Planejada</span></div>
+              <ol start="7">
+                <li><b>Recepção:</b> etiquetar as conversas do WhatsApp com Novo → Agendou → Compareceu e perguntar o bairro no início de cada conversa. Sem isso, otimizamos cliques, não clientes.</li>
+                <li><b>Formulário:</b> ligar a medição do “Envio Formulário-Site” (falta o print da tag).</li>
+                <li><b>Painel:</b> desligar o aviso “Medição ainda não corrigida”.</li>
+                <li><b>Revisões:</b> passar a semanais a partir de 29/10. Se Banho e Hotel mantiverem custo ≤ R$ 15 depois da troca de lance, avaliar aumento de verba nelas.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div>
+            <h3>Referência para a próxima análise (26/10)</h3>
+            <ul>
+              <li>≥ 30 contatos na semana</li>
+              <li>Custo ≤ R$ 16 por contato</li>
+              <li>CTR geral ≥ 4,5%</li>
+            </ul>
+          </div>
+
+        </div>
+      </details>
+
+    </div>
+  </section>
+
   <footer class="foot">
     <span>Dados do Google Ads (conta 233-955-5848) lidos pelo conector Windsor.ai. Datas no fuso de São Paulo.</span>
     <span>Conversões do Google Ads só ficam confiáveis depois que a medição for corrigida (itens 1.1 e 1.2 do <a href="/relatorio-de-performance" style="color:inherit">relatório de performance</a>).</span>
