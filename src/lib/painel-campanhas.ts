@@ -8,14 +8,18 @@
 
 export const CONTA_GOOGLE_ADS = "233-955-5848";
 
-/** Verba mensal e teto de CPC definidos na criação de cada campanha. */
+/**
+ * Verba mensal atual e teto de CPC de cada campanha. Em 27/11/2026 Emergência
+ * 24h e Clínica foram pausadas (verba 0) e os R$ 550 delas foram para Banho e
+ * Tosa (+300) e Hotel e Creche (+250); o total segue em R$ 2.150/mês.
+ */
 export const CAMPANHAS = [
-  { id: "24298406528", nome: "Emergência 24h", verba: 400, teto: 4.0 },
-  { id: "24303893437", nome: "Castração", verba: 400, teto: 3.5 },
+  { id: "24292620651", nome: "Banho e Tosa", verba: 700, teto: 2.5 },
+  { id: "24298172315", nome: "Hotel e Creche", verba: 650, teto: 3.0 },
   { id: "24298166369", nome: "Tartarectomia", verba: 400, teto: 3.5 },
-  { id: "24292620651", nome: "Banho e Tosa", verba: 400, teto: 2.5 },
-  { id: "24298172315", nome: "Hotel e Creche", verba: 400, teto: 3.0 },
-  { id: "24303897328", nome: "Clínica, Consulta e Vacinas", verba: 150, teto: 2.5 },
+  { id: "24303893437", nome: "Castração", verba: 400, teto: 3.5 },
+  { id: "24298406528", nome: "Emergência 24h", verba: 0, teto: 4.0 },
+  { id: "24303897328", nome: "Clínica, Consulta e Vacinas", verba: 0, teto: 2.5 },
 ] as const;
 
 /**
